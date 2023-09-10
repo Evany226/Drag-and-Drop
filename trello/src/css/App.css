@@ -1,0 +1,52 @@
+#root {
+  font-family: Inter, sans-serif;
+  width: 100%;
+
+}
+
+html, body, *{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+#background {
+  height: 100vh;
+  background-image: linear-gradient(306deg, rgba(54, 54, 54, 0.05) 0%, rgba(54, 54, 54, 0.05) 33.333%,rgba(85, 85, 85, 0.05) 33.333%, rgba(85, 85, 85, 0.05) 66.666%,rgba(255, 255, 255, 0.05) 66.666%, rgba(255, 255, 255, 0.05) 99.999%),linear-gradient(353deg, rgba(81, 81, 81, 0.05) 0%, rgba(81, 81, 81, 0.05) 33.333%,rgba(238, 238, 238, 0.05) 33.333%, rgba(238, 238, 238, 0.05) 66.666%,rgba(32, 32, 32, 0.05) 66.666%, rgba(32, 32, 32, 0.05) 99.999%),linear-gradient(140deg, rgba(192, 192, 192, 0.05) 0%, rgba(192, 192, 192, 0.05) 33.333%,rgba(109, 109, 109, 0.05) 33.333%, rgba(109, 109, 109, 0.05) 66.666%,rgba(30, 30, 30, 0.05) 66.666%, rgba(30, 30, 30, 0.05) 99.999%),linear-gradient(189deg, rgba(77, 77, 77, 0.05) 0%, rgba(77, 77, 77, 0.05) 33.333%,rgba(55, 55, 55, 0.05) 33.333%, rgba(55, 55, 55, 0.05) 66.666%,rgba(173,155,155, 0.05) 66.666%, rgba(173,155,155, 0.05) 99.999%),linear-gradient(90deg, rgb(77,255,239),rgb(77,255,239));
+}
+
+.nav {
+background-color: #e3fdf8;
+box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+border-radius: 0rem 0rem 0.5rem 0.5rem;
+
+}
+
+.nav-name {
+  color: #1f201f ;
+  font-size: 1.5rem;
+  font-weight: 700;
+  padding: 0.3rem;
+  margin-left: 1rem;
+  padding-top: 0.5rem;
+
+}
+
+.create-button {
+  background-color: #1f201f ;
+  border: 1px solid transparent;
+  font-weight: 500;
+  font-size: 1rem;
+  border-radius: 1rem;
+  color: #FFFFFF;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  margin-left: 1rem;
+
+}
+
+
+
+
+
