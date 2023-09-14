@@ -1,21 +1,23 @@
-import './css/App.css'
-import Button from "./components/Button.jsx"
+import {
+    Routes, Route, Link
+  } from 'react-router-dom';
 
+import Home from './Home.jsx';
+import Dashboard from './Dashboard.jsx';
 
 function App() {
 
-  return (
+    return (
+        <>
 
-      <section id="background">
-        <nav class="nav">
-          <h1 class="nav-name"> Journaly </h1>
-        </nav>
-        <div class="main">
-          <Button buttonName="Add Checklist +"/>
-          <Button buttonName="Add Timer +" />
-        </div>
-      </section>
-  )
+
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/dashboard" element= {<Dashboard />} />
+            </Routes>
+
+        </>
+    )
 }
 
-export default App
+export default App;

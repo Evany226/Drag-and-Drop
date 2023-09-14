@@ -1,8 +1,8 @@
-import '../css/App.css'
+import '../css/Dashboard.css'
 
-const Button = ({buttonName}) => {
+const Button = ({buttonName, buttonClass}) => {
     return (
-        <button class="create-button">{buttonName}</button>
+        <button className={buttonClass}>{buttonName}</button>
     )
 }
 
