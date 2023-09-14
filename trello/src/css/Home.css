@@ -15,56 +15,71 @@ html,body, * {
   background-color: white;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  border-radius: 0rem 0rem 0.5rem 0.5rem;
-  padding-right: 1rem;
+  justify-content: center;
+}
 
+.navAdjust {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 85%;
+  margin-top: 1rem;
 }
 
 #background {
   height: 100vh;
-  background-image: linear-gradient(306deg, rgba(54, 54, 54, 0.05) 0%, rgba(54, 54, 54, 0.05) 33.333%,rgba(85, 85, 85, 0.05) 33.333%, rgba(85, 85, 85, 0.05) 66.666%,rgba(255, 255, 255, 0.05) 66.666%, rgba(255, 255, 255, 0.05) 99.999%),linear-gradient(353deg, rgba(81, 81, 81, 0.05) 0%, rgba(81, 81, 81, 0.05) 33.333%,rgba(238, 238, 238, 0.05) 33.333%, rgba(238, 238, 238, 0.05) 66.666%,rgba(32, 32, 32, 0.05) 66.666%, rgba(32, 32, 32, 0.05) 99.999%),linear-gradient(140deg, rgba(192, 192, 192, 0.05) 0%, rgba(192, 192, 192, 0.05) 33.333%,rgba(109, 109, 109, 0.05) 33.333%, rgba(109, 109, 109, 0.05) 66.666%,rgba(30, 30, 30, 0.05) 66.666%, rgba(30, 30, 30, 0.05) 99.999%),linear-gradient(189deg, rgba(77, 77, 77, 0.05) 0%, rgba(77, 77, 77, 0.05) 33.333%,rgba(55, 55, 55, 0.05) 33.333%, rgba(55, 55, 55, 0.05) 66.666%,rgba(173,155,155, 0.05) 66.666%, rgba(173,155,155, 0.05) 99.999%),linear-gradient(90deg, rgb(77,255,239),rgb(77,255,239));
+  background-color: white;
 }
 
 #wrapper {
   display: flex;
-  align-items: center;
   justify-content: center;
-  height: 80%;
-
+  height: 90%;
+  margin-top: 2rem;
 }
 
-.login-button {
-  background-color: #1f201f;
+.signup-button {
+  background-color: #000;
   border: 1px solid rgba(27, 31, 35, .15);
-  border-radius: 0.5rem;
+  border-radius: 2rem;
   box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
   color: #fff;
   cursor: pointer;
   font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 0.35rem 1.25rem;
+  font-size: 0.8rem;
+  font-weight: 300;
+  padding: 0.5rem 1.5rem;
   position: relative;
   text-align: center;
   text-decoration: none;
 
 }
 
+.login-button {
+  color: #000;
+  font-size: 0.8rem;
+  font-weight: 300;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  border: none;
+  background-color: #f8f8f7;
+  border-radius: 0.8rem;
+  margin-right: 0.25rem;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
 
-
-
-
-.title {
-  color: black;
-  font-weight: bold;
 }
 
+.title {
+  color: #040303;
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+
 .title-2 {
-  font-size: 1.25rem;
-  color: 
-  #50cfee ;
+  font-size: 1.3rem;
+  color:#6c63ff  ;
+  font-weight: 600;
 }
 
 #titleWrapper {
@@ -74,9 +89,14 @@ html,body, * {
 
 }
 
+#buttonWrapper {
+  display: flex;
+  align-items: center;
+}
+
 
 #logoWrapper {
-  width: 3%;
+  width: 4%;
 }
 
 img {
@@ -85,9 +105,38 @@ img {
 }
 
 #foreground {
-  background-color: #fff;
-  width: 80%;
+  background-color: #fbe1dd;
+  width: 85%;
   height: 80%;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  border-radius: 0.5rem;
+  border-radius: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+svg{
+  height: 75%;
+  width: 50%;
+}
+
+.mainTextWrapper {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-title {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.sub-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  width: 60%;
+  text-align: center;
 }
