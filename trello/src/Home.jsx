@@ -13,7 +13,7 @@ function Home() {
                     <div className="navAdjust"> 
                         <div id="titleWrapper">
                             <h1 class="title"> Template</h1>
-                            <h2 class="title-2">design </h2>
+                            <h2 class="title-2">Design </h2>
 
                             <div id="logoWrapper">
                                 <img src={mainLogo} />
@@ -29,7 +29,7 @@ function Home() {
             <div id="wrapper">
                 <div id="foreground">
                     <div class="mainTextWrapper">
-                        <h1 class="main-title">Organize all <br></br> your files</h1>
+                        <h1 class="main-title">Lorem Ipsum <br></br> typesetting </h1>
                         <h2 class="sub-title">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h2>
                     </div>
                     <ReactLogo />

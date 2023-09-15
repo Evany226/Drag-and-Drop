@@ -9,7 +9,7 @@ function Dashboard() {
 
       <section id="dashboard">
         <nav className="nav">
-          <h1 className="nav-name"> Journaly </h1>
+          <h1 className="nav-name"> Evan Yang's Workspace </h1>
         </nav>
         <div className="main">
           <Button buttonClass="create-button" buttonName="Add Checklist +"/>

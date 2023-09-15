@@ -18,22 +18,24 @@ html, body, *{
 .nav {
 background-color: #e3fdf8;
 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-border-radius: 0rem 0rem 0.5rem 0.5rem;
+display: flex;
+align-items: center;
+
 
 }
 
 .nav-name {
-  color: #1f201f ;
-  font-size: 1.5rem;
-  font-weight: 700;
-  padding: 0.3rem;
+  color: #000 ;
+  font-size: 1.25rem;
+  font-weight: 600;
+  padding: 0.75rem 0.25rem;
   margin-left: 1rem;
-  padding-top: 0.5rem;
+  text-align: center;
 
 }
 
 .create-button {
-  background-color: #1f201f ;
+  background-color: #000 ;
   border: 1px solid transparent;
   font-weight: 500;
   font-size: 1rem;
