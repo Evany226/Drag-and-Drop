@@ -28,7 +28,8 @@ background-color: #e3fdf8;
 box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 display: flex;
 align-items: center;
-
+justify-content: space-between;
+padding: 0rem 1rem;
 
 }
 
@@ -36,7 +37,6 @@ align-items: center;
   color: #000 ;
   font-weight: 600;
   padding: 0.75rem 0.25rem;
-  margin-left: 1rem;
   text-align: center;
 
 }
@@ -64,3 +64,23 @@ align-items: center;
   min-height: 80vh;
 }
 
+.note-wrapper {
+  display: flex;
+  overflow-x:auto;
+}
+
+.signout-button {
+  background-color: #000;
+  border: 1px solid rgba(27, 31, 35, .15);
+  border-radius: 0.5rem;
+  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+  font-size: 0.95rem;
+  font-weight: 400;
+  padding: 0.25rem 1.25rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+}
