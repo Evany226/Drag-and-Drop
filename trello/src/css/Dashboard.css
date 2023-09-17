@@ -10,8 +10,16 @@ html, body, *{
   margin: 0;
 }
 
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
 #dashboard {
-  height: 100vh;
+  min-height: 100vh;
   background-image: linear-gradient(306deg, rgba(54, 54, 54, 0.05) 0%, rgba(54, 54, 54, 0.05) 33.333%,rgba(85, 85, 85, 0.05) 33.333%, rgba(85, 85, 85, 0.05) 66.666%,rgba(255, 255, 255, 0.05) 66.666%, rgba(255, 255, 255, 0.05) 99.999%),linear-gradient(353deg, rgba(81, 81, 81, 0.05) 0%, rgba(81, 81, 81, 0.05) 33.333%,rgba(238, 238, 238, 0.05) 33.333%, rgba(238, 238, 238, 0.05) 66.666%,rgba(32, 32, 32, 0.05) 66.666%, rgba(32, 32, 32, 0.05) 99.999%),linear-gradient(140deg, rgba(192, 192, 192, 0.05) 0%, rgba(192, 192, 192, 0.05) 33.333%,rgba(109, 109, 109, 0.05) 33.333%, rgba(109, 109, 109, 0.05) 66.666%,rgba(30, 30, 30, 0.05) 66.666%, rgba(30, 30, 30, 0.05) 99.999%),linear-gradient(189deg, rgba(77, 77, 77, 0.05) 0%, rgba(77, 77, 77, 0.05) 33.333%,rgba(55, 55, 55, 0.05) 33.333%, rgba(55, 55, 55, 0.05) 66.666%,rgba(173,155,155, 0.05) 66.666%, rgba(173,155,155, 0.05) 99.999%),linear-gradient(90deg, rgb(77,255,239),rgb(77,255,239));
 }
 
@@ -26,7 +34,6 @@ align-items: center;
 
 .nav-name {
   color: #000 ;
-  font-size: 1.25rem;
   font-weight: 600;
   padding: 0.75rem 0.25rem;
   margin-left: 1rem;
@@ -43,12 +50,17 @@ align-items: center;
   color: #FFFFFF;
   cursor: pointer;
   padding: 0.5rem 1rem;
-  margin-left: 1rem;
-  margin-top: 1rem;
+  margin-right: 1rem;
 
 }
 
+.selector {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+}
 
-
-
+#board-canvas {
+  min-height: 80vh;
+}
 

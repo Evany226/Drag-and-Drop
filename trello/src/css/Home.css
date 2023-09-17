@@ -72,12 +72,10 @@ html,body, * {
 .title {
   color: #040303;
   font-weight: 700;
-  font-size: 1.8rem;
 }
 
 
 .title-2 {
-  font-size: 1.8rem;
   color:#ff6599 ;
   font-weight: 600;
 }
@@ -129,13 +127,11 @@ svg{
 }
 
 .main-title {
-  font-size: 3.7rem;
   margin-bottom: 2rem;
   text-align: center;
 }
 
 .sub-title {
-  font-size: 1.5rem;
   font-weight: 400;
   width: 60%;
   text-align: center;

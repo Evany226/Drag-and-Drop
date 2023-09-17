@@ -1,0 +1,22 @@
+
+
+.list-container {
+    width: 20%;
+    height: 10rem;
+    background-color: white;
+    margin: 1rem;
+}
+
+.note-header {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+
+}
+
+.note-name {
+    font-size: 1rem;
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
