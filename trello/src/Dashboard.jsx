@@ -24,7 +24,7 @@ const Dashboard = () => {
 
       <section id="dashboard">
         <nav className="nav">
-          <h5 className="nav-name"> Evan Yang's Workspace </h5>
+          <h5 className="nav-name"> Someone's Workspace </h5>
           <Button buttonClass="signout-button" buttonName="Sign out" />
         </nav>
         <div className="selector">
