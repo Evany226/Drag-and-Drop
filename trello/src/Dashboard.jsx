@@ -4,6 +4,7 @@ import'./css/index.css'
 import { useState, useEffect } from "react";
 import noteService from './services/notes';
 import Note from './components/Note.jsx'
+import Nav from './components/Nav.jsx';
 
 
 
@@ -23,10 +24,8 @@ const Dashboard = () => {
   return (
 
       <section id="dashboard">
-        <nav className="nav">
-          <h5 className="nav-name"> Someone's Workspace </h5>
-          <Button buttonClass="signout-button" buttonName="Sign out" />
-        </nav>
+        <Nav />
+
         <div className="selector">
           <Button buttonClass="create-button" buttonName="Add Checklist +"/>
           <Button buttonClass="create-button" buttonName="Add Timer +" />

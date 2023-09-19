@@ -1,8 +1,8 @@
-import './css/Home.css';
-import'./css/index.css'
-import Button from './components/Button';
-import mainLogo from './assets/duck.png';
-import {ReactComponent as ReactLogo} from './assets/design.svg';
+import '../css/Home.css';
+import'../css/index.css'
+import Button from '../components/Button';
+import mainLogo from '../assets/duck.png';
+import {ReactComponent as ReactLogo} from '../assets/design.svg';
 
 
 
