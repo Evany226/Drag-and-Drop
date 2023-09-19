@@ -61,6 +61,7 @@ padding: 0rem 1rem;
 }
 
 #board-canvas {
+  margin-top: 2rem;
   min-height: 80vh;
 }
 
