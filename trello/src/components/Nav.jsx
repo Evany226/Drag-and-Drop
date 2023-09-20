@@ -1,11 +1,11 @@
 import "../css/Dashboard.css"
-import Button from "./Button.jsx"
+import LogoutButton from "./LogoutButton.jsx"
 
 const Nav = () => {
     return (
         <nav className="nav">
           <h5 className="nav-name"> Someone's Workspace </h5>
-          <Button buttonClass="signout-button" buttonName="Sign out" />
+          <LogoutButton buttonName="Sign out" />
         </nav>
     )
 }

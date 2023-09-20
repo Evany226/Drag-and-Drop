@@ -1,6 +1,7 @@
 import './css/Dashboard.css'
-import Button from "./components/Button.jsx"
+import './css/Button.css'
 import'./css/index.css'
+import CreateButton from "./components/CreateButton.jsx"
 import { useState, useEffect } from "react";
 import noteService from './services/notes';
 import Note from './components/Note.jsx'
@@ -27,8 +28,8 @@ const Dashboard = () => {
         <Nav />
 
         <div className="selector">
-          <Button buttonClass="create-button" buttonName="Add Checklist +"/>
-          <Button buttonClass="create-button" buttonName="Add Timer +" />
+          <CreateButton buttonName="Add Checklist +"/>
+          <CreateButton buttonName="Add Timer +" />
         </div>
         <div id="board-canvas">
               <div className="note-wrapper">

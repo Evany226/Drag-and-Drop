@@ -41,19 +41,6 @@ padding: 0rem 1rem;
 
 }
 
-.create-button {
-  background-color: #000 ;
-  border: 1px solid transparent;
-  font-weight: 500;
-  font-size: 1rem;
-  border-radius: 1rem;
-  color: #FFFFFF;
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  margin-right: 1rem;
-
-}
-
 .selector {
   display: flex;
   align-items: center;
@@ -70,18 +57,3 @@ padding: 0rem 1rem;
   overflow-x:auto;
 }
 
-.signout-button {
-  background-color: #000;
-  border: 1px solid rgba(27, 31, 35, .15);
-  border-radius: 0.5rem;
-  box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
-  color: #fff;
-  cursor: pointer;
-  font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-  font-size: 0.95rem;
-  font-weight: 400;
-  padding: 0.25rem 1.25rem;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-}
