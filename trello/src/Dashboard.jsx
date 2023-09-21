@@ -6,11 +6,18 @@ import { useState, useEffect } from "react";
 import noteService from './services/notes';
 import Note from './components/Note.jsx'
 import Nav from './components/Nav.jsx';
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 
 const Dashboard = () => {
  const [notes,setNotes] = useState([]);
+
+ const { user } = useAuth0();
+
+  if (!user) {
+    return null;
+  }
 
 
  useEffect(() => {
@@ -25,7 +32,7 @@ const Dashboard = () => {
   return (
 
       <section id="dashboard">
-        <Nav />
+        <Nav userName={user.name} />
 
         <div className="selector">
           <CreateButton buttonName="Add Checklist +"/>
@@ -39,6 +46,7 @@ const Dashboard = () => {
                       )
                     }
               </div>
+              <div>{JSON.stringify(user, null, 2)}</div>
         </div>
       </section>
   )
