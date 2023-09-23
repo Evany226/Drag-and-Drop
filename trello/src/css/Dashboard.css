@@ -41,19 +41,29 @@ padding: 0rem 1rem;
 
 }
 
+
+
 .selector {
   display: flex;
   align-items: center;
   padding: 1rem;
 }
 
-#board-canvas {
+#board {
   margin-top: 2rem;
+  padding-right: 1rem;
+}
+
+#board-canvas {
   min-height: 80vh;
+  overflow-x:auto;
 }
 
 .note-wrapper {
   display: flex;
-  overflow-x:auto;
+}
+
+.dropdownWrapper {
+  position: relative;
 }
 

@@ -1,19 +1,36 @@
 {
-    "notes": [
-      {
-        "id": 1,
-        "content": ["Finish applying for Stevens","Buying Supplies for Dorms", "Testing","Hola"],
-        "name": "College Applications"
-      },
-      {
-        "id": 2,
-        "content": ["Work on your resume and portfolio"],
-        "name": "Portfolio"
-      },
-      {
-        "id": 3,
-        "content": [],
-        "name" : "Exercise"
-      }
-    ]
-  }
+  "notes": [
+    {
+      "name": "College Applications",
+      "content": [
+        "Finish applying for Stevens",
+        "Buying some cleaning supples for dorms",
+        "Testing",
+        "Hola"
+      ],
+      "id": 1
+    },
+    {
+      "name": "Portfolio",
+      "content": [
+        "Work on your resume and portfolio"
+      ],
+      "id": 2
+    },
+    {
+      "name": "Exercise",
+      "content": [],
+      "id": 3
+    },
+    {
+      "name": "Evan",
+      "content": [],
+      "id": 4
+    },
+    {
+      "name": "Steven",
+      "content": [],
+      "id": 5
+    }
+  ]
+}

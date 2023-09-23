@@ -1,8 +1,8 @@
 import '../css/Button.css'
 
-const CreateButton = ({buttonName}) => {
+const CreateButton = ({buttonName,toggleOpen}) => {
     return (
-        <button className="create-button">{buttonName}</button>
+        <button className="create-button" onClick={toggleOpen}>{buttonName}</button>
     )
 }
 

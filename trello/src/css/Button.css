@@ -40,7 +40,12 @@
     cursor: pointer;
     padding: 0.5rem 1rem;
     margin-right: 1rem;
-  
+  }
+
+  .create-button:hover {
+    background-color: #334155;
+
+    transition: 0.3s;
   }
 
   .logout-button {
