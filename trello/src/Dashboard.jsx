@@ -12,13 +12,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Dashboard = () => {
  const [notes,setNotes] = useState([]);
-
  const { user } = useAuth0();
 
-  if (!user) {
-    return null;
-  }
-
+ if (!user) {
+   return null;
+ }
 
  useEffect(() => {
   noteService
@@ -28,6 +26,8 @@ const Dashboard = () => {
       console.log(initialNotes);
     })
 }, [])
+
+
 
   return (
 
@@ -46,7 +46,6 @@ const Dashboard = () => {
                       )
                     }
               </div>
-              <div>{JSON.stringify(user, null, 2)}</div>
         </div>
       </section>
   )
