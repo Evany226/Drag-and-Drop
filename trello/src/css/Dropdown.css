@@ -32,6 +32,11 @@ input {
     border-radius: 0.1rem;
 }
 
+input::placeholder {
+    color: black;
+    font-weight: 500;
+}
+
 @keyframes fadeIn{
     0% {
         opacity: 0;

@@ -13,7 +13,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Dashboard = () => {
  const [notes,setNotes] = useState([]);
- const [open,setOpen] = useState(false);
+ //const [open,setOpen] = useState(false);
  const [newNote, setNewNote] = useState("")
  const { user } = useAuth0();
 
@@ -26,9 +26,11 @@ const Dashboard = () => {
     })
 }, [])
 
+/*
  const handleOpen = () => {
   setOpen(!open);
  };
+ */
 
  const addNote = (event) => {
     event.preventDefault();
@@ -50,13 +52,21 @@ const Dashboard = () => {
   setNewNote(event.target.value)
 }
 
+const changeNoteContent = (id) => {
+  const note = notes.find(n => n.id === id);
+  const oldContent = note.content;
+  //const newContent = oldContent.concat()
+  //const changedNote = {...note, content:}
+
+}
+
 
 
  if (!user) {
    return null;
  }
 
-
+//{open && <Dropdown addNote={addNote} newNote={newNote} handleNoteChange={handleNoteChange}/> }
 
   return (
 
@@ -66,7 +76,6 @@ const Dashboard = () => {
         <div className="selector">
           <div className="dropdownWrapper">
               <CreateButton buttonName="Add Checklist +" toggleOpen={handleOpen}/>
-              {open && <Dropdown addNote={addNote} newNote={newNote} handleNoteChange={handleNoteChange}/> }
           </div>
           <CreateButton buttonName="Add Timer +" />
         </div>

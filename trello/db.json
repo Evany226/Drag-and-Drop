@@ -3,17 +3,32 @@
     {
       "name": "College Applications",
       "content": [
-        "Finish applying for Stevens",
-        "Buying some cleaning supples for dorms",
-        "Testing",
-        "Hola"
+        {
+          "taskItem": "Finish applying for Stevens",
+          "id": 1
+        },
+        {
+          "taskItem": "Buying some cleaning supples for dorms",
+          "id": 2
+        },
+        {
+          "taskItem": "Testing",
+          "id": 3
+        },
+        {
+          "taskItem": "Hola",
+          "id": 4
+        }
       ],
       "id": 1
     },
     {
       "name": "Portfolio",
       "content": [
-        "Work on your resume and portfolio"
+        {
+          "taskItem": "Finish applying for Stevens",
+          "id": 1
+        }
       ],
       "id": 2
     },
@@ -31,6 +46,11 @@
       "name": "Steven",
       "content": [],
       "id": 5
+    },
+    {
+      "name": "Johnny",
+      "content": [],
+      "id": 6
     }
   ]
 }
