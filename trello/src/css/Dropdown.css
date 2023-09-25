@@ -26,13 +26,13 @@
     
 }
 
-input {
+.dropdown-input {
     border: 1px solid black;
     padding: 0.25rem;
     border-radius: 0.1rem;
 }
 
-input::placeholder {
+.dropdown-input::placeholder {
     color: black;
     font-weight: 500;
 }

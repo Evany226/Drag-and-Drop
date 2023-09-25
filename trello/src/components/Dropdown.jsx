@@ -6,7 +6,7 @@ const Dropdown = ({addNote, newNote, handleNoteChange}) => {
         <div id="dropdown">
             <form className="dropdown-form" onSubmit={addNote}>
                 <input placeholder="Enter Name..." value={newNote} onChange={handleNoteChange}/>
-                <button className="dropdown-button" type="submit" >Add</button>
+                <button className="dropdown-input" type="submit" >Add</button>
             </form>   
         </div>
     )

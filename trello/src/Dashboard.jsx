@@ -66,7 +66,7 @@ const changeNoteContent = (id) => {
    return null;
  }
 
-//{open && <Dropdown addNote={addNote} newNote={newNote} handleNoteChange={handleNoteChange}/> }
+{open && <Dropdown addNote={addNote} newNote={newNote} handleNoteChange={handleNoteChange}/> }
 
   return (
 
@@ -75,7 +75,7 @@ const changeNoteContent = (id) => {
 
         <div className="selector">
           <div className="dropdownWrapper">
-              <CreateButton buttonName="Add Checklist +" toggleOpen={handleOpen}/>
+              <CreateButton buttonName="Add Checklist +" />
           </div>
           <CreateButton buttonName="Add Timer +" />
         </div>
