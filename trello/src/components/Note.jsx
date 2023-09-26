@@ -30,16 +30,18 @@ const Note = ({note}) => {
                     })
                 }
 
-                    {open 
-                        ? <ContentDropdown handleOpen={handleOpen}/> : 
-                        <div className="note-button" onClick={handleOpen}>
-                            <Plus style={{width:"8%", color: "#7e889b"}}/>
-                            <p className="note-button-text">Add new card</p>
-                        </div>
-                    }
-                    
+            {open 
+                ? <ContentDropdown handleOpen={handleOpen}/> : 
+                <div className="note-button" onClick={handleOpen}>
+                    <Plus style={{width:"8%", color: "#7e889b"}}/>
+                    <p className="note-button-text">Add new card</p>
+                </div>
+            }
+
             </div>  
+            
         </div>
+        
     )
 }
 
