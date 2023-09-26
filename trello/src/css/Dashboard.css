@@ -61,6 +61,7 @@ padding: 0rem 1rem;
 
 .note-wrapper {
   display: flex;
+  align-items: flex-start;
 }
 
 .dropdownWrapper {

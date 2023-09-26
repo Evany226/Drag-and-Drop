@@ -13,7 +13,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Dashboard = () => {
  const [notes,setNotes] = useState([]);
- //const [open,setOpen] = useState(false);
+ const [open,setOpen] = useState(false);
  const [newNote, setNewNote] = useState("")
  const { user } = useAuth0();
 
@@ -26,11 +26,11 @@ const Dashboard = () => {
     })
 }, [])
 
-/*
+
  const handleOpen = () => {
   setOpen(!open);
  };
- */
+ 
 
  const addNote = (event) => {
     event.preventDefault();
@@ -47,16 +47,28 @@ const Dashboard = () => {
 
  }
 
- const handleNoteChange = (event) => {
-  console.log(event.target.value)
-  setNewNote(event.target.value)
-}
 
-const changeNoteContent = (id) => {
+
+const changeContent = (event, id) => {
+  event.preventDefault();
+  console.log("hello");
+  console.log(id)
   const note = notes.find(n => n.id === id);
   const oldContent = note.content;
-  //const newContent = oldContent.concat()
-  //const changedNote = {...note, content:}
+
+  /*
+  const updatedContent = oldContent.concat(newContent);
+  console.log(updatedContent);
+
+  const changedNote = {
+    ...notes,
+    content: updatedContent
+  }
+  
+  noteService.update(id, changedNote).then(returnedNote => {
+    setNotes(notes.map(note => note.id !== id ? note : returnedNote))
+  })
+  */
 
 }
 
@@ -66,7 +78,7 @@ const changeNoteContent = (id) => {
    return null;
  }
 
-{open && <Dropdown addNote={addNote} newNote={newNote} handleNoteChange={handleNoteChange}/> }
+
 
   return (
 
@@ -74,8 +86,9 @@ const changeNoteContent = (id) => {
         <Nav userName={user.name} />
 
         <div className="selector">
-          <div className="dropdownWrapper">
-              <CreateButton buttonName="Add Checklist +" />
+          <div className="dropdownWrapper" >
+              <CreateButton buttonName="Add Checklist +" toggleOpen={handleOpen}/>
+              {open && <Dropdown addNote={addNote} newNote={newNote} handleNoteChange={handleNoteChange}/> }
           </div>
           <CreateButton buttonName="Add Timer +" />
         </div>
@@ -84,7 +97,7 @@ const changeNoteContent = (id) => {
                 <div className="note-wrapper">
                       {
                         notes.map((note) => 
-                          <Note note={note} key={note.id}/>
+                          <Note note={note} key={note.id} changeContent={() => changeContent(event, note.id)} />
                         )
                       }
                 </div>
