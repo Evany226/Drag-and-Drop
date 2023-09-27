@@ -24,7 +24,6 @@ const Note = ({note,changeContent}) => {
 
     const handleOpen = () => {
         setOpen(!open);
-        console.log(open);
        };
 
     const contentArr = note.content;
@@ -48,6 +47,8 @@ const Note = ({note,changeContent}) => {
                     <p className="note-button-text">Add new card</p>
                 </div>
             }
+
+            {open ? (<div className='overlay' onClick={() => setOpen(false)} />) : null}
 
             </div>  
             
