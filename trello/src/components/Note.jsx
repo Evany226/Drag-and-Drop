@@ -1,30 +1,20 @@
 import "../css/Note.css"
 import "../css/index.css"
 import {ReactComponent as Plus} from '../assets/plus.svg';
-import {useState} from "react"
-import ContentDropdown from "./ContentDropdown.jsx"
+import ContentDropdown from "./ContentDropdown.jsx";
+import {useState} from "react";
 
-const Note = ({note,changeContent}) => {
-    const [open,setOpen] = useState(false);
-    const [newContent, setNewContent] = useState("");
-    
+const Note = ({note,changeContent, handleContentChange,newContent,setNewContent}) => {
+const [open,setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(!open);
+        setNewContent("");
+    };
 
     if (!note.content) {
         return null;
     } 
-
-
-    const handleContentChange = (event) => {
-        console.log(event.target.value);
-        setNewContent(event.target.value);
-      }
-      
-
-    
-
-    const handleOpen = () => {
-        setOpen(!open);
-       };
 
     const contentArr = note.content;
 
