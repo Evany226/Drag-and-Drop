@@ -1,56 +1,46 @@
 {
   "notes": [
     {
-      "name": "College Applications",
+      "id": 1,
+      "name": "College",
       "content": [
         {
-          "taskItem": "Finish applying for Stevens",
+          "taskItem": "Finishing college applications",
           "id": 1
         },
         {
-          "taskItem": "Buying some cleaning supples for dorms",
+          "taskItem": "Completing my homework",
           "id": 2
         },
         {
-          "taskItem": "Testing",
+          "taskItem": "Cleaning house",
           "id": 3
         },
         {
-          "taskItem": "Hola",
+          "taskItem": "Applying Scholarships",
           "id": 4
         }
-      ],
-      "id": 1
+      ]
     },
     {
-      "name": "Portfolio",
+      "id": 2,
+      "name": "College",
       "content": [
         {
-          "taskItem": "Finish applying for Stevens",
+          "taskItem": "Finishing college applications",
           "id": 1
         }
-      ],
-      "id": 2
+      ]
     },
     {
-      "name": "Exercise",
-      "content": [],
-      "id": 3
-    },
-    {
-      "name": "Evan",
-      "content": [],
-      "id": 4
-    },
-    {
-      "name": "Steven",
-      "content": [],
-      "id": 5
-    },
-    {
-      "name": "Johnny",
-      "content": [],
-      "id": 6
+      "id": 3,
+      "name": "College",
+      "content": [
+        {
+          "taskItem": "Testing new experiment",
+          "id": 1
+        }
+      ]
     }
   ]
 }

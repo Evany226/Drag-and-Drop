@@ -22,7 +22,6 @@ const Dashboard = () => {
     .getAll()
     .then(initialNotes => {
       setNotes(initialNotes);
-      console.log(initialNotes);
     })
 }, [])
 const [open,setOpen] = useState(false);
@@ -59,6 +58,7 @@ const changeContent = (event, id) => {
   console.log(id)
   const note = notes.find(n => n.id === id);
   const oldContent = note.content;
+  console.log(oldContent)
 
   const contentObject = {
       taskItem: newContent,
@@ -69,16 +69,17 @@ const changeContent = (event, id) => {
   console.log(updatedContent);
 
   const changedNote = {
-    ...notes,
+    ...note,
     content: updatedContent
   }
+  console.log(changedNote);
 
-  console.log(changedNote)
   
   noteService.update(id, changedNote).then(returnedNote => {
     setNotes(notes.map(note => note.id !== id ? note : returnedNote));
     setNewContent("");
   })
+  
 
 }
 
