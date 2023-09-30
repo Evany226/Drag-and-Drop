@@ -14,10 +14,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const Dashboard = () => {
  const [notes,setNotes] = useState([]);
- const [newNote, setNewNote] = useState("")
+ const [newNote, setNewNote] = useState(null)
  const [newContent, setNewContent] = useState("");
  const [open,setOpen] = useState(false);
  const { user } = useAuth0();
+
+ if (!notes) { 
+  return null 
+}
 
  useEffect(() => {
   noteService
@@ -38,6 +42,11 @@ const Dashboard = () => {
 }
 
  const addNote = (event) => {
+    if (newNote === "") {
+      event.preventDefault();
+      window.alert("List name must not be empty");
+    }
+    else {
     event.preventDefault();
     const noteObject = {
       name: newNote,
@@ -49,7 +58,7 @@ const Dashboard = () => {
       setNotes(notes.concat(returnedNote));
       setNewNote("");
     })
-
+  }
  }
 
  const handleContentChange = (event) => {

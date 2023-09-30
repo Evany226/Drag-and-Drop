@@ -10,7 +10,7 @@ const Dropdown = ({addNote, newNote, handleNoteChange, handleOpen}) => {
             }>
 
             <div className="dropdown-input-wrapper">
-                <textarea className="dropdown-input" placeholder="Enter Name..." value={newNote} onChange={handleNoteChange}/>
+                <input className="dropdown-input" placeholder="Enter Name..." value={newNote} onChange={handleNoteChange}/>
             </div>
             <div className="dropdown-button-wrapper">
                 <button className="dropdown-button" type="submit" >Add</button>
