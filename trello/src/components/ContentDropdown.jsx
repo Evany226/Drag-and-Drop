@@ -13,7 +13,7 @@ const ContentDropdown = ({handleOpen,changeContent, newContent, handleContentCha
             </div>
             <div className="content-button-wrapper">
                 <button className="content-button" type="submit" >Add</button>
-                <CloseButton style={{width:"10%"}} onClick={handleOpen}/>
+                <CloseButton style={{width:"10%", cursor:"pointer"}} onClick={handleOpen}/>
             </div>
         </form>   
     </div>

@@ -1,7 +1,7 @@
 import "../css/Note.css"
 import "../css/index.css"
-import {ReactComponent as Plus} from '../assets/plus.svg';
 import ContentDropdown from "./ContentDropdown.jsx";
+import NoteButton from "./NoteButton.jsx"
 import {useState} from "react";
 
 const Note = ({note,changeContent, handleContentChange,newContent,setNewContent}) => {
@@ -32,10 +32,7 @@ const [open,setOpen] = useState(false);
 
             {open 
                 ? <ContentDropdown handleOpen={handleOpen} changeContent={changeContent} newContent={newContent} handleContentChange={handleContentChange}/> : 
-                <div className="note-button" onClick={handleOpen}>
-                    <Plus style={{width:"8%", color: "#7e889b"}}/>
-                    <p className="note-button-text">Add new card</p>
-                </div>
+                <NoteButton handleOpen={handleOpen}/>
             }
 
             {open ? (<div className='overlay' onClick={() => setOpen(false)} />) : null}

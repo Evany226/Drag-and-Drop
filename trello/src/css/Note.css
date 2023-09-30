@@ -50,22 +50,3 @@
     border-radius: 0.5rem;
 }
 
-.note-button {
-    margin-top: 0.75rem;
-    padding: 0.5rem;
-    border-radius: 0.5rem;
-    display: flex;
-    align-items: flex-end;
-    cursor: pointer;
-}
-
-.note-button:hover {
-    background-color: #d4d4d8;
-}
-
-
-.note-button-text {
-    font-size: 0.9rem;
-    margin-left: 0.5rem;
-    color: #798498;
-}

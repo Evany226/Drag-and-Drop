@@ -1,20 +1,22 @@
 import './css/Dashboard.css'
 import './css/Button.css'
 import'./css/index.css'
+import "./css/Button.css"
 import CreateButton from "./components/CreateButton.jsx"
 import { useState, useEffect } from "react";
 import noteService from './services/notes';
 import Note from './components/Note.jsx'
 import Nav from './components/Nav.jsx';
 import Dropdown from './components/Dropdown.jsx';
+import {ReactComponent as Plus} from './assets/plus.svg';
 import { useAuth0 } from "@auth0/auth0-react";
-
 
 
 const Dashboard = () => {
  const [notes,setNotes] = useState([]);
  const [newNote, setNewNote] = useState("")
  const [newContent, setNewContent] = useState("");
+ const [open,setOpen] = useState(false);
  const { user } = useAuth0();
 
  useEffect(() => {
@@ -24,15 +26,15 @@ const Dashboard = () => {
       setNotes(initialNotes);
     })
 }, [])
-const [open,setOpen] = useState(false);
 
  const handleOpen = () => {
   setOpen(!open);
+  setNewNote("");
  };
 
- const handleContentChange = (event) => {
+ const handleNoteChange = (event) => {
   console.log(event.target.value);
-  setNewContent(event.target.value);
+  setNewNote(event.target.value);
 }
 
  const addNote = (event) => {
@@ -50,7 +52,10 @@ const [open,setOpen] = useState(false);
 
  }
 
-
+ const handleContentChange = (event) => {
+  console.log(event.target.value);
+  setNewContent(event.target.value);
+}
 
 const changeContent = (event, id) => {
   event.preventDefault();
@@ -84,13 +89,11 @@ const changeContent = (event, id) => {
 }
 
 
-
  if (!user) {
    return null;
  }
 
 
- //{open && <Dropdown addNote={addNote} newNote={newNote} handleNoteChange={handleNoteChange}/> }
 
   return (
 
@@ -111,9 +114,23 @@ const changeContent = (event, id) => {
                           <Note note={note} key={note.id} changeContent={() => changeContent(event, note.id)} handleContentChange={handleContentChange} newContent={newContent} setNewContent={setNewContent}/>
                         )
                       }
+                      <div className="add-wrapper">
+                            {
+                              open ? <Dropdown handleOpen={handleOpen} newNote={newNote} handleNoteChange={handleNoteChange} addNote={addNote}/> :
+                            
+                                  <div className="note-button-2" onClick={handleOpen}>
+                                      <Plus style={{width:"7%", color: "#fff", marginLeft: "0.5rem"}}/>
+                                      <p className="note-button-text-2">Add new list</p>
+                                  </div>
+                            }
+                      
+                      </div>
+                      {open ? (<div className='overlay' onClick={() => setOpen(false)} />) : null}
                 </div>
+                
           </div>
         </div>
+
       </section>
   )
 }

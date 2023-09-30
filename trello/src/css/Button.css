@@ -60,3 +60,45 @@
     margin-right: 1rem;
   
   }
+
+  .note-button {
+    margin-top: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: flex-end;
+    cursor: pointer;
+}
+
+
+.note-button:hover {
+    background-color: #d4d4d8;
+}
+
+
+.note-button-text {
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+    color: #798498;
+}
+
+.note-button-2 {
+  border-radius: 0.5rem;
+  display: flex;
+  padding: 0.75rem 0.5rem;
+  align-items: flex-end;
+  cursor: pointer;
+}
+
+.note-button-2:hover {
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(70, 231, 209, 0.75);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.note-button-text-2 {
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+  color: #fff;
+}
