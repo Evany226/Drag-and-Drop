@@ -4,6 +4,7 @@ const cors = require("cors");
 
 app.use(cors());
 app.use(express.static("dist"));
+const mongoose = require("mongoose");
 
 app.use(express.json());
 const requestLogger = (request, response, next) => {
@@ -49,38 +50,30 @@ let notes = [
     ],
     id: 2,
   },
-  {
-    name: "College",
-    content: [
-      {
-        taskItem: "Testing new experiment",
-        id: 1,
-      },
-      {
-        taskItem: "Steven",
-        id: 2,
-      },
-    ],
-    id: 3,
-  },
-  {
-    name: "Evan",
-    content: [
-      {
-        taskItem: "Yo",
-        id: 1,
-      },
-    ],
-    id: 4,
-  },
 ];
+
+const password = "abcde";
+
+const url = `mongodb+srv://fullstack:${password}@cluster0.o1opl.mongodb.net/?retryWrites=true&w=majority`;
+
+const noteSchema = mongoose.newSchema({
+  name: String,
+  content: Array,
+});
+
+const Note = mongoose.model("Note", noteSchema);
+
+mongoose.set("strictQuery", false);
+mongoose.connect(url);
 
 app.get("/", (request, response) => {
   response.send("<h1>The app is working</h1>");
 });
 
 app.get("/api/notes", (request, response) => {
-  response.json(notes);
+  Note.find({}).then((notes) => {
+    response.json(notes);
+  });
 });
 
 app.get("/api/notes/:id", (request, response) => {
