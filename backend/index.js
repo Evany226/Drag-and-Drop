@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+require("dotenv").config();
+const Note = require("./models/backendNote");
 
 app.use(cors());
 app.use(express.static("dist"));
@@ -52,20 +54,6 @@ let notes = [
   },
 ];
 
-const password = "abcde";
-
-const url = `mongodb+srv://fullstack:${password}@cluster0.o1opl.mongodb.net/?retryWrites=true&w=majority`;
-
-const noteSchema = mongoose.newSchema({
-  name: String,
-  content: Array,
-});
-
-const Note = mongoose.model("Note", noteSchema);
-
-mongoose.set("strictQuery", false);
-mongoose.connect(url);
-
 app.get("/", (request, response) => {
   response.send("<h1>The app is working</h1>");
 });
@@ -77,22 +65,17 @@ app.get("/api/notes", (request, response) => {
 });
 
 app.get("/api/notes/:id", (request, response) => {
-  const id = Number(request.params.id);
-  const note = notes.find((note) => note.id === id);
-  response.json(note);
-
-  if (note) {
+  Note.findById(request.params.id).then((note) => {
     response.json(note);
-  } else {
-    response.status(404).end();
-  }
+  });
 });
 
 app.delete("/api/notes/:id", (request, response) => {
-  const id = Number(request.params.id);
-  notes = notes.filter((note) => note.id !== id);
-
-  response.status(204).end();
+  Note.findByIdAndRemove(request.params.id)
+    .then((result) => {
+      response.status(204).end();
+    })
+    .catch((error) => next(error));
 });
 
 const generateId = () => {
@@ -103,21 +86,18 @@ const generateId = () => {
 app.post("/api/notes", (request, response) => {
   const body = request.body;
 
-  if (!body.name) {
-    return response.status(400).json({
-      error: "content missing",
-    });
+  if (body.name === undefined) {
+    return response.status(400).json({ error: "name missing" });
   }
 
-  const note = {
+  const note = new Note({
     name: body.name,
     content: body.content || [],
-    id: generateId(),
-  };
+  });
 
-  notes = notes.concat(note);
-
-  response.json(note);
+  note.save().then((savedNote) => {
+    response.json(savedNote);
+  });
 });
 
 const unknownEndpoint = (request, response) => {
