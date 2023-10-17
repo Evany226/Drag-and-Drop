@@ -78,11 +78,6 @@ app.delete("/api/notes/:id", (request, response) => {
     .catch((error) => next(error));
 });
 
-const generateId = () => {
-  const maxId = notes.length > 0 ? Math.max(...notes.map((n) => n.id)) : 0;
-  return maxId + 1;
-};
-
 app.post("/api/notes", (request, response) => {
   const body = request.body;
 
@@ -98,6 +93,21 @@ app.post("/api/notes", (request, response) => {
   note.save().then((savedNote) => {
     response.json(savedNote);
   });
+});
+
+app.put("/api/notes/:id", (request, response) => {
+  const body = request.body;
+
+  const note = {
+    name: body.name,
+    content: body.content,
+  };
+
+  Note.findByIdAndUpdate(request.params.id, note, { new: true })
+    .then((updatedNote) => {
+      response.json(updatedNote);
+    })
+    .catch((error) => next(error));
 });
 
 const unknownEndpoint = (request, response) => {
