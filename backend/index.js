@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 const Note = require("./models/backendNote");
 const { validateAccessToken } = require("./middleware/auth0.middleware.js");
+const { errorHandler } = require("./middleware/error.middleware.js");
 
 app.use(cors());
 app.use(express.static("dist"));
@@ -95,7 +96,7 @@ app.post("/api/notes", validateAccessToken, (request, response) => {
   });
 });
 
-app.put("/api/notes/:id", (request, response) => {
+app.put("/api/notes/:id", validateAccessToken, (request, response) => {
   const body = request.body;
 
   const note = {
