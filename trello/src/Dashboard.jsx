@@ -27,7 +27,7 @@ const Dashboard = () => {
   useEffect(() => {
     const getData = async () => {
       const accessToken = await getAccessTokenSilently();
-      await noteService.getAll(accessToken).then((initialNotes) => {
+      noteService.getAll(accessToken).then((initialNotes) => {
         setNotes(initialNotes);
       });
     };
