@@ -2,13 +2,17 @@ import axios from "axios";
 const baseUrl = "http://localhost:3001/api/notes";
 
 const getAll = async (accessToken) => {
-  const request = await axios.get(baseUrl, placeholder, {
+  const request = await axios({
+    method: "get",
+    url: baseUrl,
+    params: {
+      accessToken: accessToken,
+    },
     headers: {
       "content-type": "application/json",
       Authorization: `Bearer ${accessToken}`,
     },
   });
-  return request.then((response) => response.data);
 };
 
 const create = (newObject) => {

@@ -32,7 +32,7 @@ const Dashboard = () => {
       });
     };
     getData();
-  }, [getAccessTokenSilently]);
+  }, []);
 
   const handleOpen = () => {
     setOpen(!open);
