@@ -45,22 +45,26 @@ const Dashboard = () => {
   };
 
   const addNote = (event) => {
-    if (newNote === "") {
-      event.preventDefault();
-      window.alert("List name must not be empty");
-    } else {
-      event.preventDefault();
-      const noteObject = {
-        name: newNote,
-        content: [],
-        id: notes.length + 1,
-      };
+    const addData = async () => {
+      const accessToken = await getAccessTokenSilently();
+      if (newNote === "") {
+        event.preventDefault();
+        window.alert("List name must not be empty");
+      } else {
+        event.preventDefault();
+        const noteObject = {
+          name: newNote,
+          content: [],
+          id: notes.length + 1,
+        };
 
-      noteService.create(noteObject).then((returnedNote) => {
-        setNotes(notes.concat(returnedNote));
-        setNewNote("");
-      });
-    }
+        noteService.create(noteObject, accessToken).then((returnedNote) => {
+          setNotes(notes.concat(returnedNote));
+          setNewNote("");
+        });
+      }
+    };
+    addData();
   };
 
   const handleContentChange = (event) => {
@@ -69,31 +73,35 @@ const Dashboard = () => {
   };
 
   const changeContent = (event, id) => {
-    event.preventDefault();
-    console.log("hello");
-    console.log(id);
-    const note = notes.find((n) => n.id === id);
-    const oldContent = note.content;
-    console.log(oldContent);
+    const changeData = async () => {
+      const accessToken = await getAccessTokenSilently();
+      event.preventDefault();
+      console.log("hello");
+      console.log(id);
+      const note = notes.find((n) => n.id === id);
+      const oldContent = note.content;
+      console.log(oldContent);
 
-    const contentObject = {
-      taskItem: newContent,
-      id: note.content.length + 1,
+      const contentObject = {
+        taskItem: newContent,
+        id: note.content.length + 1,
+      };
+
+      const updatedContent = oldContent.concat(contentObject);
+      console.log(updatedContent);
+
+      const changedNote = {
+        ...note,
+        content: updatedContent,
+      };
+      console.log(changedNote);
+
+      noteService.update(id, changedNote, accessToken).then((returnedNote) => {
+        setNotes(notes.map((note) => (note.id !== id ? note : returnedNote)));
+        setNewContent("");
+      });
     };
-
-    const updatedContent = oldContent.concat(contentObject);
-    console.log(updatedContent);
-
-    const changedNote = {
-      ...note,
-      content: updatedContent,
-    };
-    console.log(changedNote);
-
-    noteService.update(id, changedNote).then((returnedNote) => {
-      setNotes(notes.map((note) => (note.id !== id ? note : returnedNote)));
-      setNewContent("");
-    });
+    changeData();
   };
 
   if (!user) {

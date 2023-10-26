@@ -2,26 +2,33 @@ import axios from "axios";
 const baseUrl = "http://localhost:3001/api/notes";
 
 const getAll = async (accessToken) => {
-  const request = await axios({
-    method: "get",
-    url: baseUrl,
-    params: {
-      accessToken: accessToken,
-    },
+  const request = axios.get(baseUrl, {
     headers: {
       "content-type": "application/json",
       Authorization: `Bearer ${accessToken}`,
     },
   });
-};
 
-const create = (newObject) => {
-  const request = axios.post(baseUrl, newObject);
   return request.then((response) => response.data);
 };
 
-const update = (id, newObject) => {
-  const request = axios.put(`${baseUrl}/${id}`, newObject);
+const create = (newObject, accessToken) => {
+  const request = axios.post(baseUrl, newObject, {
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  return request.then((response) => response.data);
+};
+
+const update = (id, newObject, accessToken) => {
+  const request = axios.put(`${baseUrl}/${id}`, newObject, {
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
   return request.then((response) => response.data);
 };
 
