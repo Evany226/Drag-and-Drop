@@ -1,10 +1,11 @@
 #root {
   font-family: Inter, sans-serif;
   width: 100%;
-
 }
 
-html, body, *{
+html,
+body,
+* {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
@@ -19,39 +20,71 @@ body {
 }
 
 .overlay {
-  position: fixed; 
-  top: 0; 
-  right: 0; 
-  bottom: 0; 
-  left: 0; 
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: rgba(0, 0, 0, 0.01);
-
 }
 
 #dashboard {
   min-height: 100vh;
-  background-image: linear-gradient(306deg, rgba(54, 54, 54, 0.05) 0%, rgba(54, 54, 54, 0.05) 33.333%,rgba(85, 85, 85, 0.05) 33.333%, rgba(85, 85, 85, 0.05) 66.666%,rgba(255, 255, 255, 0.05) 66.666%, rgba(255, 255, 255, 0.05) 99.999%),linear-gradient(353deg, rgba(81, 81, 81, 0.05) 0%, rgba(81, 81, 81, 0.05) 33.333%,rgba(238, 238, 238, 0.05) 33.333%, rgba(238, 238, 238, 0.05) 66.666%,rgba(32, 32, 32, 0.05) 66.666%, rgba(32, 32, 32, 0.05) 99.999%),linear-gradient(140deg, rgba(192, 192, 192, 0.05) 0%, rgba(192, 192, 192, 0.05) 33.333%,rgba(109, 109, 109, 0.05) 33.333%, rgba(109, 109, 109, 0.05) 66.666%,rgba(30, 30, 30, 0.05) 66.666%, rgba(30, 30, 30, 0.05) 99.999%),linear-gradient(189deg, rgba(77, 77, 77, 0.05) 0%, rgba(77, 77, 77, 0.05) 33.333%,rgba(55, 55, 55, 0.05) 33.333%, rgba(55, 55, 55, 0.05) 66.666%,rgba(173,155,155, 0.05) 66.666%, rgba(173,155,155, 0.05) 99.999%),linear-gradient(90deg, rgb(77,255,239),rgb(77,255,239));
+  background-image: linear-gradient(
+      306deg,
+      rgba(54, 54, 54, 0.05) 0%,
+      rgba(54, 54, 54, 0.05) 33.333%,
+      rgba(85, 85, 85, 0.05) 33.333%,
+      rgba(85, 85, 85, 0.05) 66.666%,
+      rgba(255, 255, 255, 0.05) 66.666%,
+      rgba(255, 255, 255, 0.05) 99.999%
+    ),
+    linear-gradient(
+      353deg,
+      rgba(81, 81, 81, 0.05) 0%,
+      rgba(81, 81, 81, 0.05) 33.333%,
+      rgba(238, 238, 238, 0.05) 33.333%,
+      rgba(238, 238, 238, 0.05) 66.666%,
+      rgba(32, 32, 32, 0.05) 66.666%,
+      rgba(32, 32, 32, 0.05) 99.999%
+    ),
+    linear-gradient(
+      140deg,
+      rgba(192, 192, 192, 0.05) 0%,
+      rgba(192, 192, 192, 0.05) 33.333%,
+      rgba(109, 109, 109, 0.05) 33.333%,
+      rgba(109, 109, 109, 0.05) 66.666%,
+      rgba(30, 30, 30, 0.05) 66.666%,
+      rgba(30, 30, 30, 0.05) 99.999%
+    ),
+    linear-gradient(
+      189deg,
+      rgba(77, 77, 77, 0.05) 0%,
+      rgba(77, 77, 77, 0.05) 33.333%,
+      rgba(55, 55, 55, 0.05) 33.333%,
+      rgba(55, 55, 55, 0.05) 66.666%,
+      rgba(173, 155, 155, 0.05) 66.666%,
+      rgba(173, 155, 155, 0.05) 99.999%
+    ),
+    linear-gradient(90deg, rgb(77, 255, 239), rgb(77, 255, 239));
 }
 
 .nav {
-background-color: #fff;
-box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-display: flex;
-align-items: center;
-justify-content: space-between;
-padding: 0rem 1rem;
-
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0rem 1rem;
+  width: 100%;
 }
 
 .nav-name {
-  color: #000 ;
+  color: #000;
   font-weight: 600;
   padding: 0.75rem 0.25rem;
   text-align: center;
-
 }
-
-
 
 .selector {
   display: flex;
@@ -66,7 +99,7 @@ padding: 0rem 1rem;
 
 #board-canvas {
   min-height: 84vh;
-  overflow-x:auto;
+  overflow-x: auto;
 }
 
 .note-wrapper {
@@ -78,15 +111,13 @@ padding: 0rem 1rem;
   position: relative;
 }
 
-
 .add-wrapper {
   min-width: 18rem;
   margin: 1rem;
   border-radius: 0.5rem;
   backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(208, 221, 221, 0.75);
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-    z-index: 1;
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  background-color: rgba(208, 221, 221, 0.75);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  z-index: 1;
 }
-

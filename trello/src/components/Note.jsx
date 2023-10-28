@@ -2,6 +2,7 @@ import "../css/Note.css";
 import "../css/index.css";
 import ContentDropdown from "./ContentDropdown.jsx";
 import NoteButton from "./NoteButton.jsx";
+import NoteItem from "./NoteItem.jsx";
 import { useState } from "react";
 
 const Note = ({
@@ -31,11 +32,7 @@ const Note = ({
       </div>
       <div id="note-body">
         {contentArr.map((item) => {
-          return (
-            <p className="note-body-text" key={item.id}>
-              {item.taskItem}
-            </p>
-          );
+          return <NoteItem id={item.id} taskItem={item.taskItem} />;
         })}
 
         {open ? (
