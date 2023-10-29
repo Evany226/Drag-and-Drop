@@ -11,6 +11,7 @@ const Note = ({
   handleContentChange,
   newContent,
   setNewContent,
+  deleteContent,
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -32,7 +33,13 @@ const Note = ({
       </div>
       <div id="note-body">
         {contentArr.map((item) => {
-          return <NoteItem id={item.id} taskItem={item.taskItem} />;
+          return (
+            <NoteItem
+              key={item.id}
+              taskItem={item.taskItem}
+              deleteItem={() => deleteContent(note.id, item.id)}
+            />
+          );
         })}
 
         {open ? (

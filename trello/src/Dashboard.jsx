@@ -104,6 +104,26 @@ const Dashboard = () => {
     changeData();
   };
 
+  const deleteContent = (id, itemId) => {
+    console.log(id);
+    console.log(itemId);
+    const note = notes.find((n) => n.id === id);
+    const oldContent = note.content;
+
+    const afterDelete = oldContent.filter((item) => item.id != itemId);
+
+    const changedNote = {
+      ...note,
+      content: afterDelete,
+    };
+
+    console.log(changedNote);
+
+    noteService.update(id, changedNote).then((returnedNote) => {
+      setNotes(notes.map((note) => (note.id != id ? note : returnedNote)));
+    });
+  };
+
   if (!user) {
     return null;
   }
@@ -129,6 +149,7 @@ const Dashboard = () => {
                 handleContentChange={handleContentChange}
                 newContent={newContent}
                 setNewContent={setNewContent}
+                deleteContent={deleteContent}
               />
             ))}
             <div className="add-wrapper">

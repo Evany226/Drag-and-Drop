@@ -48,6 +48,10 @@
   border-radius: 0.5rem;
 }
 
+.note-body-text-container:hover {
+  outline: 1px solid black;
+}
+
 .note-body-text {
   font-size: 0.9rem;
 }
