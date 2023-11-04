@@ -10,12 +10,17 @@ import Nav from "./components/Nav.jsx";
 import Dropdown from "./components/Dropdown.jsx";
 import { ReactComponent as Plus } from "./assets/plus.svg";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useRef } from "react";
+import { useDraggable } from "react-use-draggable-scroll";
 
 const Dashboard = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState(null);
   const [newContent, setNewContent] = useState("");
   const [open, setOpen] = useState(false);
+
+  const ref = useRef();
+  const { events } = useDraggable(ref);
 
   const { user } = useAuth0();
   const { getAccessTokenSilently } = useAuth0();
@@ -139,7 +144,7 @@ const Dashboard = () => {
         <CreateButton buttonName="Add Timer +" />
       </div>
       <div id="board">
-        <div id="board-canvas">
+        <div id="board-canvas" {...events} ref={ref}>
           <div className="note-wrapper">
             {notes.map((note) => (
               <Note
