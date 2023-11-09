@@ -41,6 +41,8 @@
   cursor: pointer;
   padding: 0.5rem 1rem;
   margin-right: 1rem;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
 }
 
 .create-button:hover {
@@ -59,6 +61,8 @@
   cursor: pointer;
   padding: 0.5rem 1rem;
   margin-right: 0rem;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
 }
 
 .note-button {
@@ -77,7 +81,8 @@
 .note-button-text {
   font-size: 0.9rem;
   margin-left: 0.5rem;
-  color: #798498;
+  color: #4d5c76;
+  font-weight: 500;
 }
 
 .note-button-2 {

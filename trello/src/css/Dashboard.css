@@ -1,5 +1,5 @@
 #root {
-  font-family: Inter, sans-serif;
+  font-family: Roboto, sans-serif;
   width: 100%;
 }
 
@@ -30,58 +30,22 @@ body {
 
 #dashboard {
   height: 100vh;
-  background-image: linear-gradient(
-      306deg,
-      rgba(54, 54, 54, 0.05) 0%,
-      rgba(54, 54, 54, 0.05) 33.333%,
-      rgba(85, 85, 85, 0.05) 33.333%,
-      rgba(85, 85, 85, 0.05) 66.666%,
-      rgba(255, 255, 255, 0.05) 66.666%,
-      rgba(255, 255, 255, 0.05) 99.999%
-    ),
-    linear-gradient(
-      353deg,
-      rgba(81, 81, 81, 0.05) 0%,
-      rgba(81, 81, 81, 0.05) 33.333%,
-      rgba(238, 238, 238, 0.05) 33.333%,
-      rgba(238, 238, 238, 0.05) 66.666%,
-      rgba(32, 32, 32, 0.05) 66.666%,
-      rgba(32, 32, 32, 0.05) 99.999%
-    ),
-    linear-gradient(
-      140deg,
-      rgba(192, 192, 192, 0.05) 0%,
-      rgba(192, 192, 192, 0.05) 33.333%,
-      rgba(109, 109, 109, 0.05) 33.333%,
-      rgba(109, 109, 109, 0.05) 66.666%,
-      rgba(30, 30, 30, 0.05) 66.666%,
-      rgba(30, 30, 30, 0.05) 99.999%
-    ),
-    linear-gradient(
-      189deg,
-      rgba(77, 77, 77, 0.05) 0%,
-      rgba(77, 77, 77, 0.05) 33.333%,
-      rgba(55, 55, 55, 0.05) 33.333%,
-      rgba(55, 55, 55, 0.05) 66.666%,
-      rgba(173, 155, 155, 0.05) 66.666%,
-      rgba(173, 155, 155, 0.05) 99.999%
-    ),
-    linear-gradient(90deg, rgb(77, 255, 239), rgb(77, 255, 239));
+  background-color: #6ee1bd;
 }
 
 .nav {
-  background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0rem 1rem;
   width: 100%;
+  background-color: #50cca6;
 }
 
 .nav-name {
   color: #000;
-  font-weight: 600;
+  font-weight: 500;
   padding: 0.75rem 0.25rem;
   text-align: center;
 }
