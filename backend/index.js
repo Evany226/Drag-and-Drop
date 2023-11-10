@@ -59,7 +59,8 @@ app.get("/", (request, response) => {
   response.send("<h1>The app is working</h1>");
 });
 
-app.get("/api/notes", (request, response) => {
+app.get("/api/notes", validateAccessToken, (request, response) => {
+  console.log(request.auth.payload.sub);
   Note.find({})
     .then((notes) => {
       response.json(notes);
@@ -67,13 +68,13 @@ app.get("/api/notes", (request, response) => {
     .catch((error) => next(error));
 });
 
-app.get("/api/notes/:id", (request, response) => {
+app.get("/api/notes/:id", validateAccessToken, (request, response) => {
   Note.findById(request.params.id).then((note) => {
     response.json(note);
   });
 });
 
-app.delete("/api/notes/:id", (request, response) => {
+app.delete("/api/notes/:id", validateAccessToken, (request, response) => {
   Note.findByIdAndRemove(request.params.id)
     .then((result) => {
       response.status(204).end();
@@ -98,7 +99,7 @@ app.post("/api/notes", validateAccessToken, (request, response) => {
   });
 });
 
-app.put("/api/notes/:id", (request, response) => {
+app.put("/api/notes/:id", validateAccessToken, (request, response) => {
   const body = request.body;
 
   const note = {
