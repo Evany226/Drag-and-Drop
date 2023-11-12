@@ -1,32 +1,33 @@
 const notesRouter = require("express").Router();
 const Note = require("../models/backendNote");
+const User = require("../models/user");
 const { validateAccessToken } = require("../middleware/auth0.middleware.js");
 
-notesRouter.get("/", (request, response) => {
-  // console.log(request.auth.payload.sub);
-  Note.find({})
-    .then((notes) => {
-      response.json(notes);
-    })
-    .catch((error) => next(error));
-});
+notesRouter.get("/", validateAccessToken, async (request, response) => {
+  const name = request.auth.payload.sub;
 
-notesRouter.get("/:id", (request, response) => {
-  Note.findById(request.params.id).then((note) => {
-    response.json(note);
+  const test = await User.findOne({ userName: name }).populate("notes", {
+    name: 1,
+    content: 1,
   });
+
+  response.json(test.notes);
 });
 
-notesRouter.delete("/api/notes/:id", (request, response) => {
-  Note.findByIdAndRemove(request.params.id)
-    .then((result) => {
-      response.status(204).end();
-    })
-    .catch((error) => next(error));
+notesRouter.get("/:id", validateAccessToken, async (request, response) => {
+  const note = await Note.findById(request.params.id);
+  response.json(note);
 });
 
-notesRouter.post("/", (request, response) => {
-  const body = request.body;
+notesRouter.delete("/api/notes/:id", async (request, response) => {
+  await Note.findByIdAndRemove(request.params.id);
+  response.status(204).end();
+});
+
+notesRouter.post("/", validateAccessToken, async (request, response) => {
+  const username = request.auth.payload.sub;
+
+  const user = await User.findOne({ userName: username });
 
   if (body.name === undefined) {
     return response.status(400).json({ error: "name missing" });
@@ -35,14 +36,16 @@ notesRouter.post("/", (request, response) => {
   const note = new Note({
     name: body.name,
     content: body.content || [],
+    user: user.id,
   });
 
-  note.save().then((savedNote) => {
-    response.json(savedNote);
-  });
+  const savedNote = await note.save();
+  user.notes = user.notes.concat(savedNote._id);
+  await user.save();
+  response.status(201).json(savedNote);
 });
 
-notesRouter.put("/:id", (request, response) => {
+notesRouter.put("/:id", async (request, response) => {
   const body = request.body;
 
   const note = {
@@ -50,11 +53,11 @@ notesRouter.put("/:id", (request, response) => {
     content: body.content,
   };
 
-  Note.findByIdAndUpdate(request.params.id, note, { new: true })
-    .then((updatedNote) => {
-      response.json(updatedNote);
-    })
-    .catch((error) => next(error));
+  const updatedNote = await Note.findByIdAndUpdate(request.params.id, note, {
+    new: true,
+  });
+
+  response.json(updatedNote);
 });
 
 module.exports = notesRouter;

@@ -32,6 +32,7 @@ const Dashboard = () => {
   useEffect(() => {
     const getData = async () => {
       const accessToken = await getAccessTokenSilently();
+
       noteService.getAll(accessToken).then((initialNotes) => {
         setNotes(initialNotes);
       });
@@ -52,6 +53,7 @@ const Dashboard = () => {
   const addNote = (event) => {
     const addData = async () => {
       const accessToken = await getAccessTokenSilently();
+
       if (newNote === "") {
         event.preventDefault();
         window.alert("List name must not be empty");
@@ -60,7 +62,6 @@ const Dashboard = () => {
         const noteObject = {
           name: newNote,
           content: [],
-          id: notes.length + 1,
         };
 
         noteService.create(noteObject, accessToken).then((returnedNote) => {
@@ -135,7 +136,7 @@ const Dashboard = () => {
 
   return (
     <section id="dashboard">
-      <Nav userName={user.name} />
+      <Nav userName={user.sub} />
 
       <div className="selector">
         <div className="dropdownWrapper">
