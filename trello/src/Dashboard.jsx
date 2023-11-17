@@ -110,6 +110,12 @@ const Dashboard = () => {
     changeData();
   };
 
+  const deleteNote = (id) => {
+    noteService.remove(id).then((returnedNote) => {
+      setNotes(notes.filter((note) => note.id != id));
+    });
+  };
+
   const deleteContent = (id, itemId) => {
     console.log(id);
     console.log(itemId);
@@ -136,7 +142,7 @@ const Dashboard = () => {
 
   return (
     <section id="dashboard">
-      <Nav userName={user.sub} />
+      <Nav userName={user.name} />
 
       <div className="selector">
         <div className="dropdownWrapper">
@@ -155,6 +161,7 @@ const Dashboard = () => {
                 handleContentChange={handleContentChange}
                 newContent={newContent}
                 setNewContent={setNewContent}
+                deleteNote={deleteNote}
                 deleteContent={deleteContent}
               />
             ))}

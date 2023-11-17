@@ -19,12 +19,13 @@ notesRouter.get("/:id", validateAccessToken, async (request, response) => {
   response.json(note);
 });
 
-notesRouter.delete("/api/notes/:id", async (request, response) => {
+notesRouter.delete("/:id", async (request, response) => {
   await Note.findByIdAndRemove(request.params.id);
   response.status(204).end();
 });
 
 notesRouter.post("/", validateAccessToken, async (request, response) => {
+  const body = request.body;
   const username = request.auth.payload.sub;
 
   const user = await User.findOne({ userName: username });

@@ -1,0 +1,20 @@
+#delete-dropdown {
+  position: absolute;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.5rem;
+  top: 110%;
+  left: 0;
+}
+
+.delete-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.delete-text {
+  font-size: 0.8rem;
+  color: red;
+  margin-right: 0.75rem;
+}
