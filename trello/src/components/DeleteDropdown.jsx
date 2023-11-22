@@ -1,19 +1,20 @@
 import "../css/DeleteDropdown.css";
-import { RiDeleteBin2Line } from "react-icons/Ri";
 
 const DeleteDropdown = ({ deleteNote }) => {
   return (
     <div id="delete-dropdown">
-      <div className="delete-wrapper" onClick={deleteNote}>
-        <p className="delete-text">Delete</p>
-        <RiDeleteBin2Line
-          style={{
-            width: "1rem",
-            cursor: "pointer",
-            color: "red",
-          }}
-        />
-      </div>
+      <ul class="dropdown-list">
+        <div className="title-wrapper">
+          <div className="dropdown-list-title">Action List</div>
+        </div>
+        <li className="dropdown-list-item">Add card...</li>
+        <li className="dropdown-list-item">Copy list...</li>
+        <li className="dropdown-list-item">Move list...</li>
+        <hr className="solid"></hr>
+        <li id="delete-text" onClick={deleteNote}>
+          Delete...
+        </li>
+      </ul>
     </div>
   );
 };

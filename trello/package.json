@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^2.2.1",
+    "@hello-pangea/dnd": "^16.3.0",
     "axios": "^1.5.0",
     "dotenv": "^16.3.1",
     "react": "^18.2.0",

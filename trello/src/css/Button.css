@@ -47,7 +47,7 @@
 
 .create-button:hover {
   background-color: #65b0ff;
-  transition: 0.3s;
+  transition: 0.15s;
 }
 
 .logout-button {
@@ -64,7 +64,8 @@
 }
 
 .logout-button:hover {
-  background-color: #fff;
+  background-color: #65b0ff;
+  transition: 0.15s;
 }
 
 .note-button {

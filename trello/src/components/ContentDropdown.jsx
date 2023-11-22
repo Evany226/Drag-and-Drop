@@ -23,7 +23,7 @@ const ContentDropdown = ({
             Add
           </button>
           <CloseButton
-            style={{ width: "10%", cursor: "pointer" }}
+            style={{ width: "8%", cursor: "pointer" }}
             onClick={handleOpen}
           />
         </div>

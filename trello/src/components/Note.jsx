@@ -82,6 +82,10 @@ const Note = ({
         {open ? (
           <div className="overlay" onClick={() => setOpen(false)} />
         ) : null}
+
+        {open2 ? (
+          <div className="overlay" onClick={() => setOpen2(false)} />
+        ) : null}
       </div>
     </div>
   );

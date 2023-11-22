@@ -142,7 +142,7 @@ const Dashboard = () => {
 
   return (
     <section id="dashboard">
-      <Nav userName={user.name} />
+      <Nav userName={user.name} userPic={user.picture} />
 
       <div className="selector">
         <div className="dropdownWrapper">
