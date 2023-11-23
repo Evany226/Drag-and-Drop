@@ -1,13 +1,17 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
+import svgr from "vite-plugin-svgr";
 
+// https://vitejs.dev/config/
 export default defineConfig({
-  vite: {
-    ssr: {
-      noExternal: ["react-icons"],
-    },
-  },
-  plugins: [react()],
+  plugins: [
+    react(),
+    svgr({
+      svgrOptions: {
+        // svgr options
+      },
+    }),
+  ],
   server: {
     port: 3000,
   },
