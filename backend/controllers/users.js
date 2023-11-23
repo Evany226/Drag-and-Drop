@@ -12,12 +12,18 @@ usersRouter.get("/", async (request, response) => {
 usersRouter.post("/", async (request, response) => {
   const { username } = request.body;
 
-  const user = new User({
-    userName: username,
-  });
+  const duplicate = await User.findOne({ userName: username });
 
-  const savedUser = await user.save();
-  response.status(201).json(savedUser);
+  if (!duplicate) {
+    const user = new User({
+      userName: username,
+    });
+
+    const savedUser = await user.save();
+    response.status(201).json(savedUser);
+  } else {
+    return response.status(400).json({ error: "user alr registered" });
+  }
 });
 
 module.exports = usersRouter;
