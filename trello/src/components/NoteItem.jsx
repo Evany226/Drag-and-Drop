@@ -1,5 +1,5 @@
 import "../css/Note.css";
-import { RiDeleteBin2Line } from "react-icons/Ri";
+import { ReactComponent as Trash } from "../assets/trash.svg";
 import { useState } from "react";
 
 const NoteItem = ({ taskItem, deleteItem }) => {
@@ -21,7 +21,7 @@ const NoteItem = ({ taskItem, deleteItem }) => {
     >
       <p className="note-body-text">{taskItem}</p>
       {isHovering && (
-        <RiDeleteBin2Line
+        <Trash
           style={{
             width: "1rem",
             padding: "0",
