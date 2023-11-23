@@ -7,8 +7,8 @@ export default defineConfig({
   plugins: [
     react(),
     svgr({
-      svgrOptions: {
-        // svgr options
+      ssr: {
+        noExternal: ["react-icons"],
       },
     }),
   ],
