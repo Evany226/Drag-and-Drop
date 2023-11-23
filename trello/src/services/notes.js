@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:3001/api/notes";
+const baseUrl = "https://dragndrop-d7l4.onrender.com/api/notes";
 
 const getAll = async (accessToken) => {
   const request = axios.get(baseUrl, {
