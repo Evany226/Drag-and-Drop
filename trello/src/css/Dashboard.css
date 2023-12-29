@@ -145,12 +145,12 @@ body {
 #board-canvas {
   overflow-x: auto;
   height: 100%;
+  display: flex;
 }
 
 .note-wrapper {
-  display: inline-flex;
+  display: flex;
   align-items: flex-start;
-  margin-right: 0.5rem;
 }
 
 .dropdownWrapper {
@@ -161,9 +161,6 @@ body {
   min-width: 18rem;
   margin: 1rem;
   border-radius: 0.5rem;
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  background-color: #65b0ff;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  background-color: default;
   z-index: 1;
 }

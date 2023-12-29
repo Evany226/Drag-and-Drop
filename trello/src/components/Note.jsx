@@ -63,6 +63,7 @@ const Note = ({
             <NoteItem
               key={item.id}
               taskItem={item.taskItem}
+              taskId={item.id}
               deleteItem={() => deleteContent(note.id, item.id)}
             />
           );

@@ -12,6 +12,9 @@ import { ReactComponent as Plus } from "./assets/plus.svg";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useRef } from "react";
 import { useDraggable } from "react-use-draggable-scroll";
+import { DragDropContext } from "@hello-pangea/dnd";
+import { Droppable } from "@hello-pangea/dnd";
+import { Draggable } from "@hello-pangea/dnd";
 
 const Dashboard = () => {
   const [notes, setNotes] = useState([]);
@@ -152,8 +155,8 @@ const Dashboard = () => {
       </div>
       <div id="board">
         <div id="board-canvas" {...events} ref={ref}>
-          <div className="note-wrapper">
-            {notes.map((note) => (
+          {notes.map((note) => (
+            <div className="note-wrapper">
               <Note
                 note={note}
                 key={note.id}
@@ -164,24 +167,24 @@ const Dashboard = () => {
                 deleteNote={deleteNote}
                 deleteContent={deleteContent}
               />
-            ))}
-            <div className="add-wrapper">
-              {open ? (
-                <Dropdown
-                  handleOpen={handleOpen}
-                  newNote={newNote}
-                  handleNoteChange={handleNoteChange}
-                  addNote={addNote}
-                />
-              ) : (
-                <div className="note-button-2" onClick={handleOpen}>
-                  <Plus
-                    style={{ width: "7%", color: "#fff", marginLeft: "0.5rem" }}
-                  />
-                  <p className="note-button-text-2">Add new list</p>
-                </div>
-              )}
             </div>
+          ))}
+          <div className="add-wrapper">
+            {open ? (
+              <Dropdown
+                handleOpen={handleOpen}
+                newNote={newNote}
+                handleNoteChange={handleNoteChange}
+                addNote={addNote}
+              />
+            ) : (
+              <div className="note-button-2" onClick={handleOpen}>
+                <Plus
+                  style={{ width: "7%", color: "#fff", marginLeft: "0.5rem" }}
+                />
+                <p className="note-button-text-2">Add new list</p>
+              </div>
+            )}
             {open ? (
               <div className="overlay" onClick={() => setOpen(false)} />
             ) : null}
