@@ -16,17 +16,12 @@ html,body, * {
 
 
 .homeNav {
-  background-color: white;
+  background-color: #fafbfc;
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   height: 4.5rem;
-}
-
-.navAdjust {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 85%;
+  width: 100%;
 }
 
 .title {
@@ -44,7 +39,12 @@ html,body, * {
   padding: 1rem;
   display: flex;
   align-items: center;
-  position: relative;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
 
 }
 
@@ -52,36 +52,27 @@ html,body, * {
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 100%;
 }
 
 
 #foreground {
-  background-color: white;
+  background-color: #fafbfc;
   height: calc(100% - 4.5rem);
   display: flex;
 
 }
 
-.center-text {
-  position: absolute;
-  top: 40%;
-  left: 45%;
-  font-weight: 500;
-  text-align: center;
-}
-
-
 .mainTextWrapper {
   width: 45%;
-  background-image: repeating-linear-gradient(297deg, hsla(359,0%,70%,0.12) 0px,transparent 2px,hsla(359,0%,70%,0.12) 7px,transparent 9px,hsla(359,0%,70%,0.12) 14px,transparent 16px,hsla(359,0%,70%,0.12) 21px),repeating-linear-gradient(59deg, hsla(359,0%,70%,0.12) 0px,transparent 2px,hsla(359,0%,70%,0.12) 7px,transparent 9px,hsla(359,0%,70%,0.12) 14px,transparent 16px,hsla(359,0%,70%,0.12) 21px),repeating-linear-gradient(0deg, hsla(359,0%,70%,0.12) 0px,transparent 2px,hsla(359,0%,70%,0.12) 7px,transparent 9px,hsla(359,0%,70%,0.12) 14px,transparent 16px,hsla(359,0%,70%,0.12) 21px),linear-gradient(90deg, rgb(253,253,253),rgb(253,253,253));
+
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .subTextWrapper {
   width: 55%;
-  background-image: repeating-linear-gradient(297deg, hsla(359,0%,70%,0.12) 0px,transparent 2px,hsla(359,0%,70%,0.12) 7px,transparent 9px,hsla(359,0%,70%,0.12) 14px,transparent 16px,hsla(359,0%,70%,0.12) 21px),repeating-linear-gradient(59deg, hsla(359,0%,70%,0.12) 0px,transparent 2px,hsla(359,0%,70%,0.12) 7px,transparent 9px,hsla(359,0%,70%,0.12) 14px,transparent 16px,hsla(359,0%,70%,0.12) 21px),repeating-linear-gradient(0deg, hsla(359,0%,70%,0.12) 0px,transparent 2px,hsla(359,0%,70%,0.12) 7px,transparent 9px,hsla(359,0%,70%,0.12) 14px,transparent 16px,hsla(359,0%,70%,0.12) 21px),linear-gradient(90deg, rgb(253,253,253),rgb(253,253,253));
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -89,13 +80,25 @@ html,body, * {
   
 }
 
+.slogan-wrapper {
+  background-color: white;
+  width: 70%;
+  margin-bottom: 4rem;
+  margin-right: 5rem;
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
 .main-title {
   margin-bottom: 2rem;
-  text-align: center;
+  font-weight: 600;
 }
 
 .sub-title {
-  font-weight: 400;
-  width: 60%;
-  text-align: center;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: 
+  
+#56647e
 }
