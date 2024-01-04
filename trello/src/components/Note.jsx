@@ -39,30 +39,30 @@ const Note = ({
   const contentArr = note.content;
 
   return (
-    <Droppable droppableId={note.id}>
-      {(provided) => {
-        return (
-          <div {...provided.droppableProps} ref={provided.innerRef}>
-            <div className="note-container">
-              <div className="note-header">
-                <div className="name-wrapper">
-                  <p className="note-name"> {note.name}</p>
-                </div>
-                <div className="settings-wrapper">
-                  <BsThreeDots
-                    style={{
-                      width: "40%",
-                      cursor: "pointer",
-                      position: "relative",
-                      marginRight: "1rem",
-                    }}
-                    onClick={handleOpen2}
-                  />
-                  {open2 ? (
-                    <DeleteDropdown deleteNote={() => deleteNote(note.id)} />
-                  ) : null}
-                </div>
-              </div>
+    <div className="note-container">
+      <div className="note-header">
+        <div className="name-wrapper">
+          <p className="note-name"> {note.name}</p>
+        </div>
+        <div className="settings-wrapper">
+          <BsThreeDots
+            style={{
+              width: "40%",
+              cursor: "pointer",
+              position: "relative",
+              marginRight: "1rem",
+            }}
+            onClick={handleOpen2}
+          />
+          {open2 ? (
+            <DeleteDropdown deleteNote={() => deleteNote(note.id)} />
+          ) : null}
+        </div>
+      </div>
+      <Droppable droppableId={note.id}>
+        {(provided) => {
+          return (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
               <div id="note-body">
                 {contentArr.map((item, index) => {
                   return (
@@ -113,10 +113,10 @@ const Note = ({
                 ) : null}
               </div>
             </div>
-          </div>
-        );
-      }}
-    </Droppable>
+          );
+        }}
+      </Droppable>
+    </div>
   );
 };
 

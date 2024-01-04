@@ -2,7 +2,7 @@ import "../css/Note.css";
 import { RiDeleteBin2Line } from "react-icons/Ri";
 import { useState } from "react";
 
-const NoteItem = ({ taskItem, taskId, deleteItem }) => {
+const NoteItem = ({ taskItem, deleteItem }) => {
   const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseOver = () => {
