@@ -13,7 +13,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useRef } from "react";
 import { useDraggable } from "react-use-draggable-scroll";
 import { DragDropContext } from "@hello-pangea/dnd";
-
 import { v4 as uuidv4 } from "uuid";
 
 const Dashboard = () => {
@@ -54,26 +53,25 @@ const Dashboard = () => {
   };
 
   const addNote = (event) => {
+    event.preventDefault();
     const addData = async () => {
       const accessToken = await getAccessTokenSilently();
 
-      if (newNote === "") {
-        event.preventDefault();
-        window.alert("List name must not be empty");
-      } else {
-        event.preventDefault();
-        const noteObject = {
-          name: newNote,
-          content: [],
-        };
+      const noteObject = {
+        name: newNote,
+        content: [],
+      };
 
-        noteService.create(noteObject, accessToken).then((returnedNote) => {
-          setNotes(notes.concat(returnedNote));
-          setNewNote("");
-        });
-      }
+      noteService.create(noteObject, accessToken).then((returnedNote) => {
+        setNotes(notes.concat(returnedNote));
+        setNewNote("");
+      });
     };
-    addData();
+    if (newNote === "") {
+      window.alert("List name must not be empty");
+    } else {
+      addData();
+    }
   };
 
   const handleContentChange = (event) => {
@@ -82,9 +80,9 @@ const Dashboard = () => {
   };
 
   const changeContent = (event, id) => {
+    event.preventDefault();
     const changeData = async () => {
       const accessToken = await getAccessTokenSilently();
-      event.preventDefault();
       console.log("hello");
       console.log(id);
       const note = notes.find((n) => n.id === id);
@@ -110,7 +108,11 @@ const Dashboard = () => {
         setNewContent("");
       });
     };
-    changeData();
+    if (newContent === "") {
+      window.alert("Content must not be empty");
+    } else {
+      addData();
+    }
   };
 
   const deleteNote = (id) => {
@@ -246,11 +248,15 @@ const Dashboard = () => {
                   addNote={addNote}
                 />
               ) : (
-                <div className="note-button-2" onClick={handleOpen}>
+                <div className="menu-button" onClick={handleOpen}>
                   <Plus
-                    style={{ width: "7%", color: "#fff", marginLeft: "0.5rem" }}
+                    style={{
+                      width: "7%",
+                      color: "#fff",
+                      marginLeft: "0.5rem",
+                    }}
                   />
-                  <p className="note-button-text-2">Add new list</p>
+                  <p className="menu-button-text">Add new list</p>
                 </div>
               )}
               {open ? (
