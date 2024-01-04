@@ -6,6 +6,7 @@ import NoteButton from "./NoteButton.jsx";
 import NoteItem from "./NoteItem.jsx";
 import { useState } from "react";
 import { BsThreeDots } from "react-icons/bs";
+import { Draggable } from "@hello-pangea/dnd";
 
 const Note = ({
   note,
@@ -60,14 +61,28 @@ const Note = ({
       <div id="note-body">
         {contentArr.map((item) => {
           return (
-            <NoteItem
-              key={item.id}
-              taskItem={item.taskItem}
-              taskId={item.id}
-              deleteItem={() => deleteContent(note.id, item.id)}
-            />
+            <Draggable key={item.id} draggableId={item.id} index={index}>
+              {(provided, snapshot) => {
+                return (
+                  <div
+                    className="draggable"
+                    ref={provided.innerRef}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                  >
+                    <NoteItem
+                      key={item.id}
+                      taskItem={item.taskItem}
+                      taskId={item.id}
+                      deleteItem={() => deleteContent(note.id, item.id)}
+                    />
+                  </div>
+                );
+              }}
+            </Draggable>
           );
         })}
+        {provided.placeholder}
 
         {open ? (
           <ContentDropdown

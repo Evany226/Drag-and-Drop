@@ -14,7 +14,7 @@ import { useRef } from "react";
 import { useDraggable } from "react-use-draggable-scroll";
 import { DragDropContext } from "@hello-pangea/dnd";
 import { Droppable } from "@hello-pangea/dnd";
-import { Draggable } from "@hello-pangea/dnd";
+import { v4 as uuidv4 } from "uuid";
 
 const Dashboard = () => {
   const [notes, setNotes] = useState([]);
@@ -93,7 +93,7 @@ const Dashboard = () => {
 
       const contentObject = {
         taskItem: newContent,
-        id: note.content.length + 1,
+        id: uuidv4(),
       };
 
       const updatedContent = oldContent.concat(contentObject);
@@ -153,44 +153,48 @@ const Dashboard = () => {
         </div>
         <CreateButton buttonName="Add Timer +" />
       </div>
-      <div id="board">
-        <div id="board-canvas" {...events} ref={ref}>
-          {notes.map((note) => (
-            <div className="note-wrapper">
-              <Note
-                note={note}
-                key={note.id}
-                changeContent={() => changeContent(event, note.id)}
-                handleContentChange={handleContentChange}
-                newContent={newContent}
-                setNewContent={setNewContent}
-                deleteNote={deleteNote}
-                deleteContent={deleteContent}
-              />
-            </div>
-          ))}
-          <div className="add-wrapper">
-            {open ? (
-              <Dropdown
-                handleOpen={handleOpen}
-                newNote={newNote}
-                handleNoteChange={handleNoteChange}
-                addNote={addNote}
-              />
-            ) : (
-              <div className="note-button-2" onClick={handleOpen}>
-                <Plus
-                  style={{ width: "7%", color: "#fff", marginLeft: "0.5rem" }}
+      <DragDropContext onDragEnd={(result) => console.log(result)}>
+        <div id="board">
+          <div id="board-canvas" {...events} ref={ref}>
+            {notes.map((note) => {
+              return (
+                <div className="note-wrapper">
+                  <Note
+                    note={note}
+                    key={note.id}
+                    changeContent={() => changeContent(event, note.id)}
+                    handleContentChange={handleContentChange}
+                    newContent={newContent}
+                    setNewContent={setNewContent}
+                    deleteNote={deleteNote}
+                    deleteContent={deleteContent}
+                  />
+                </div>
+              );
+            })}
+            <div className="add-wrapper">
+              {open ? (
+                <Dropdown
+                  handleOpen={handleOpen}
+                  newNote={newNote}
+                  handleNoteChange={handleNoteChange}
+                  addNote={addNote}
                 />
-                <p className="note-button-text-2">Add new list</p>
-              </div>
-            )}
-            {open ? (
-              <div className="overlay" onClick={() => setOpen(false)} />
-            ) : null}
+              ) : (
+                <div className="note-button-2" onClick={handleOpen}>
+                  <Plus
+                    style={{ width: "7%", color: "#fff", marginLeft: "0.5rem" }}
+                  />
+                  <p className="note-button-text-2">Add new list</p>
+                </div>
+              )}
+              {open ? (
+                <div className="overlay" onClick={() => setOpen(false)} />
+              ) : null}
+            </div>
           </div>
         </div>
-      </div>
+      </DragDropContext>
     </section>
   );
 };
