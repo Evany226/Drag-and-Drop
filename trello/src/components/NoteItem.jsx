@@ -19,9 +19,7 @@ const NoteItem = ({ taskItem, taskId, deleteItem }) => {
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      <p className="note-body-text">
-        {taskItem} id:{taskId}
-      </p>
+      <p className="note-body-text">{taskItem}</p>
       {isHovering && (
         <RiDeleteBin2Line
           style={{

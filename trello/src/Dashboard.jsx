@@ -169,7 +169,13 @@ const Dashboard = () => {
         content: destItems,
       };
 
-      console.log(newDest);
+      noteService.update(newSource.id, newSource).then((returnedNote) => {
+        console.log(returnedNote);
+      });
+
+      noteService.update(newDest.id, newDest).then((returnedNote) => {
+        console.log(returnedNote);
+      });
 
       setNotes(
         notes.map((n) => {
