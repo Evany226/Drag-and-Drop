@@ -13,7 +13,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useRef } from "react";
 import { useDraggable } from "react-use-draggable-scroll";
 import { DragDropContext } from "@hello-pangea/dnd";
-import { Droppable } from "@hello-pangea/dnd";
+
 import { v4 as uuidv4 } from "uuid";
 
 const Dashboard = () => {
@@ -143,6 +143,66 @@ const Dashboard = () => {
     return null;
   }
 
+  const onDragEnd = (result) => {
+    const { source, destination } = result;
+    if (!destination) {
+      return;
+    }
+
+    if (source.droppableId != destination.droppableId) {
+      const sourceNote = notes.find((item) => item.id === source.droppableId);
+      const destNote = notes.find(
+        (item) => item.id === destination.droppableId
+      );
+      const sourceItems = [...sourceNote.content];
+      const destItems = [...destNote.content];
+      const [removed] = sourceItems.splice(source.index, 1);
+      destItems.splice(destination.index, 0, removed);
+
+      const newSource = {
+        ...sourceNote,
+        content: sourceItems,
+      };
+
+      const newDest = {
+        ...destNote,
+        content: destItems,
+      };
+
+      console.log(newDest);
+
+      setNotes(
+        notes.map((n) => {
+          if (n.id === sourceNote.id) {
+            return newSource;
+          }
+          if (n.id === destNote.id) {
+            return newDest;
+          } else {
+            return n;
+          }
+        })
+      );
+    } else {
+      const note = notes.find((item) => item.id === source.droppableId);
+      const copiedItems = [...note.content];
+      const [removedItem] = copiedItems.splice(source.index, 1);
+      copiedItems.splice(destination.index, 0, removedItem);
+
+      const newNote = {
+        ...note,
+        content: copiedItems,
+      };
+
+      const id = note.id;
+
+      noteService.update(id, newNote).then((returnedNote) => {
+        console.log(returnedNote);
+      });
+      setNotes(notes.map((n) => (n.id === id ? newNote : n)));
+    }
+  };
+
   return (
     <section id="dashboard">
       <Nav userName={user.name} userPic={user.picture} />
@@ -153,15 +213,14 @@ const Dashboard = () => {
         </div>
         <CreateButton buttonName="Add Timer +" />
       </div>
-      <DragDropContext onDragEnd={(result) => console.log(result)}>
+      <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
         <div id="board">
           <div id="board-canvas" {...events} ref={ref}>
             {notes.map((note) => {
               return (
-                <div className="note-wrapper">
+                <div className="note-wrapper" key={note.id}>
                   <Note
                     note={note}
-                    key={note.id}
                     changeContent={() => changeContent(event, note.id)}
                     handleContentChange={handleContentChange}
                     newContent={newContent}
