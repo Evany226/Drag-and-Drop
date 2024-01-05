@@ -60,12 +60,11 @@ html,body, * {
   background-color: #fafbfc;
   height: calc(100% - 4.5rem);
   display: flex;
-
+  align-items: center;
 }
 
 .mainTextWrapper {
   width: 45%;
-
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -83,8 +82,6 @@ html,body, * {
 .slogan-wrapper {
   background-color: white;
   width: 70%;
-  margin-bottom: 4rem;
-  margin-right: 5rem;
   padding: 3rem 2rem;
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -101,4 +98,61 @@ html,body, * {
   color: 
   
 #56647e
+}
+
+.svgcomp {
+  width: 80%;
+}
+
+
+@media only screen and (max-width: 699px) {
+  #foreground {
+    flex-direction: column;
+  }
+
+  .mainTextWrapper {
+    justify-content: center;
+    width: 70%;
+  }
+
+  .subTextWrapper {
+    width: 100%;
+  }
+
+  .slogan-wrapper {
+    width: 80%;
+    margin: 1rem 0rem;
+    text-align: center;
+  }
+
+  #titleWrapper {
+    margin: 0;
+  }
+  
+  .svgcomp {
+    height: 100%;
+  }
+}
+
+
+
+@media only screen and (min-width: 700px) {
+  .slogan-wrapper {
+    width: 80%;
+  }
+  #titleWrapper {
+    margin: 0;
+  }
+
+}
+
+@media only screen and (min-width: 992px) {
+  .slogan-wrapper {
+    width: 70%;
+  }
+
+  #titleWrapper {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

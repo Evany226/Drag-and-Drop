@@ -2,7 +2,7 @@ import "../css/Note.css";
 import { ReactComponent as Trash } from "../assets/trash.svg";
 import { useState } from "react";
 
-const NoteItem = ({ taskItem, taskId, deleteItem }) => {
+const NoteItem = ({ taskItem, deleteItem }) => {
   const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseOver = () => {
@@ -19,17 +19,19 @@ const NoteItem = ({ taskItem, taskId, deleteItem }) => {
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
     >
-      <p className="note-body-text">
-        {taskItem} id:{taskId}
-      </p>
+      <p className="note-body-text">{taskItem}</p>
       {isHovering && (
         <Trash
           style={{
             width: "1rem",
             padding: "0",
-            margin: "0",
+            marginRight: "0.5rem",
             cursor: "pointer",
             transitionTime: "3s",
+            position: "absolute",
+            top: "0",
+            right: "0",
+            height: "100%",
           }}
           onClick={deleteItem}
         />

@@ -6,6 +6,8 @@ import NoteButton from "./NoteButton.jsx";
 import NoteItem from "./NoteItem.jsx";
 import { useState } from "react";
 import { ReactComponent as ThreeDots } from "../assets/dots.svg";
+import { Draggable } from "@hello-pangea/dnd";
+import { Droppable } from "@hello-pangea/dnd";
 
 const Note = ({
   note,
@@ -57,37 +59,64 @@ const Note = ({
           ) : null}
         </div>
       </div>
-      <div id="note-body">
-        {contentArr.map((item) => {
+      <Droppable droppableId={note.id}>
+        {(provided) => {
           return (
-            <NoteItem
-              key={item.id}
-              taskItem={item.taskItem}
-              taskId={item.id}
-              deleteItem={() => deleteContent(note.id, item.id)}
-            />
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              <div id="note-body">
+                {contentArr.map((item, index) => {
+                  return (
+                    <Draggable
+                      key={item.id}
+                      draggableId={item.id}
+                      index={index}
+                      onClick={(event) => event.stopPropagation()}
+                    >
+                      {(provided, snapshot) => {
+                        return (
+                          <div
+                            className="draggable"
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                          >
+                            <NoteItem
+                              key={item.id}
+                              taskItem={item.taskItem}
+                              taskId={item.id}
+                              deleteItem={() => deleteContent(note.id, item.id)}
+                            />
+                          </div>
+                        );
+                      }}
+                    </Draggable>
+                  );
+                })}
+                {provided.placeholder}
+
+                {open ? (
+                  <ContentDropdown
+                    handleOpen={handleOpen}
+                    changeContent={changeContent}
+                    newContent={newContent}
+                    handleContentChange={handleContentChange}
+                  />
+                ) : (
+                  <NoteButton handleOpen={handleOpen} />
+                )}
+
+                {open ? (
+                  <div className="overlay" onClick={() => setOpen(false)} />
+                ) : null}
+
+                {open2 ? (
+                  <div className="overlay" onClick={() => setOpen2(false)} />
+                ) : null}
+              </div>
+            </div>
           );
-        })}
-
-        {open ? (
-          <ContentDropdown
-            handleOpen={handleOpen}
-            changeContent={changeContent}
-            newContent={newContent}
-            handleContentChange={handleContentChange}
-          />
-        ) : (
-          <NoteButton handleOpen={handleOpen} />
-        )}
-
-        {open ? (
-          <div className="overlay" onClick={() => setOpen(false)} />
-        ) : null}
-
-        {open2 ? (
-          <div className="overlay" onClick={() => setOpen2(false)} />
-        ) : null}
-      </div>
+        }}
+      </Droppable>
     </div>
   );
 };
