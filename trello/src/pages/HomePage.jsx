@@ -23,7 +23,7 @@ function Home() {
 
         <div id="foreground">
           <div className="mainTextWrapper">
-            <ReactComponent style={{ width: "80%" }} />
+            <ReactComponent class="svgcomp" />
           </div>
           <div className="subTextWrapper">
             <div className="slogan-wrapper">

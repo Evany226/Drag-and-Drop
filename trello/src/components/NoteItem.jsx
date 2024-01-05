@@ -25,9 +25,13 @@ const NoteItem = ({ taskItem, deleteItem }) => {
           style={{
             width: "1rem",
             padding: "0",
-            margin: "0",
+            marginRight: "0.5rem",
             cursor: "pointer",
             transitionTime: "3s",
+            position: "absolute",
+            top: "0",
+            right: "0",
+            height: "100%",
           }}
           onClick={deleteItem}
         />

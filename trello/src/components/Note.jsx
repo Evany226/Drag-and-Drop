@@ -70,6 +70,7 @@ const Note = ({
                       key={item.id}
                       draggableId={item.id}
                       index={index}
+                      onClick={(event) => event.stopPropagation()}
                     >
                       {(provided, snapshot) => {
                         return (

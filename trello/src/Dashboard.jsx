@@ -10,8 +10,8 @@ import Nav from "./components/Nav.jsx";
 import Dropdown from "./components/Dropdown.jsx";
 import { ReactComponent as Plus } from "./assets/plus.svg";
 import { useAuth0 } from "@auth0/auth0-react";
-import { useRef } from "react";
-import { useDraggable } from "react-use-draggable-scroll";
+// import { useRef } from "react";
+// import { useDraggable } from "react-use-draggable-scroll";
 import { DragDropContext } from "@hello-pangea/dnd";
 import { v4 as uuidv4 } from "uuid";
 
@@ -21,8 +21,10 @@ const Dashboard = () => {
   const [newContent, setNewContent] = useState("");
   const [open, setOpen] = useState(false);
 
-  const ref = useRef();
-  const { events } = useDraggable(ref);
+  // const ref = useRef();
+  // const { events } = useDraggable(ref, {
+  //   activeMouseButton: "Left",
+  // });
 
   const { user } = useAuth0();
   const { getAccessTokenSilently } = useAuth0();
@@ -111,7 +113,7 @@ const Dashboard = () => {
     if (newContent === "") {
       window.alert("Content must not be empty");
     } else {
-      addData();
+      changeData();
     }
   };
 
@@ -211,6 +213,16 @@ const Dashboard = () => {
     }
   };
 
+  const handleScroll = (event) => {
+    const container = event.target.parentElement;
+    const scrollAmount = event.deltaY;
+    container.scrollTo({
+      top: 0,
+      left: container.scrollLeft + scrollAmount * 8,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <section id="dashboard">
       <Nav userName={user.name} userPic={user.picture} />
@@ -223,7 +235,7 @@ const Dashboard = () => {
       </div>
       <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
         <div id="board">
-          <div id="board-canvas" {...events} ref={ref}>
+          <div id="board-canvas" onWheel={handleScroll}>
             {notes.map((note) => {
               return (
                 <div className="note-wrapper" key={note.id}>

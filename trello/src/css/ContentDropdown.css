@@ -25,10 +25,6 @@
   border-radius: 0.5rem;
   padding: 0.5rem;
   resize: none;
-  overflow: hidden;
-  overflow-y: auto;
-  overflow-wrap: break-word;
-  outline: none;
 }
 
 .content-button-wrapper {
