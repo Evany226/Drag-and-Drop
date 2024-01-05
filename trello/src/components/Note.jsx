@@ -13,14 +13,20 @@ const Note = ({
   note,
   changeContent,
   handleContentChange,
+  handleNoteChange,
+  newNote,
+  setNewNote,
   newContent,
   setNewContent,
   deleteNote,
   deleteContent,
+  editNote,
 }) => {
   const [open, setOpen] = useState(false);
 
   const [open2, setOpen2] = useState(false);
+
+  const [editOpen, setEditOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(!open);
@@ -30,6 +36,10 @@ const Note = ({
   const handleOpen2 = () => {
     console.log("Hello");
     setOpen2(!open2);
+  };
+
+  const handleEdit = (name) => {
+    setEditOpen(!editOpen);
   };
 
   if (!note.content) {
@@ -42,7 +52,33 @@ const Note = ({
     <div className="note-container">
       <div className="note-header">
         <div className="name-wrapper">
-          <p className="note-name"> {note.name}</p>
+          {editOpen ? (
+            <form
+              className="edit-form"
+              onSubmit={(event) => {
+                editNote(event, note.id);
+                setEditOpen(false);
+              }}
+            >
+              <input
+                className="edit-input"
+                value={newNote}
+                onChange={handleNoteChange}
+                autoFocus
+                onFocus={(e) => e.currentTarget.select()}
+              />
+            </form>
+          ) : (
+            <p
+              className="note-name"
+              onClick={() => {
+                handleEdit();
+                setNewNote(note.name);
+              }}
+            >
+              {note.name}
+            </p>
+          )}
         </div>
         <div className="settings-wrapper">
           <BsThreeDots
@@ -70,7 +106,6 @@ const Note = ({
                       key={item.id}
                       draggableId={item.id}
                       index={index}
-                      onClick={(event) => event.stopPropagation()}
                     >
                       {(provided, snapshot) => {
                         return (
@@ -111,6 +146,13 @@ const Note = ({
 
                 {open2 ? (
                   <div className="overlay" onClick={() => setOpen2(false)} />
+                ) : null}
+
+                {editOpen ? (
+                  <div
+                    className="dark-overlay"
+                    onClick={() => setEditOpen(false)}
+                  />
                 ) : null}
               </div>
             </div>

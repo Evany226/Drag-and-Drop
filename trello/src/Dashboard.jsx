@@ -54,6 +54,7 @@ const Dashboard = () => {
     setNewNote(event.target.value);
   };
 
+  //adds actual columns
   const addNote = (event) => {
     event.preventDefault();
     const addData = async () => {
@@ -76,11 +77,40 @@ const Dashboard = () => {
     }
   };
 
+  //changes note name
+  const editNote = (event, id) => {
+    event.preventDefault();
+
+    const editData = async () => {
+      const note = notes.find((note) => note.id === id);
+
+      const changedNote = {
+        ...note,
+        name: newNote,
+      };
+
+      await noteService.update(id, changedNote).then((returnedNote) => {
+        setNotes(notes.map((note) => (note.id === id ? returnedNote : note)));
+        setNewNote("");
+      });
+    };
+    editData();
+  };
+
+  //deletes actual columns
+  const deleteNote = (id) => {
+    noteService.remove(id).then((returnedNote) => {
+      setNotes(notes.filter((note) => note.id !== id));
+      setNewNote("");
+    });
+  };
+
   const handleContentChange = (event) => {
     console.log(event.target.value);
     setNewContent(event.target.value);
   };
 
+  //this adds new note items
   const changeContent = (event, id) => {
     event.preventDefault();
     const changeData = async () => {
@@ -117,12 +147,12 @@ const Dashboard = () => {
     }
   };
 
-  const deleteNote = (id) => {
-    noteService.remove(id).then((returnedNote) => {
-      setNotes(notes.filter((note) => note.id != id));
-    });
-  };
+  // const editContent = (id, itemId) => {
+  //   const note = notes.find((n) => n.id === id)
+  //   const oldContent = note.content
+  // }
 
+  //delete note items
   const deleteContent = (id, itemId) => {
     console.log(id);
     console.log(itemId);
@@ -243,10 +273,14 @@ const Dashboard = () => {
                     note={note}
                     changeContent={() => changeContent(event, note.id)}
                     handleContentChange={handleContentChange}
+                    handleNoteChange={handleNoteChange}
+                    newNote={newNote}
+                    setNewNote={setNewNote}
                     newContent={newContent}
                     setNewContent={setNewContent}
                     deleteNote={deleteNote}
                     deleteContent={deleteContent}
+                    editNote={editNote}
                   />
                 </div>
               );
