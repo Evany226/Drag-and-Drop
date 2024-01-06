@@ -9,9 +9,11 @@ const Dropdown = ({ addNote, newNote, handleNoteChange, handleOpen }) => {
           <input
             className="dropdown-input"
             placeholder="Enter Name..."
-            maxlength="25"
+            maxLength="25"
             value={newNote}
             onChange={handleNoteChange}
+            autoFocus
+            onFocus={(e) => e.currentTarget.select()}
           />
         </div>
         <div className="dropdown-button-wrapper">

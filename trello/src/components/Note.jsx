@@ -13,14 +13,21 @@ const Note = ({
   note,
   changeContent,
   handleContentChange,
+  handleNoteChange,
+  newNote,
+  setNewNote,
   newContent,
   setNewContent,
   deleteNote,
   deleteContent,
+  editNote,
+  editContent,
 }) => {
   const [open, setOpen] = useState(false);
 
   const [open2, setOpen2] = useState(false);
+
+  const [editOpen, setEditOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(!open);
@@ -30,6 +37,12 @@ const Note = ({
   const handleOpen2 = () => {
     console.log("Hello");
     setOpen2(!open2);
+  };
+
+  const handleEdit = (name) => {
+    setEditOpen(!editOpen);
+    setNewNote(name);
+    setOpen2(false);
   };
 
   if (!note.content) {
@@ -42,8 +55,33 @@ const Note = ({
     <div className="note-container">
       <div className="note-header">
         <div className="name-wrapper">
-          <p className="note-name"> {note.name}</p>
+          {editOpen ? (
+            <form
+              onSubmit={() => {
+                editNote(note.id);
+                setEditOpen(false);
+              }}
+            >
+              <input
+                className="edit-name"
+                value={newNote}
+                onChange={handleNoteChange}
+                autoFocus
+                onFocus={(e) => e.currentTarget.select()}
+              ></input>
+            </form>
+          ) : (
+            <p
+              className="note-name"
+              onClick={() => {
+                handleEdit(note.name);
+              }}
+            >
+              {note.name}
+            </p>
+          )}
         </div>
+
         <div className="settings-wrapper">
           <ThreeDots
             style={{
@@ -55,7 +93,10 @@ const Note = ({
             onClick={handleOpen2}
           />
           {open2 ? (
-            <DeleteDropdown deleteNote={() => deleteNote(note.id)} />
+            <DeleteDropdown
+              deleteNote={() => deleteNote(note.id)}
+              handleEdit={() => handleEdit(note.name)}
+            />
           ) : null}
         </div>
       </div>
@@ -70,7 +111,6 @@ const Note = ({
                       key={item.id}
                       draggableId={item.id}
                       index={index}
-                      onClick={(event) => event.stopPropagation()}
                     >
                       {(provided, snapshot) => {
                         return (
@@ -84,7 +124,14 @@ const Note = ({
                               key={item.id}
                               taskItem={item.taskItem}
                               taskId={item.id}
-                              deleteItem={() => deleteContent(note.id, item.id)}
+                              noteId={note.id}
+                              deleteItem={(event) =>
+                                deleteContent(event, note.id, item.id)
+                              }
+                              newContent={newContent}
+                              setNewContent={setNewContent}
+                              handleContentChange={handleContentChange}
+                              editContent={editContent}
                             />
                           </div>
                         );
@@ -97,7 +144,7 @@ const Note = ({
                 {open ? (
                   <ContentDropdown
                     handleOpen={handleOpen}
-                    changeContent={changeContent}
+                    changeContent={(event) => changeContent(event, note.id)}
                     newContent={newContent}
                     handleContentChange={handleContentChange}
                   />
@@ -111,6 +158,16 @@ const Note = ({
 
                 {open2 ? (
                   <div className="overlay" onClick={() => setOpen2(false)} />
+                ) : null}
+
+                {editOpen ? (
+                  <div
+                    className="overlay"
+                    onClick={() => {
+                      editNote(note.id);
+                      setEditOpen(false);
+                    }}
+                  />
                 ) : null}
               </div>
             </div>

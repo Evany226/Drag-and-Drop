@@ -5,6 +5,17 @@
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.01);
+  z-index: 9;
+}
+
+.dark-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  z-index: 11;
 }
 
 .note-container {
@@ -25,14 +36,26 @@
 
 .name-wrapper {
   width: 85%;
-  padding: 1rem 0rem 0rem 0rem;
+  margin: 1rem 0rem 0rem 0rem;
 }
 
 .note-name {
   font-weight: 500;
   font-size: 0.95rem;
   color: #0f172a;
-  margin-left: 1.25rem;
+  margin-left: 1rem;
+  padding: 0.25rem 0.1rem;
+}
+
+.edit-name {
+  font-weight: 500;
+  font-size: 0.95rem;
+  margin-left: 0.8rem;
+  color: #0f172a;
+  width: 90%;
+  z-index: 10;
+  padding: 0.18rem 0.25rem;
+  border-radius: 0.25rem;
 }
 
 .settings-wrapper {
@@ -74,4 +97,63 @@
 
 .icon-container {
   height: 100%;
+}
+
+.edit-content-form {
+  position: relative;
+  z-index: 12;
+}
+
+.edit-content {
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Ubuntu, sans-serif;
+  margin-top: 0.75rem;
+  background-color: white;
+  padding: 0.6rem 0.7rem;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  border-radius: 0.5rem;
+  width: 100%;
+  resize: none;
+  margin-bottom: 0.5rem;
+  bottom: 0;
+}
+
+.edit-content-button-wrapper {
+  display: flex;
+  position: absolute;
+  top: 4.85rem;
+  left: 0;
+}
+
+.delete-button {
+  cursor: pointer;
+  padding: 0.5rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  appearance: button;
+  backface-visibility: hidden;
+  background: red;
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
+    rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0;
+  color: #fff;
+  outline: none;
+  overflow: hidden;
+  text-align: center;
+  text-transform: none;
+  user-select: none;
+  padding: 0.5rem 0.75rem;
+  margin-left: 0.5rem;
+}
+
+.delete-button-text {
+  font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue",
+    Ubuntu, sans-serif;
+  margin-right: 0.5rem;
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 400;
 }

@@ -1,8 +1,8 @@
 import "../css/Button.css";
 
-const CreateButton = ({ buttonName, toggleOpen }) => {
+const CreateButton = ({ buttonName, buttonFunc }) => {
   return (
-    <button className="create-button" onClick={toggleOpen}>
+    <button className="create-button" onClick={buttonFunc}>
       {buttonName}
     </button>
   );
