@@ -21,6 +21,7 @@ const Note = ({
   deleteNote,
   deleteContent,
   editNote,
+  editContent,
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -56,14 +57,13 @@ const Note = ({
         <div className="name-wrapper">
           {editOpen ? (
             <form
-              className="edit-form"
               onSubmit={() => {
                 editNote(note.id);
                 setEditOpen(false);
               }}
             >
               <input
-                className="edit-input"
+                className="edit-name"
                 value={newNote}
                 onChange={handleNoteChange}
                 autoFocus
@@ -124,7 +124,14 @@ const Note = ({
                               key={item.id}
                               taskItem={item.taskItem}
                               taskId={item.id}
-                              deleteItem={() => deleteContent(note.id, item.id)}
+                              noteId={note.id}
+                              deleteItem={(event) =>
+                                deleteContent(event, note.id, item.id)
+                              }
+                              newContent={newContent}
+                              setNewContent={setNewContent}
+                              handleContentChange={handleContentChange}
+                              editContent={editContent}
                             />
                           </div>
                         );
@@ -137,7 +144,7 @@ const Note = ({
                 {open ? (
                   <ContentDropdown
                     handleOpen={handleOpen}
-                    changeContent={changeContent}
+                    changeContent={(event) => changeContent(event, note.id)}
                     newContent={newContent}
                     handleContentChange={handleContentChange}
                   />

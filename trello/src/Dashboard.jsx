@@ -3,14 +3,13 @@ import "./css/Button.css";
 import "./css/index.css";
 import "./css/Button.css";
 import CreateButton from "./components/CreateButton.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import noteService from "./services/notes";
 import Note from "./components/Note.jsx";
 import Nav from "./components/Nav.jsx";
 import Dropdown from "./components/Dropdown.jsx";
 import { ReactComponent as Plus } from "./assets/plus.svg";
 import { useAuth0 } from "@auth0/auth0-react";
-// import { useRef } from "react";
 // import { useDraggable } from "react-use-draggable-scroll";
 import { DragDropContext } from "@hello-pangea/dnd";
 import { v4 as uuidv4 } from "uuid";
@@ -79,8 +78,6 @@ const Dashboard = () => {
 
   //changes note name
   const editNote = (id) => {
-    console.log("revamp");
-
     const editData = async () => {
       const note = notes.find((note) => note.id === id);
 
@@ -145,13 +142,35 @@ const Dashboard = () => {
     }
   };
 
-  // const editContent = (id, itemId) => {
-  //   const note = notes.find((n) => n.id === id)
-  //   const oldContent = note.content
-  // }
+  const editContent = (event, id, itemId) => {
+    event.preventDefault();
+    const editData = async () => {
+      const note = notes.find((n) => n.id === id);
+      const oldContent = note.content;
+
+      const contentObject = {
+        taskItem: newContent,
+        id: itemId,
+      };
+
+      const updatedContent = oldContent.map((item) =>
+        item.id === itemId ? contentObject : item
+      );
+
+      const changedNote = {
+        ...note,
+        content: updatedContent,
+      };
+
+      noteService.update(id, changedNote).then((returnedNote) => {});
+      setNotes(notes.map((note) => (note.id != id ? note : changedNote)));
+    };
+    editData();
+  };
 
   //delete note items
-  const deleteContent = (id, itemId) => {
+  const deleteContent = (event, id, itemId) => {
+    event.preventDefault();
     console.log(id);
     console.log(itemId);
     const note = notes.find((n) => n.id === id);
@@ -251,14 +270,27 @@ const Dashboard = () => {
     });
   };
 
+  const rightRef = useRef(null);
+
+  const scrollRight = () => {
+    rightRef.current.scrollIntoView();
+    console.log("works");
+    setOpen(!open);
+    setNewNote("");
+  };
+
+  const addTimer = () => {
+    console.log("Timer!!");
+  };
+
   return (
     <section id="dashboard">
       <Nav userName={user.name} userPic={user.picture} />
       <div className="selector">
         <div className="dropdownWrapper">
-          <CreateButton buttonName="Add Checklist +" toggleOpen={handleOpen} />
+          <CreateButton buttonName="Add Checklist +" buttonFunc={scrollRight} />
         </div>
-        <CreateButton buttonName="Add Timer +" />
+        <CreateButton buttonName="Add Timer +" buttonFunc={addTimer} />
       </div>
       <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
         <div id="board">
@@ -268,7 +300,7 @@ const Dashboard = () => {
                 <div className="note-wrapper" key={note.id}>
                   <Note
                     note={note}
-                    changeContent={() => changeContent(event, note.id)}
+                    changeContent={changeContent}
                     handleContentChange={handleContentChange}
                     handleNoteChange={handleNoteChange}
                     newNote={newNote}
@@ -278,11 +310,12 @@ const Dashboard = () => {
                     deleteNote={deleteNote}
                     deleteContent={deleteContent}
                     editNote={editNote}
+                    editContent={editContent}
                   />
                 </div>
               );
             })}
-            <div className="add-wrapper">
+            <div className="add-wrapper" ref={rightRef}>
               {open ? (
                 <Dropdown
                   handleOpen={handleOpen}
