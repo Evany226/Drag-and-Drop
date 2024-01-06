@@ -78,8 +78,8 @@ const Dashboard = () => {
   };
 
   //changes note name
-  const editNote = (event, id) => {
-    event.preventDefault();
+  const editNote = (id) => {
+    console.log("revamp");
 
     const editData = async () => {
       const note = notes.find((note) => note.id === id);
@@ -89,10 +89,8 @@ const Dashboard = () => {
         name: newNote,
       };
 
-      await noteService.update(id, changedNote).then((returnedNote) => {
-        setNotes(notes.map((note) => (note.id === id ? returnedNote : note)));
-        setNewNote("");
-      });
+      noteService.update(id, changedNote).then((returnedNote) => {});
+      setNotes(notes.map((note) => (note.id === id ? changedNote : note)));
     };
     editData();
   };
@@ -256,7 +254,6 @@ const Dashboard = () => {
   return (
     <section id="dashboard">
       <Nav userName={user.name} userPic={user.picture} />
-
       <div className="selector">
         <div className="dropdownWrapper">
           <CreateButton buttonName="Add Checklist +" toggleOpen={handleOpen} />

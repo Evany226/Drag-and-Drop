@@ -5,6 +5,17 @@
   bottom: 0;
   left: 0;
   background: rgba(0, 0, 0, 0.01);
+  z-index: 9;
+}
+
+.dark-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  z-index: 11;
 }
 
 .note-container {
@@ -42,7 +53,6 @@
   margin-left: 0.8rem;
   color: #0f172a;
   width: 90%;
-  padding: 0rem;
   z-index: 10;
   padding: 0.18rem 0.25rem;
   border-radius: 0.25rem;

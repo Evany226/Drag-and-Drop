@@ -40,6 +40,8 @@ const Note = ({
 
   const handleEdit = (name) => {
     setEditOpen(!editOpen);
+    setNewNote(name);
+    setOpen2(false);
   };
 
   if (!note.content) {
@@ -55,8 +57,8 @@ const Note = ({
           {editOpen ? (
             <form
               className="edit-form"
-              onSubmit={(event) => {
-                editNote(event, note.id);
+              onSubmit={() => {
+                editNote(note.id);
                 setEditOpen(false);
               }}
             >
@@ -66,20 +68,20 @@ const Note = ({
                 onChange={handleNoteChange}
                 autoFocus
                 onFocus={(e) => e.currentTarget.select()}
-              />
+              ></input>
             </form>
           ) : (
             <p
               className="note-name"
               onClick={() => {
-                handleEdit();
-                setNewNote(note.name);
+                handleEdit(note.name);
               }}
             >
               {note.name}
             </p>
           )}
         </div>
+
         <div className="settings-wrapper">
           <BsThreeDots
             style={{
@@ -91,7 +93,10 @@ const Note = ({
             onClick={handleOpen2}
           />
           {open2 ? (
-            <DeleteDropdown deleteNote={() => deleteNote(note.id)} />
+            <DeleteDropdown
+              deleteNote={() => deleteNote(note.id)}
+              handleEdit={() => handleEdit(note.name)}
+            />
           ) : null}
         </div>
       </div>
@@ -150,8 +155,11 @@ const Note = ({
 
                 {editOpen ? (
                   <div
-                    className="dark-overlay"
-                    onClick={() => setEditOpen(false)}
+                    className="overlay"
+                    onClick={() => {
+                      editNote(note.id);
+                      setEditOpen(false);
+                    }}
                   />
                 ) : null}
               </div>
