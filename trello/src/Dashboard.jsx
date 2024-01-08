@@ -89,7 +89,11 @@ const Dashboard = () => {
       noteService.update(id, changedNote).then((returnedNote) => {});
       setNotes(notes.map((note) => (note.id === id ? changedNote : note)));
     };
-    editData();
+    if (newNote === "") {
+      window.alert("List name must not be empty");
+    } else {
+      editData();
+    }
   };
 
   //deletes actual columns
@@ -165,7 +169,12 @@ const Dashboard = () => {
       noteService.update(id, changedNote).then((returnedNote) => {});
       setNotes(notes.map((note) => (note.id != id ? note : changedNote)));
     };
-    editData();
+
+    if (newContent === "") {
+      window.alert("Content must not be empty");
+    } else {
+      editData();
+    }
   };
 
   //delete note items
@@ -194,7 +203,7 @@ const Dashboard = () => {
     return null;
   }
 
-  const onDragEnd = (result) => {
+  const onDragEndItems = (result) => {
     const { source, destination } = result;
     if (!destination) {
       return;
@@ -292,7 +301,7 @@ const Dashboard = () => {
         </div>
         <CreateButton buttonName="Add Timer +" buttonFunc={addTimer} />
       </div>
-      <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
+      <DragDropContext onDragEnd={(result) => onDragEndItems(result)}>
         <div id="board">
           <div id="board-canvas" onWheel={handleScroll}>
             {notes.map((note) => {
