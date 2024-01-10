@@ -303,7 +303,7 @@ const Dashboard = () => {
       </div>
       <DragDropContext onDragEnd={(result) => onDragEndItems(result)}>
         <div id="board">
-          <div id="board-canvas" onWheel={handleScroll}>
+          <div id="board-canvas">
             {notes.map((note) => {
               return (
                 <div className="note-wrapper" key={note.id}>

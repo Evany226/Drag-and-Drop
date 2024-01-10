@@ -24,6 +24,7 @@
   margin: 1rem;
   border-radius: 0.75rem;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+  max-height: 80%;
 }
 
 .note-header {

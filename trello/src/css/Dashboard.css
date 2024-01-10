@@ -148,11 +148,13 @@ body {
   overflow-x: auto;
   height: 100%;
   display: flex;
+  overflow-y: hidden;
 }
 
 .note-wrapper {
   display: flex;
   align-items: flex-start;
+  height: 100%;
 }
 
 .dropdownWrapper {
