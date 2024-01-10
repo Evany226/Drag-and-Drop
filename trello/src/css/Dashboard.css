@@ -142,6 +142,7 @@ body {
 
 #board {
   height: calc(100% - 7.5rem);
+  display: flex;
 }
 
 #board-canvas {
@@ -151,10 +152,11 @@ body {
   overflow-y: hidden;
 }
 
-.note-wrapper {
+.test {
   display: flex;
-  align-items: flex-start;
-  height: 100%;
+}
+
+.note-wrapper {
 }
 
 .dropdownWrapper {
