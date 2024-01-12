@@ -206,78 +206,89 @@ const Dashboard = () => {
   }
 
   const onDragEndItems = (result) => {
-    const { source, destination, type } = result;
-    if (!destination) {
-      return;
-    }
+    const dragData = async () => {
+      const accessToken = await getAccessTokenSilently();
 
-    if (type === "ITEM") {
-      if (source.droppableId != destination.droppableId) {
-        const sourceNote = notes.find((item) => item.id === source.droppableId);
-        const destNote = notes.find(
-          (item) => item.id === destination.droppableId
-        );
-        const sourceItems = [...sourceNote.content];
-        const destItems = [...destNote.content];
-        const [removed] = sourceItems.splice(source.index, 1);
-        destItems.splice(destination.index, 0, removed);
+      const { source, destination, type } = result;
+      if (!destination) {
+        return;
+      }
 
-        const newSource = {
-          ...sourceNote,
-          content: sourceItems,
-        };
+      if (type === "ITEM") {
+        if (source.droppableId != destination.droppableId) {
+          const sourceNote = notes.find(
+            (item) => item.id === source.droppableId
+          );
+          const destNote = notes.find(
+            (item) => item.id === destination.droppableId
+          );
+          const sourceItems = [...sourceNote.content];
+          const destItems = [...destNote.content];
+          const [removed] = sourceItems.splice(source.index, 1);
+          destItems.splice(destination.index, 0, removed);
 
-        const newDest = {
-          ...destNote,
-          content: destItems,
-        };
+          const newSource = {
+            ...sourceNote,
+            content: sourceItems,
+          };
 
-        noteService.update(newSource.id, newSource).then((returnedNote) => {
-          console.log(returnedNote);
-        });
+          const newDest = {
+            ...destNote,
+            content: destItems,
+          };
 
-        noteService.update(newDest.id, newDest).then((returnedNote) => {
-          console.log(returnedNote);
-        });
+          noteService.update(newSource.id, newSource).then((returnedNote) => {
+            console.log(returnedNote);
+          });
 
-        setNotes(
-          notes.map((n) => {
-            if (n.id === sourceNote.id) {
-              return newSource;
-            }
-            if (n.id === destNote.id) {
-              return newDest;
-            } else {
-              return n;
-            }
-          })
-        );
+          noteService.update(newDest.id, newDest).then((returnedNote) => {
+            console.log(returnedNote);
+          });
+
+          setNotes(
+            notes.map((n) => {
+              if (n.id === sourceNote.id) {
+                return newSource;
+              }
+              if (n.id === destNote.id) {
+                return newDest;
+              } else {
+                return n;
+              }
+            })
+          );
+        } else {
+          const note = notes.find((item) => item.id === source.droppableId);
+          const copiedItems = [...note.content];
+          const [removedItem] = copiedItems.splice(source.index, 1);
+          copiedItems.splice(destination.index, 0, removedItem);
+
+          const newNote = {
+            ...note,
+            content: copiedItems,
+          };
+
+          const id = note.id;
+
+          noteService.update(id, newNote).then((returnedNote) => {
+            console.log(returnedNote);
+          });
+          setNotes(notes.map((n) => (n.id === id ? newNote : n)));
+        }
       } else {
-        const note = notes.find((item) => item.id === source.droppableId);
-        const copiedItems = [...note.content];
+        console.log(notes);
+        const copiedItems = [...notes];
         const [removedItem] = copiedItems.splice(source.index, 1);
         copiedItems.splice(destination.index, 0, removedItem);
 
-        const newNote = {
-          ...note,
-          content: copiedItems,
-        };
-
-        const id = note.id;
-
-        noteService.update(id, newNote).then((returnedNote) => {
+        noteService.updateAll(newObject, accessToken).then((returnedNote) => {
           console.log(returnedNote);
         });
-        setNotes(notes.map((n) => (n.id === id ? newNote : n)));
-      }
-    } else {
-      console.log(notes);
-      const copiedItems = [...notes];
-      const [removedItem] = copiedItems.splice(source.index, 1);
-      copiedItems.splice(destination.index, 0, removedItem);
 
-      setNotes(copiedItems);
-    }
+        setNotes(copiedItems);
+      }
+    };
+    dragData();
   };
 
   const handleScroll = (event) => {
@@ -314,63 +325,62 @@ const Dashboard = () => {
       </div>
       <DragDropContext onDragEnd={(result) => onDragEndItems(result)}>
         <div id="board">
-          <Droppable droppableId="board" type="COLUMN" className="test">
-            {(provided) => {
+          <div id="board-canvas">
+            {notes.map((note, index) => {
               return (
-                <div
-                  id="board-canvas"
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                >
-                  {notes.map((note, index) => {
+                <Droppable droppableId={note.name} type="COLUMN">
+                  {(provided) => {
                     return (
-                      <div className="note-wrapper" key={note.id}>
-                        <Note
-                          note={note}
-                          changeContent={changeContent}
-                          handleContentChange={handleContentChange}
-                          handleNoteChange={handleNoteChange}
-                          newNote={newNote}
-                          setNewNote={setNewNote}
-                          newContent={newContent}
-                          setNewContent={setNewContent}
-                          deleteNote={deleteNote}
-                          deleteContent={deleteContent}
-                          editNote={editNote}
-                          editContent={editContent}
-                          index={index}
-                        />
+                      <div {...provided.droppableProps} ref={provided.innerRef}>
+                        <div className="note-wrapper" key={note.id}>
+                          <Note
+                            note={note}
+                            changeContent={changeContent}
+                            handleContentChange={handleContentChange}
+                            handleNoteChange={handleNoteChange}
+                            newNote={newNote}
+                            setNewNote={setNewNote}
+                            newContent={newContent}
+                            setNewContent={setNewContent}
+                            deleteNote={deleteNote}
+                            deleteContent={deleteContent}
+                            editNote={editNote}
+                            editContent={editContent}
+                            index={index}
+                          />
+                        </div>
+                        {provided.placeholder}
                       </div>
                     );
-                  })}
-                  {/* <div className="add-wrapper" ref={rightRef}>
-                    {open ? (
-                      <Dropdown
-                        handleOpen={handleOpen}
-                        newNote={newNote}
-                        handleNoteChange={handleNoteChange}
-                        addNote={addNote}
-                      />
-                    ) : (
-                      <div className="menu-button" onClick={handleOpen}>
-                        <Plus
-                          style={{
-                            width: "7%",
-                            color: "#fff",
-                            marginLeft: "0.5rem",
-                          }}
-                        />
-                        <p className="menu-button-text">Add new list</p>
-                      </div>
-                    )}
-                    {open ? (
-                      <div className="overlay" onClick={() => setOpen(false)} />
-                    ) : null}
-                  </div> */}
-                </div>
+                  }}
+                </Droppable>
               );
-            }}
-          </Droppable>
+            })}
+            <div className="add-wrapper" ref={rightRef}>
+              {open ? (
+                <Dropdown
+                  handleOpen={handleOpen}
+                  newNote={newNote}
+                  handleNoteChange={handleNoteChange}
+                  addNote={addNote}
+                />
+              ) : (
+                <div className="menu-button" onClick={handleOpen}>
+                  <Plus
+                    style={{
+                      width: "7%",
+                      color: "#fff",
+                      marginLeft: "0.5rem",
+                    }}
+                  />
+                  <p className="menu-button-text">Add new list</p>
+                </div>
+              )}
+              {open ? (
+                <div className="overlay" onClick={() => setOpen(false)} />
+              ) : null}
+            </div>
+          </div>
         </div>
       </DragDropContext>
     </section>
