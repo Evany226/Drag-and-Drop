@@ -281,7 +281,7 @@ const Dashboard = () => {
         const [removedItem] = copiedItems.splice(source.index, 1);
         copiedItems.splice(destination.index, 0, removedItem);
 
-        noteService.updateAll(newObject, accessToken).then((returnedNote) => {
+        noteService.updateAll(copiedItems, accessToken).then((returnedNote) => {
           console.log(returnedNote);
         });
 
@@ -328,11 +328,11 @@ const Dashboard = () => {
           <div id="board-canvas">
             {notes.map((note, index) => {
               return (
-                <Droppable droppableId={note.name} type="COLUMN">
+                <Droppable droppableId={note.name} type="COLUMN" key={note.id}>
                   {(provided) => {
                     return (
                       <div {...provided.droppableProps} ref={provided.innerRef}>
-                        <div className="note-wrapper" key={note.id}>
+                        <div className="note-wrapper">
                           <Note
                             note={note}
                             changeContent={changeContent}
