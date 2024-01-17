@@ -206,89 +206,93 @@ const Dashboard = () => {
   }
 
   const onDragEndItems = (result) => {
-    const dragData = async () => {
-      const accessToken = await getAccessTokenSilently();
+    const accessToken = getAccessTokenSilently();
 
-      const { source, destination, type } = result;
-      if (!destination) {
-        return;
-      }
+    const { source, destination, type } = result;
+    if (!destination) {
+      return;
+    }
 
-      if (type === "ITEM") {
-        if (source.droppableId != destination.droppableId) {
-          const sourceNote = notes.find(
-            (item) => item.id === source.droppableId
-          );
-          const destNote = notes.find(
-            (item) => item.id === destination.droppableId
-          );
-          const sourceItems = [...sourceNote.content];
-          const destItems = [...destNote.content];
-          const [removed] = sourceItems.splice(source.index, 1);
-          destItems.splice(destination.index, 0, removed);
+    if (type === "ITEM") {
+      if (source.droppableId != destination.droppableId) {
+        const sourceNote = notes.find((item) => item.id === source.droppableId);
+        const destNote = notes.find(
+          (item) => item.id === destination.droppableId
+        );
+        const sourceItems = [...sourceNote.content];
+        const destItems = [...destNote.content];
+        const [removed] = sourceItems.splice(source.index, 1);
+        destItems.splice(destination.index, 0, removed);
 
-          const newSource = {
-            ...sourceNote,
-            content: sourceItems,
-          };
+        const newSource = {
+          ...sourceNote,
+          content: sourceItems,
+        };
 
-          const newDest = {
-            ...destNote,
-            content: destItems,
-          };
+        const newDest = {
+          ...destNote,
+          content: destItems,
+        };
 
-          noteService.update(newSource.id, newSource).then((returnedNote) => {
-            console.log(returnedNote);
-          });
-
-          noteService.update(newDest.id, newDest).then((returnedNote) => {
-            console.log(returnedNote);
-          });
-
-          setNotes(
-            notes.map((n) => {
-              if (n.id === sourceNote.id) {
-                return newSource;
-              }
-              if (n.id === destNote.id) {
-                return newDest;
-              } else {
-                return n;
-              }
-            })
-          );
-        } else {
-          const note = notes.find((item) => item.id === source.droppableId);
-          const copiedItems = [...note.content];
-          const [removedItem] = copiedItems.splice(source.index, 1);
-          copiedItems.splice(destination.index, 0, removedItem);
-
-          const newNote = {
-            ...note,
-            content: copiedItems,
-          };
-
-          const id = note.id;
-
-          noteService.update(id, newNote).then((returnedNote) => {
-            console.log(returnedNote);
-          });
-          setNotes(notes.map((n) => (n.id === id ? newNote : n)));
-        }
-      } else {
-        console.log(notes);
-        const copiedItems = [...notes];
-        const [removedItem] = copiedItems.splice(source.index, 1);
-        copiedItems.splice(destination.index, 0, removedItem);
-
-        noteService.updateAll(copiedItems, accessToken).then((returnedNote) => {
+        noteService.update(newSource.id, newSource).then((returnedNote) => {
           console.log(returnedNote);
         });
 
-        setNotes(copiedItems);
+        noteService.update(newDest.id, newDest).then((returnedNote) => {
+          console.log(returnedNote);
+        });
+
+        setNotes(
+          notes.map((n) => {
+            if (n.id === sourceNote.id) {
+              return newSource;
+            }
+            if (n.id === destNote.id) {
+              return newDest;
+            } else {
+              return n;
+            }
+          })
+        );
+      } else {
+        const note = notes.find((item) => item.id === source.droppableId);
+        const copiedItems = [...note.content];
+        const [removedItem] = copiedItems.splice(source.index, 1);
+        copiedItems.splice(destination.index, 0, removedItem);
+
+        const newNote = {
+          ...note,
+          content: copiedItems,
+        };
+
+        const id = note.id;
+
+        noteService.update(id, newNote).then((returnedNote) => {
+          console.log(returnedNote);
+        });
+        setNotes(notes.map((n) => (n.id === id ? returnedNote : n)));
       }
-    };
-    dragData();
+    } else {
+      console.log(notes);
+      const copiedItems = [...notes];
+      const [removedItem] = copiedItems.splice(source.index, 1);
+      copiedItems.splice(destination.index, 0, removedItem);
+
+      noteService.updateAll(copiedItems, accessToken).then((returnedNote) => {
+        console.log(returnedNote);
+      });
+
+      setNotes(copiedItems);
+    }
+  };
+
+  const rightRef = useRef(null);
+
+  const scrollRight = () => {
+    rightRef.current.scrollIntoView();
+    console.log("works");
+    setOpen(!open);
+    setNewNote("");
   };
 
   const handleScroll = (event) => {
@@ -299,15 +303,6 @@ const Dashboard = () => {
       left: container.scrollLeft + scrollAmount * 8,
       behavior: "smooth",
     });
-  };
-
-  const rightRef = useRef(null);
-
-  const scrollRight = () => {
-    rightRef.current.scrollIntoView();
-    console.log("works");
-    setOpen(!open);
-    setNewNote("");
   };
 
   const addTimer = () => {
@@ -325,7 +320,7 @@ const Dashboard = () => {
       </div>
       <DragDropContext onDragEnd={(result) => onDragEndItems(result)}>
         <div id="board">
-          <div id="board-canvas">
+          <div id="board-canvas" onWheel={handleScroll}>
             {notes.map((note, index) => {
               return (
                 <Droppable droppableId={note.name} type="COLUMN" key={note.id}>

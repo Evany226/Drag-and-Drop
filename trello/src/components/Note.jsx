@@ -124,6 +124,7 @@ const Note = ({
                                     ref={provided.innerRef}
                                     {...provided.draggableProps}
                                     {...provided.dragHandleProps}
+                                    onClick={(e) => e.stopPropagation()}
                                   >
                                     <NoteItem
                                       key={item.id}
