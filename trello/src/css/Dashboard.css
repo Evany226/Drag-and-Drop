@@ -142,17 +142,17 @@ body {
 
 #board {
   height: calc(100% - 7.5rem);
+  display: flex;
 }
 
 #board-canvas {
   overflow-x: auto;
   height: 100%;
   display: flex;
+  overflow-y: hidden;
 }
 
 .note-wrapper {
-  display: flex;
-  align-items: flex-start;
 }
 
 .dropdownWrapper {

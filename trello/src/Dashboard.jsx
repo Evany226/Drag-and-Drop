@@ -12,6 +12,8 @@ import { ReactComponent as Plus } from "./assets/plus.svg";
 import { useAuth0 } from "@auth0/auth0-react";
 // import { useDraggable } from "react-use-draggable-scroll";
 import { DragDropContext } from "@hello-pangea/dnd";
+import { Draggable } from "@hello-pangea/dnd";
+import { Droppable } from "@hello-pangea/dnd";
 import { v4 as uuidv4 } from "uuid";
 
 const Dashboard = () => {
@@ -89,7 +91,11 @@ const Dashboard = () => {
       noteService.update(id, changedNote).then((returnedNote) => {});
       setNotes(notes.map((note) => (note.id === id ? changedNote : note)));
     };
-    editData();
+    if (newNote === "") {
+      window.alert("List name must not be empty");
+    } else {
+      editData();
+    }
   };
 
   //deletes actual columns
@@ -165,7 +171,12 @@ const Dashboard = () => {
       noteService.update(id, changedNote).then((returnedNote) => {});
       setNotes(notes.map((note) => (note.id != id ? note : changedNote)));
     };
-    editData();
+
+    if (newContent === "") {
+      window.alert("Content must not be empty");
+    } else {
+      editData();
+    }
   };
 
   //delete note items
@@ -194,70 +205,97 @@ const Dashboard = () => {
     return null;
   }
 
-  const onDragEnd = (result) => {
-    const { source, destination } = result;
+  const onDragEndItems = (result) => {
+    const { source, destination, type } = result;
     if (!destination) {
       return;
     }
 
-    if (source.droppableId != destination.droppableId) {
-      const sourceNote = notes.find((item) => item.id === source.droppableId);
-      const destNote = notes.find(
-        (item) => item.id === destination.droppableId
-      );
-      const sourceItems = [...sourceNote.content];
-      const destItems = [...destNote.content];
-      const [removed] = sourceItems.splice(source.index, 1);
-      destItems.splice(destination.index, 0, removed);
+    if (type === "ITEM") {
+      if (source.droppableId != destination.droppableId) {
+        const sourceNote = notes.find((item) => item.id === source.droppableId);
+        const destNote = notes.find(
+          (item) => item.id === destination.droppableId
+        );
+        const sourceItems = [...sourceNote.content];
+        const destItems = [...destNote.content];
+        const [removed] = sourceItems.splice(source.index, 1);
+        destItems.splice(destination.index, 0, removed);
 
-      const newSource = {
-        ...sourceNote,
-        content: sourceItems,
-      };
+        const newSource = {
+          ...sourceNote,
+          content: sourceItems,
+        };
 
-      const newDest = {
-        ...destNote,
-        content: destItems,
-      };
+        const newDest = {
+          ...destNote,
+          content: destItems,
+        };
 
-      noteService.update(newSource.id, newSource).then((returnedNote) => {
-        console.log(returnedNote);
-      });
+        noteService.update(newSource.id, newSource).then((returnedNote) => {
+          console.log(returnedNote);
+        });
 
-      noteService.update(newDest.id, newDest).then((returnedNote) => {
-        console.log(returnedNote);
-      });
+        noteService.update(newDest.id, newDest).then((returnedNote) => {
+          console.log(returnedNote);
+        });
 
-      setNotes(
-        notes.map((n) => {
-          if (n.id === sourceNote.id) {
-            return newSource;
-          }
-          if (n.id === destNote.id) {
-            return newDest;
-          } else {
-            return n;
-          }
-        })
-      );
+        setNotes(
+          notes.map((n) => {
+            if (n.id === sourceNote.id) {
+              return newSource;
+            }
+            if (n.id === destNote.id) {
+              return newDest;
+            } else {
+              return n;
+            }
+          })
+        );
+      } else {
+        const note = notes.find((item) => item.id === source.droppableId);
+        const copiedItems = [...note.content];
+        const [removedItem] = copiedItems.splice(source.index, 1);
+        copiedItems.splice(destination.index, 0, removedItem);
+
+        const newNote = {
+          ...note,
+          content: copiedItems,
+        };
+
+        const id = note.id;
+
+        noteService.update(id, newNote).then((returnedNote) => {
+          console.log(returnedNote);
+        });
+        setNotes(notes.map((n) => (n.id === id ? returnedNote : n)));
+      }
     } else {
-      const note = notes.find((item) => item.id === source.droppableId);
-      const copiedItems = [...note.content];
-      const [removedItem] = copiedItems.splice(source.index, 1);
-      copiedItems.splice(destination.index, 0, removedItem);
+      const getToken = async () => {
+        const accessToken = await getAccessTokenSilently();
 
-      const newNote = {
-        ...note,
-        content: copiedItems,
+        console.log(notes);
+        const copiedItems = [...notes];
+        const [removedItem] = copiedItems.splice(source.index, 1);
+        copiedItems.splice(destination.index, 0, removedItem);
+
+        noteService.updateAll(copiedItems, accessToken).then((returnedNote) => {
+          console.log(returnedNote);
+        });
+
+        setNotes(copiedItems);
       };
-
-      const id = note.id;
-
-      noteService.update(id, newNote).then((returnedNote) => {
-        console.log(returnedNote);
-      });
-      setNotes(notes.map((n) => (n.id === id ? newNote : n)));
+      getToken();
     }
+  };
+
+  const rightRef = useRef(null);
+
+  const scrollRight = () => {
+    rightRef.current.scrollIntoView();
+    console.log("works");
+    setOpen(!open);
+    setNewNote("");
   };
 
   const handleScroll = (event) => {
@@ -268,15 +306,6 @@ const Dashboard = () => {
       left: container.scrollLeft + scrollAmount * 8,
       behavior: "smooth",
     });
-  };
-
-  const rightRef = useRef(null);
-
-  const scrollRight = () => {
-    rightRef.current.scrollIntoView();
-    console.log("works");
-    setOpen(!open);
-    setNewNote("");
   };
 
   const addTimer = () => {
@@ -292,27 +321,37 @@ const Dashboard = () => {
         </div>
         <CreateButton buttonName="Add Timer +" buttonFunc={addTimer} />
       </div>
-      <DragDropContext onDragEnd={(result) => onDragEnd(result)}>
+      <DragDropContext onDragEnd={(result) => onDragEndItems(result)}>
         <div id="board">
           <div id="board-canvas" onWheel={handleScroll}>
-            {notes.map((note) => {
+            {notes.map((note, index) => {
               return (
-                <div className="note-wrapper" key={note.id}>
-                  <Note
-                    note={note}
-                    changeContent={changeContent}
-                    handleContentChange={handleContentChange}
-                    handleNoteChange={handleNoteChange}
-                    newNote={newNote}
-                    setNewNote={setNewNote}
-                    newContent={newContent}
-                    setNewContent={setNewContent}
-                    deleteNote={deleteNote}
-                    deleteContent={deleteContent}
-                    editNote={editNote}
-                    editContent={editContent}
-                  />
-                </div>
+                <Droppable droppableId={uuidv4()} type="COLUMN" key={note.id}>
+                  {(provided) => {
+                    return (
+                      <div {...provided.droppableProps} ref={provided.innerRef}>
+                        <div className="note-wrapper">
+                          <Note
+                            note={note}
+                            changeContent={changeContent}
+                            handleContentChange={handleContentChange}
+                            handleNoteChange={handleNoteChange}
+                            newNote={newNote}
+                            setNewNote={setNewNote}
+                            newContent={newContent}
+                            setNewContent={setNewContent}
+                            deleteNote={deleteNote}
+                            deleteContent={deleteContent}
+                            editNote={editNote}
+                            editContent={editContent}
+                            index={index}
+                          />
+                        </div>
+                        {provided.placeholder}
+                      </div>
+                    );
+                  }}
+                </Droppable>
               );
             })}
             <div className="add-wrapper" ref={rightRef}>

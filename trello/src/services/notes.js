@@ -31,6 +31,16 @@ const update = (id, newObject) => {
   return request.then((response) => response.data);
 };
 
+const updateAll = (newObject, accessToken) => {
+  const request = axios.put(baseUrl, newObject, {
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
+  return request.then((response) => response.data);
+};
+
 const remove = (id) => {
   const request = axios.delete(`${baseUrl}/${id}`);
   return request.then((response) => response.data);
@@ -41,4 +51,5 @@ export default {
   create: create,
   update: update,
   remove: remove,
+  updateAll: updateAll,
 };

@@ -61,4 +61,32 @@ notesRouter.put("/:id", async (request, response) => {
   response.json(updatedNote);
 });
 
+notesRouter.put("/", validateAccessToken, async (request, response) => {
+  const body = request.body;
+  const username = request.auth.payload.sub;
+
+  const content = {
+    ...body,
+  };
+
+  const array = [];
+
+  const testing = body.map((item) => {
+    array.push(item.id);
+  });
+
+  const updatedNote = await User.findOneAndUpdate(
+    { userName: username },
+    { notes: array },
+    {
+      new: true,
+    }
+  ).populate("notes", {
+    name: 1,
+    content: 1,
+  });
+
+  response.json(updatedNote.notes);
+});
+
 module.exports = notesRouter;
