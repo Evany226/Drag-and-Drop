@@ -88,7 +88,7 @@ const Note = ({
                 </div>
 
                 <div className="settings-wrapper">
-                  <BsThreeDots
+                  <ThreeDots
                     style={{
                       width: "40%",
                       cursor: "pointer",
