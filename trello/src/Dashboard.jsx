@@ -206,8 +206,6 @@ const Dashboard = () => {
   }
 
   const onDragEndItems = (result) => {
-    const accessToken = getAccessTokenSilently();
-
     const { source, destination, type } = result;
     if (!destination) {
       return;
@@ -273,16 +271,21 @@ const Dashboard = () => {
         setNotes(notes.map((n) => (n.id === id ? returnedNote : n)));
       }
     } else {
-      console.log(notes);
-      const copiedItems = [...notes];
-      const [removedItem] = copiedItems.splice(source.index, 1);
-      copiedItems.splice(destination.index, 0, removedItem);
+      const getToken = async () => {
+        const accessToken = await getAccessTokenSilently();
 
-      noteService.updateAll(copiedItems, accessToken).then((returnedNote) => {
-        console.log(returnedNote);
-      });
+        console.log(notes);
+        const copiedItems = [...notes];
+        const [removedItem] = copiedItems.splice(source.index, 1);
+        copiedItems.splice(destination.index, 0, removedItem);
 
-      setNotes(copiedItems);
+        noteService.updateAll(copiedItems, accessToken).then((returnedNote) => {
+          console.log(returnedNote);
+        });
+
+        setNotes(copiedItems);
+      };
+      getToken();
     }
   };
 
@@ -323,7 +326,7 @@ const Dashboard = () => {
           <div id="board-canvas" onWheel={handleScroll}>
             {notes.map((note, index) => {
               return (
-                <Droppable droppableId={note.name} type="COLUMN" key={note.id}>
+                <Droppable droppableId={uuidv4()} type="COLUMN" key={note.id}>
                   {(provided) => {
                     return (
                       <div {...provided.droppableProps} ref={provided.innerRef}>

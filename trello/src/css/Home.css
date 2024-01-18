@@ -136,6 +136,7 @@ html,body, * {
 
 
 
+
 @media only screen and (min-width: 700px) {
   .slogan-wrapper {
     width: 80%;
@@ -156,3 +157,17 @@ html,body, * {
     margin-right: auto;
   }
 }
+
+@media only screen and (min-width: 993px) {
+  html,body {
+    font-size: 100%;
+  }
+}
+
+
+@media only screen and (min-width: 1400px) {
+  html, body {
+    font-size: 110%;
+  }
+
+}    
