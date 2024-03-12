@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import "../css/Dashboard.css";
 import LogoutButton from "./LogoutButton.jsx";
 

@@ -57,25 +57,25 @@ html,body, * {
 
 
 #foreground {
-  background-color: #fafbfc;
+  background-color: #fff;
   height: calc(100% - 4.5rem);
   display: flex;
   align-items: center;
 }
 
-.mainTextWrapper {
-  width: 45%;
+.subTextWrapper {
+  width: 50%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
 }
 
-.subTextWrapper {
-  width: 55%;
+.mainTextWrapper {
+  width: 50%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  align-items: flex-end;
   
 }
 
@@ -83,25 +83,28 @@ html,body, * {
   background-color: white;
   width: 70%;
   padding: 3rem 2rem;
-  border-radius: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  margin-right: 3rem;
+
 }
 
 .main-title {
   margin-bottom: 2rem;
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 2.986rem;
+  color: #222222;
+  
 }
 
 .sub-title {
-  font-weight: 500;
+  font-weight: 400;
   margin-bottom: 2rem;
-  color: 
-  
-#56647e
+  color:RGB(34, 34, 34);
+  font-size: 1rem;
+  font-family: "Roboto", sans-serif;
 }
 
 .svgcomp {
-  width: 80%;
+  width: 90%;
 }
 
 
