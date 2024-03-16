@@ -118,7 +118,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f8fafc;
   padding: 0.15rem;
   border-radius: 50%;
   cursor: pointer;
@@ -146,6 +145,7 @@ body {
 }
 
 #board-canvas {
+  margin-left: 0.5rem;
   overflow-x: auto;
   height: 100%;
   display: flex;
@@ -161,7 +161,7 @@ body {
 
 .add-wrapper {
   min-width: 18rem;
-  margin: 1rem;
+  margin: 0.5rem;
   border-radius: 0.5rem;
   background-color: default;
   z-index: 1;

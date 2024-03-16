@@ -91,7 +91,7 @@ const Note = ({
                 <div className="settings-wrapper">
                   <ThreeDots
                     style={{
-                      width: "40%",
+                      width: "35%",
                       cursor: "pointer",
                       position: "relative",
                       marginRight: "1rem",
