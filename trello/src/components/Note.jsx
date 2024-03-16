@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import "../css/Note.css";
 import "../css/index.css";
 import ContentDropdown from "./ContentDropdown.jsx";
@@ -54,7 +55,7 @@ const Note = ({
 
   return (
     <Draggable key={note.id} draggableId={note.id} index={index}>
-      {(provided, snapshot) => {
+      {(provided) => {
         return (
           <div {...provided.draggableProps} {...provided.dragHandleProps}>
             <div className="note-container">
@@ -117,7 +118,7 @@ const Note = ({
                               draggableId={item.id}
                               index={index}
                             >
-                              {(provided, snapshot) => {
+                              {(provided) => {
                                 return (
                                   <div
                                     className="draggable"
