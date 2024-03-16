@@ -1,7 +1,8 @@
 const usersRouter = require("express").Router();
 const User = require("../models/user");
+const { validateAccessToken } = require("../middleware/auth0.middleware.js");
 
-usersRouter.get("/", async (request, response) => {
+usersRouter.get("/", validateAccessToken, async (request, response) => {
   const users = await User.find({}).populate("notes", {
     name: 1,
     content: 1,
@@ -9,7 +10,7 @@ usersRouter.get("/", async (request, response) => {
   response.json(users);
 });
 
-usersRouter.post("/", async (request, response) => {
+usersRouter.post("/", validateAccessToken, async (request, response) => {
   const { username } = request.body;
 
   const user = new User({
