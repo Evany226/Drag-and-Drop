@@ -5,7 +5,7 @@ import DeleteDropdown from "./DeleteDropdown.jsx";
 import NoteButton from "./NoteButton.jsx";
 import NoteItem from "./NoteItem.jsx";
 import { useState } from "react";
-import { BsThreeDots } from "react-icons/bs";
+import { ReactComponent as ThreeDots } from "../assets/dots.svg";
 import { Draggable } from "@hello-pangea/dnd";
 import { Droppable } from "@hello-pangea/dnd";
 
@@ -88,7 +88,7 @@ const Note = ({
                 </div>
 
                 <div className="settings-wrapper">
-                  <BsThreeDots
+                  <ThreeDots
                     style={{
                       width: "35%",
                       cursor: "pointer",
