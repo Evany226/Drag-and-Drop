@@ -23,19 +23,19 @@ function Home() {
 
         <div id="foreground">
           <div className="mainTextWrapper">
-            <div className="slogan-wrapper">
-              <h2 className="main-title">
-                Your digital transformation begins here!
-              </h2>
-              <h5 className="sub-title">
-                Unlock the full potential of your business. Start your journey
-                today and experience the future of business software.
-              </h5>
-              <TryButton buttonName="Get started today!" />
-            </div>
+            <ReactComponent class="svgcomp" />
           </div>
           <div className="subTextWrapper">
-            <ReactComponent class="svgcomp" />
+            <div className="slogan-wrapper">
+              <h2 className="main-title">Organize your life!</h2>
+              <h5 className="sub-title">
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum is simply dummy text of the printing and
+                typesetting industry. Lorem Ipsum is simply dummy text of the
+                printing and typesetting industry.
+              </h5>
+              <TryButton buttonName="Try for free" />
+            </div>
           </div>
         </div>
       </section>

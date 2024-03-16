@@ -19,16 +19,16 @@
 }
 
 .note-container {
-  width: 17rem;
+  width: 18rem;
   background-color: #f1f2f4;
-  margin: 0.5rem;
+  margin: 1rem;
   border-radius: 0.75rem;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
 }
 
 .note-header {
   bottom: 0rem;
-  padding-bottom: 0.25rem;
+  padding-bottom: 0rem;
   display: flex;
   align-items: center;
   margin-right: 0;
@@ -41,10 +41,10 @@
 
 .note-name {
   font-weight: 500;
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   color: #0f172a;
   margin-left: 1rem;
-  padding: 0.1rem 0.25rem;
+  padding: 0.25rem 0.1rem;
 }
 
 .edit-name {
@@ -68,18 +68,19 @@
 }
 
 #note-body {
-  padding: 0rem 0.5rem;
+  padding: 1rem 0.5rem;
   padding-bottom: 0.5rem;
   padding-top: 0;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
   max-height: 350px;
+  margin-bottom: 0.5rem;
   overflow-x: hidden;
 }
 
 .note-body-text-container {
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
   background-color: white;
   padding: 0.6rem 0.7rem;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
@@ -92,7 +93,7 @@
 }
 
 .note-body-text {
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   width: 14rem;
   overflow-wrap: break-word;
 }

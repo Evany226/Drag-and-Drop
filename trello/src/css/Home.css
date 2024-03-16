@@ -10,6 +10,7 @@ html,body, * {
 }
 
 #background {
+  height: 100vh;
   background-color: #fafbfc;
 }
 
@@ -17,7 +18,7 @@ html,body, * {
 .homeNav {
   background-color: #fafbfc;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   height: 4.5rem;
   width: 100%;
@@ -38,7 +39,13 @@ html,body, * {
   padding: 1rem;
   display: flex;
   align-items: center;
-  margin-left: 2rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+
 }
 
 #buttonWrapper {
@@ -50,55 +57,51 @@ html,body, * {
 
 
 #foreground {
-  background-color: #fff;
+  background-color: #fafbfc;
   height: calc(100% - 4.5rem);
   display: flex;
   align-items: center;
-  justify-content: center;
-}
-
-.subTextWrapper {
-  width: 60%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
 
 .mainTextWrapper {
-  width: 40%;
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.subTextWrapper {
+  width: 55%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   
 }
 
 .slogan-wrapper {
   background-color: white;
-  padding: 3rem 2rem;
   width: 70%;
-  margin-right: 3rem;
-
+  padding: 3rem 2rem;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
 
 .main-title {
   margin-bottom: 2rem;
-  font-weight: 700;
-  font-size: 2.986rem;
-  color: #222222;
-  
+  font-weight: 600;
 }
 
 .sub-title {
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 2rem;
-  color:RGB(34, 34, 34);
-  font-size: 1rem;
-  font-family: "Roboto", sans-serif;
+  color: 
+  
+#56647e
 }
 
 .svgcomp {
-  width: 85%;
+  width: 80%;
 }
 
 
@@ -109,53 +112,50 @@ html,body, * {
 
   .mainTextWrapper {
     justify-content: center;
-    align-items: center;
-    width: 100%;
+    width: 70%;
   }
 
   .subTextWrapper {
-    align-items: center;
-    justify-content: center;
+    width: 100%;
   }
 
   .slogan-wrapper {
-    width: 95%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-right: 0rem;
-  }
-
-  .main-title {
+    width: 80%;
+    margin: 1rem 0rem;
     text-align: center;
   }
 
-  .sub-title {
-    text-align: center;
-  }
-
-  .subTextWrapper {
-    width: 100%;
-  }
-
-  .svgcomp {
-    width: 90%;
-    height: 95%;
+  #titleWrapper {
+    margin: 0;
   }
   
+  .svgcomp {
+    height: 100%;
+  }
 }
 
 
 
 
-@media only screen and (max-width: 700px) {
-
+@media only screen and (min-width: 700px) {
+  .slogan-wrapper {
+    width: 80%;
+  }
+  #titleWrapper {
+    margin: 0;
+  }
 
 }
 
 @media only screen and (min-width: 992px) {
+  .slogan-wrapper {
+    width: 70%;
+  }
 
+  #titleWrapper {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 @media only screen and (min-width: 993px) {

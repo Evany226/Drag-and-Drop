@@ -12,6 +12,7 @@ import { ReactComponent as Plus } from "./assets/plus.svg";
 import { useAuth0 } from "@auth0/auth0-react";
 // import { useDraggable } from "react-use-draggable-scroll";
 import { DragDropContext } from "@hello-pangea/dnd";
+import { Draggable } from "@hello-pangea/dnd";
 import { Droppable } from "@hello-pangea/dnd";
 import { v4 as uuidv4 } from "uuid";
 
@@ -33,7 +34,6 @@ const Dashboard = () => {
     return null;
   }
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const getData = async () => {
       const accessToken = await getAccessTokenSilently();
@@ -43,7 +43,7 @@ const Dashboard = () => {
       });
     };
     getData();
-  }, [getAccessTokenSilently]);
+  }, []);
 
   const handleOpen = () => {
     setOpen(!open);
@@ -88,7 +88,7 @@ const Dashboard = () => {
         name: newNote,
       };
 
-      noteService.update(id, changedNote).then(() => {});
+      noteService.update(id, changedNote).then((returnedNote) => {});
       setNotes(notes.map((note) => (note.id === id ? changedNote : note)));
     };
     if (newNote === "") {
@@ -100,7 +100,7 @@ const Dashboard = () => {
 
   //deletes actual columns
   const deleteNote = (id) => {
-    noteService.remove(id).then(() => {
+    noteService.remove(id).then((returnedNote) => {
       setNotes(notes.filter((note) => note.id !== id));
       setNewNote("");
     });
@@ -168,7 +168,7 @@ const Dashboard = () => {
         content: updatedContent,
       };
 
-      noteService.update(id, changedNote).then(() => {});
+      noteService.update(id, changedNote).then((returnedNote) => {});
       setNotes(notes.map((note) => (note.id != id ? note : changedNote)));
     };
 
@@ -267,8 +267,8 @@ const Dashboard = () => {
 
         noteService.update(id, newNote).then((returnedNote) => {
           console.log(returnedNote);
-          setNotes(notes.map((n) => (n.id === id ? returnedNote : n)));
         });
+        setNotes(notes.map((n) => (n.id === id ? returnedNote : n)));
       }
     } else {
       const getToken = async () => {
@@ -289,7 +289,6 @@ const Dashboard = () => {
     }
   };
 
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const rightRef = useRef(null);
 
   const scrollRight = () => {
