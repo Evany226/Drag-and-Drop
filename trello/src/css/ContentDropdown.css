@@ -1,7 +1,6 @@
 #content-dropdown {
   background-color: #f8fafc;
   border-radius: 0.5rem;
-  margin-top: 0.75rem;
   z-index: 10;
   transition: 1s cubic-bezier(0.45, 0.01, 1, 0.99);
   display: flex;

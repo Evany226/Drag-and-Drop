@@ -54,7 +54,7 @@ const Note = ({
 
   return (
     <Draggable key={note.id} draggableId={note.id} index={index}>
-      {(provided, snapshot) => {
+      {(provided) => {
         return (
           <div {...provided.draggableProps} {...provided.dragHandleProps}>
             <div className="note-container">
@@ -90,7 +90,7 @@ const Note = ({
                 <div className="settings-wrapper">
                   <ThreeDots
                     style={{
-                      width: "40%",
+                      width: "35%",
                       cursor: "pointer",
                       position: "relative",
                       marginRight: "1rem",
@@ -117,7 +117,7 @@ const Note = ({
                               draggableId={item.id}
                               index={index}
                             >
-                              {(provided, snapshot) => {
+                              {(provided) => {
                                 return (
                                   <div
                                     className="draggable"
