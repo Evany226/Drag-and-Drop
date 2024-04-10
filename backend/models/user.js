@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
   userName: String,
-  notes: [
+  boards: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Note",
+      ref: "Board",
     },
   ],
 });

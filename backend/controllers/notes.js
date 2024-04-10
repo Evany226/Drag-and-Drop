@@ -1,12 +1,14 @@
 const notesRouter = require("express").Router();
 const Note = require("../models/backendNote");
 const User = require("../models/user");
+const Board = require("../models/board");
 const { validateAccessToken } = require("../middleware/auth0.middleware.js");
 
-notesRouter.get("/", validateAccessToken, async (request, response) => {
-  const name = request.auth.payload.sub;
+notesRouter.get("/", async (request, response) => {
+  // const username = request.auth.payload.sub;
+  const username = "google-oauth2|103964861180742015983";
 
-  const test = await User.findOne({ userName: name }).populate("notes", {
+  const test = await User.findOne({ userName: username }).populate("notes", {
     name: 1,
     content: 1,
   });
@@ -24,11 +26,14 @@ notesRouter.delete("/:id", async (request, response) => {
   response.status(204).end();
 });
 
-notesRouter.post("/", validateAccessToken, async (request, response) => {
+notesRouter.post("/", async (request, response) => {
   const body = request.body;
-  const username = request.auth.payload.sub;
+  // const username = request.auth.payload.sub;
+  // const username = "google-oauth2|103964861180742015983";
+  //pass boardId in later as param
+  const boardId = "6615ef7965bab0f38088d742";
 
-  const user = await User.findOne({ userName: username });
+  const board = await Board.findById(boardId);
 
   if (body.name === undefined) {
     return response.status(400).json({ error: "name missing" });
@@ -37,12 +42,12 @@ notesRouter.post("/", validateAccessToken, async (request, response) => {
   const note = new Note({
     name: body.name,
     content: body.content || [],
-    user: user.id,
+    board: board.id,
   });
 
   const savedNote = await note.save();
-  user.notes = user.notes.concat(savedNote._id);
-  await user.save();
+  board.notes = board.notes.concat(savedNote._id);
+  await board.save();
   response.status(201).json(savedNote);
 });
 
