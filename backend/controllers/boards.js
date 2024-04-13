@@ -4,9 +4,7 @@ const User = require("../models/user");
 
 boardsRouter.get("/", async (req, res) => {
   const name = "google-oauth2|103964861180742015983";
-  const boards = await Board.find({}).populate("notes", {
-    boardName: 1,
-  });
+  const boards = await Board.find({}).populate("notes", {});
 
   res.json(boards);
 });

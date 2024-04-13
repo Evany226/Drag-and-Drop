@@ -8,12 +8,15 @@ notesRouter.get("/", async (request, response) => {
   // const username = request.auth.payload.sub;
   const username = "google-oauth2|103964861180742015983";
 
-  const test = await User.findOne({ userName: username }).populate("notes", {
-    name: 1,
-    content: 1,
+  const test = await User.findOne({ userName: username }).populate({
+    path: "boards",
+    populate: {
+      path: "notes",
+      model: "Note",
+    },
   });
 
-  response.json(test.notes);
+  response.json(test);
 });
 
 notesRouter.get("/:id", validateAccessToken, async (request, response) => {

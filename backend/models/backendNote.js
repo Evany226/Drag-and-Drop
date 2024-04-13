@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const noteSchema = new mongoose.Schema({
   name: String,
   content: Array,
-  user: {
+  board: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Board",
   },

@@ -14,6 +14,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { DragDropContext } from "@hello-pangea/dnd";
 import { Droppable } from "@hello-pangea/dnd";
 import { v4 as uuidv4 } from "uuid";
+import { useLocation, useParams } from "react-router-dom";
 
 const Dashboard = () => {
   const [notes, setNotes] = useState([]);
@@ -33,17 +34,24 @@ const Dashboard = () => {
     return null;
   }
 
+  const location = useLocation();
+  const state = location.state;
+  const id = useParams().id;
+  console.log(state);
+  console.log(id);
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const getData = async () => {
-      const accessToken = await getAccessTokenSilently();
-
-      noteService.getAll(accessToken).then((initialNotes) => {
-        setNotes(initialNotes);
-      });
+      // const accessToken = await getAccessTokenSilently();
+      // noteService.getAll(accessToken).then((initialNotes) => {
+      //   setNotes(initialNotes);
+      // });
+      setNotes(state.notes);
+      console.log("test");
     };
     getData();
-  }, [getAccessTokenSilently]);
+  }, [getAccessTokenSilently, state, id]);
 
   const handleOpen = () => {
     setOpen(!open);

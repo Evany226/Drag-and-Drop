@@ -9,7 +9,7 @@ const getAll = async (accessToken) => {
     },
   });
 
-  return request.then((response) => response.data);
+  return request.then((response) => response.data.boards);
 };
 
 const create = (newObject, accessToken) => {
