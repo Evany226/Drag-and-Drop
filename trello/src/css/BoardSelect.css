@@ -3,6 +3,16 @@
   height: 100vh;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9;
+}
+
 .side-nav {
   width: 18.75rem;
   background-color: #f7f7f8;
@@ -66,12 +76,12 @@
 }
 
 .board-item {
-  width: 15rem;
-  height: 8rem;
+  width: 13rem;
+  height: 9rem;
   background-color: #f7f7f8;
   margin: 2rem;
   margin-left: 0rem;
-  border-radius: 0.5rem;
+  border-radius: 0.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -79,4 +89,27 @@
 
 .board-item-text {
   font-size: 1rem;
+}
+
+.add-board-button {
+  width: 13rem;
+  height: 9rem;
+  background-color: #f7f7f8;
+  margin: 2rem;
+  margin-left: 0rem;
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-button-text {
+  font-size: 0.9rem;
+  color: #172b4d;
+  margin-left: 0.25rem;
+}
+
+.add-board-button:hover {
+  background-color: #dadadf;
+  transition: 0.3s;
 }

@@ -3,7 +3,6 @@ const Board = require("../models/board");
 const User = require("../models/user");
 
 boardsRouter.get("/", async (req, res) => {
-  const name = "google-oauth2|103964861180742015983";
   const boards = await Board.find({}).populate("notes", {});
 
   res.json(boards);
@@ -28,6 +27,15 @@ boardsRouter.post("/", async (req, res) => {
   user.boards = user.boards.concat(savedBoard._id);
   await user.save();
   res.status(201).json(savedBoard);
+});
+
+boardsRouter.delete("/:id", async (req, res) => {
+  try {
+    await Board.findByIdAndRemove(req.params.id);
+    res.json("Removed Successfully");
+  } catch (err) {
+    res.json(err);
+  }
 });
 
 module.exports = boardsRouter;

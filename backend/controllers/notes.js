@@ -4,9 +4,8 @@ const User = require("../models/user");
 const Board = require("../models/board");
 const { validateAccessToken } = require("../middleware/auth0.middleware.js");
 
-notesRouter.get("/", async (request, response) => {
-  // const username = request.auth.payload.sub;
-  const username = "google-oauth2|103964861180742015983";
+notesRouter.get("/", validateAccessToken, async (request, response) => {
+  const username = request.auth.payload.sub;
 
   const test = await User.findOne({ userName: username }).populate({
     path: "boards",
@@ -29,14 +28,10 @@ notesRouter.delete("/:id", async (request, response) => {
   response.status(204).end();
 });
 
-notesRouter.post("/", async (request, response) => {
+notesRouter.post("/:id", validateAccessToken, async (request, response) => {
   const body = request.body;
-  // const username = request.auth.payload.sub;
-  // const username = "google-oauth2|103964861180742015983";
-  //pass boardId in later as param
-  const boardId = "6615ef7965bab0f38088d742";
 
-  const board = await Board.findById(boardId);
+  const board = await Board.findById(request.params.id);
 
   if (body.name === undefined) {
     return response.status(400).json({ error: "name missing" });
