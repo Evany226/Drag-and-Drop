@@ -1,17 +1,30 @@
 /* eslint-disable react/no-unescaped-entities */
 import "../css/Dashboard.css";
 import LogoutButton from "./LogoutButton.jsx";
+import { useNavigate } from "react-router-dom";
+import { ReactComponent as Return } from "../assets/return.svg";
 
-const Nav = ({ userName, userPic }) => {
+const Nav = ({ boardName }) => {
+  const navigate = useNavigate();
+
+  const returnHome = () => {
+    navigate("/dashboard");
+  };
+
   return (
     <nav className="nav">
-      <h5 className="nav-name"> {userName}'s Workspace </h5>
+      <div className="nav-name-container">
+        <Return
+          onClick={returnHome}
+          style={{ cursor: "pointer", fill: "white" }}
+        />
+        <h5 className="nav-name">{boardName}</h5>
+      </div>
       <div className="nav-container">
         <div className="nav-profile">
           <img
             className="nav-image"
             style={{ width: "2rem", border: "solid, white, 1px" }}
-            src={userPic}
           ></img>
         </div>
         <LogoutButton buttonName="Sign out" />

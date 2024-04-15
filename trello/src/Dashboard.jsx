@@ -21,6 +21,7 @@ const Dashboard = () => {
   const [newNote, setNewNote] = useState(null);
   const [newContent, setNewContent] = useState("");
   const [open, setOpen] = useState(false);
+  const [boardName, setBoardName] = useState("");
 
   // const ref = useRef();
   // const { events } = useDraggable(ref, {
@@ -43,6 +44,9 @@ const Dashboard = () => {
       const accessToken = await getAccessTokenSilently();
       noteService.getAll(accessToken).then((initialNotes) => {
         setNotes(initialNotes.filter((board) => board.id === boardId)[0].notes);
+        setBoardName(
+          initialNotes.filter((board) => board.id === boardId)[0].boardName
+        );
       });
       console.log("test");
     };
@@ -321,7 +325,7 @@ const Dashboard = () => {
 
   return (
     <section id="dashboard">
-      <Nav userName={user.name} userPic={user.picture} />
+      <Nav boardName={boardName} />
       <div className="selector">
         <div className="dropdownWrapper">
           <CreateButton buttonName="Add Checklist +" buttonFunc={scrollRight} />

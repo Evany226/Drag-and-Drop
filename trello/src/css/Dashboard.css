@@ -101,11 +101,17 @@ body {
   background-color: #2548b9;
 }
 
+.nav-name-container {
+  display: flex;
+  align-items: center;
+}
+
 .nav-name {
   color: #fff;
   font-weight: 500;
   padding: 0.75rem 0.25rem;
   text-align: center;
+  margin-left: 0.25rem;
 }
 
 .nav-container {

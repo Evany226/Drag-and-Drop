@@ -27,26 +27,47 @@ const BoardSelectPage = () => {
     getData();
   }, [getAccessTokenSilently]);
 
-  const addBoard = () => {
+  const handleBoardChange = (event) => {
+    console.log(event.target.value);
+    setNewBoard(event.target.value);
+  };
+
+  const addBoard = (event) => {
+    event.preventDefault();
     const addData = async () => {
       const accessToken = await getAccessTokenSilently();
 
       const boardObject = {
-        boardName: "Evan Board 2",
+        boardName: newBoard,
       };
 
       boardService.create(boardObject, accessToken).then((returnedBoard) => {
         setBoards(boards.concat(returnedBoard));
       });
+
+      setOpen(false);
     };
-    addData();
+    if (newBoard === "") {
+      window.alert("List name must not be empty");
+    } else {
+      addData();
+    }
   };
 
   return (
     <section className="dashboard-page">
-      {open ? <div className="overlay" onClick={() => setOpen(false)} /> : null}
+      {open ? (
+        <div className="modal-overlay" onClick={() => setOpen(false)} />
+      ) : null}
 
-      {open ? <BoardDropdown open={open} setOpen={setOpen} /> : null}
+      {open ? (
+        <BoardDropdown
+          newBoard={newBoard}
+          setOpen={setOpen}
+          handleBoardChange={handleBoardChange}
+          addBoard={addBoard}
+        />
+      ) : null}
       <div className="side-nav">
         <div className="side-nav-header">
           <p className="side-nav-title">Username Dashboard</p>
@@ -64,9 +85,13 @@ const BoardSelectPage = () => {
               </div>
               {boards.map((board) => {
                 return (
-                  <Link to={`/boards/${board.id}`} key={board.id}>
+                  <Link
+                    style={{ textDecoration: "none" }}
+                    to={`/boards/${board.id}`}
+                    key={board.id}
+                  >
                     <div className="board-item">
-                      <p className="board-item-text">{board.boardname}</p>
+                      <p className="board-item-text">{board.boardName}</p>
                     </div>
                   </Link>
                 );

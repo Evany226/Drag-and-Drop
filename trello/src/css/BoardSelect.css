@@ -1,9 +1,10 @@
 .dashboard-page {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
+  background-color: #f7f7f8;
 }
 
-.overlay {
+.modal-overlay {
   position: fixed;
   top: 0;
   right: 0;
@@ -14,8 +15,10 @@
 }
 
 .side-nav {
-  width: 18.75rem;
+  width: 16rem;
   background-color: #f7f7f8;
+  height: 100vh;
+  position: fixed;
 }
 
 .side-nav-header {
@@ -25,6 +28,7 @@
   box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px;
   margin-top: 0.5rem;
   font-family: "Inter", sans-serif;
+  font-weight: 500;
 }
 
 .side-nav-title {
@@ -35,17 +39,19 @@
 .board-wrapper {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: calc(100% - 16rem);
+  margin-left: 16.1rem;
   height: 100%;
   background-color: #f7f7f8;
 }
 
 .divider {
-  min-height: 0.5rem;
+  height: 0.5rem;
   background-color: #f7f7f8;
 }
 
 .whiteboard {
+  min-height: calc(100vh - 0.5rem);
   background-color: #fff;
   box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
     rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
@@ -78,7 +84,7 @@
 .board-item {
   width: 13rem;
   height: 9rem;
-  background-color: #f7f7f8;
+  background-color: #f1f2f4;
   margin: 2rem;
   margin-left: 0rem;
   border-radius: 0.25rem;
@@ -88,13 +94,14 @@
 }
 
 .board-item-text {
-  font-size: 1rem;
+  font-size: 0.9rem;
+  color: #172b4d;
 }
 
 .add-board-button {
   width: 13rem;
   height: 9rem;
-  background-color: #f7f7f8;
+  background-color: #f1f2f4;
   margin: 2rem;
   margin-left: 0rem;
   border-radius: 0.25rem;
