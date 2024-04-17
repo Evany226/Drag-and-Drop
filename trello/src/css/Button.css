@@ -1,6 +1,6 @@
 .signup-button {
   cursor: pointer;
-  background-color: #5b45ff;
+  background-color: #3f5fe6;
   border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 0.25rem;
   box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
@@ -8,7 +8,7 @@
   cursor: pointer;
   font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 500;
   padding: 0.35rem 1.25rem;
   position: relative;
@@ -19,7 +19,7 @@
 
 .try-button {
   cursor: pointer;
-  background-color: #5b45ff;
+  background-color: #3f5fe6;
   border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 0.25rem;
   box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
@@ -27,7 +27,7 @@
   cursor: pointer;
   font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 500;
   padding: 0.35rem 1.25rem;
   position: relative;
@@ -38,12 +38,12 @@
 .login-button {
   cursor: pointer;
   color: #000;
-  font-size: 0.875rem;
+  font-size: 1rem;
   font-weight: 500;
   padding: 0.35rem 1rem;
   text-decoration: none;
   border: none;
-  background-color: #fafbfc;
+  background-color: #fff;
   border-radius: 0.8rem;
   margin-right: 0.25rem;
   font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
