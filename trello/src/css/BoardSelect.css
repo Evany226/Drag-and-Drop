@@ -120,3 +120,19 @@
   background-color: #dadadf;
   transition: 0.3s;
 }
+
+.profile-pic {
+  width: 2rem;
+}
+
+@media only screen and (min-width: 993px) {
+  .dahsboard-page {
+    font-size: 100%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .dashboard-page {
+    font-size: 110%;
+  }
+}

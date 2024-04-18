@@ -31,11 +31,14 @@ const update = (id, newObject) => {
   return request.then((response) => response.data);
 };
 
-const updateAll = (newObject, accessToken) => {
+const updateAll = (paramId, newObject, accessToken) => {
   const request = axios.put(baseUrl, newObject, {
     headers: {
       "content-type": "application/json",
       Authorization: `Bearer ${accessToken}`,
+    },
+    params: {
+      boardId: paramId,
     },
   });
   return request.then((response) => response.data);

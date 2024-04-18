@@ -12,7 +12,7 @@ const BoardSelectPage = () => {
   const [newBoard, setNewBoard] = useState("");
   const [open, setOpen] = useState(false);
 
-  // const { user } = useAuth0();
+  const { user } = useAuth0();
   const { getAccessTokenSilently } = useAuth0();
 
   useEffect(() => {
@@ -70,7 +70,8 @@ const BoardSelectPage = () => {
       ) : null}
       <div className="side-nav">
         <div className="side-nav-header">
-          <p className="side-nav-title">Username Dashboard</p>
+          <img className="profile-pic" src={user.pic}></img>
+          <p className="side-nav-title">{user.name} Dashboard</p>
         </div>
       </div>
       <div className="board-wrapper">

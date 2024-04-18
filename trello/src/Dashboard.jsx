@@ -289,9 +289,15 @@ const Dashboard = () => {
         const [removedItem] = copiedItems.splice(source.index, 1);
         copiedItems.splice(destination.index, 0, removedItem);
 
-        noteService.updateAll(copiedItems, accessToken).then((returnedNote) => {
-          console.log(returnedNote);
-        });
+        console.log(copiedItems);
+
+        const idString = JSON.stringify(boardId);
+
+        noteService
+          .updateAll(idString, copiedItems, accessToken)
+          .then((returnedNote) => {
+            console.log(returnedNote);
+          });
 
         setNotes(copiedItems);
       };
