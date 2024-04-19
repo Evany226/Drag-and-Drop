@@ -19,6 +19,9 @@
   background-color: #f7f7f8;
   height: 100vh;
   position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .side-nav-header {
@@ -32,8 +35,36 @@
   font-weight: 500;
 }
 
+.side-nav-title-wrapper {
+  display: flex;
+}
+
 .side-nav-title {
-  font-size: 0.9rem;
+  font-size: 1.5rem;
+}
+
+.side-nav-title-2 {
+  font-size: 1.5rem;
+  color: #3f5fe6;
+  font-weight: 700;
+}
+
+.side-nav-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 1.5rem;
+}
+
+.profile-pic {
+  width: 10%;
+  border-radius: 1rem;
+}
+.profile-name {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-left: 0.5rem;
+  font-weight: 500;
 }
 
 .board-wrapper {
@@ -96,6 +127,7 @@
 .board-item-text {
   font-size: 0.9rem;
   color: #172b4d;
+  font-weight: 500;
 }
 
 .add-board-button {
@@ -113,15 +145,11 @@
 .board-button-text {
   font-size: 0.9rem;
   color: #172b4d;
+  font-weight: 500;
   margin-left: 0.25rem;
 }
 
 .add-board-button:hover {
   background-color: #dadadf;
   transition: 0.3s;
-}
-
-.profile-pic {
-  width: 2rem;
-  border-radius: 1rem;
 }

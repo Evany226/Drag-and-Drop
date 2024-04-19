@@ -18,7 +18,7 @@ export default function BoardDropdown({
           <p className="board-input-title">Board Name</p>
           <input
             className="board-input"
-            placeholder="Enter Board Name..."
+            placeholder="Enter board name..."
             value={newBoard}
             onChange={handleBoardChange}
             autoFocus

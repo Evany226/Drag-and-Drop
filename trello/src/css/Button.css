@@ -8,7 +8,7 @@
   cursor: pointer;
   font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   padding: 0.35rem 1.25rem;
   position: relative;
@@ -38,7 +38,7 @@
 .login-button {
   cursor: pointer;
   color: #000;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   padding: 0.35rem 1rem;
   text-decoration: none;
@@ -70,21 +70,19 @@
 }
 
 .logout-button {
-  background-color: #f1f2f4;
+  background-color: #fff;
   border: 1px solid transparent;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   border-radius: 0.25rem;
   color: #000;
   cursor: pointer;
-  padding: 0.3rem 0.75rem;
+  padding: 0.25rem 0.5rem;
   margin-right: 0rem;
   font-family: Roboto, sans-serif;
   font-weight: 500;
-}
-
-.logout-button:hover {
-  background-color: #65b0ff;
-  transition: 0.15s;
+  border: 1px solid rgba(27, 31, 35, 0.5);
+  box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+  margin-left: 0.75rem;
 }
 
 .note-button {

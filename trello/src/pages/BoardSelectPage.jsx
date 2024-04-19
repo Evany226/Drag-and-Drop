@@ -6,6 +6,7 @@ import boardService from "../services/boards";
 import { Link } from "react-router-dom";
 import { ReactComponent as Plus } from "../assets/plus.svg";
 import BoardDropdown from "../components/BoardDropdown";
+import LogoutButton from "../components/LogOutButton";
 
 const BoardSelectPage = () => {
   const [boards, setBoards] = useState([]);
@@ -70,7 +71,15 @@ const BoardSelectPage = () => {
       ) : null}
       <div className="side-nav">
         <div className="side-nav-header">
-          <p className="side-nav-title"> {user.name + "'s"} Dashboard</p>
+          <div className="side-nav-title-wrapper">
+            <h3 className="side-nav-title"> dragn</h3>
+            <h3 className="side-nav-title-2">drop </h3>
+          </div>
+        </div>
+        <div className="side-nav-footer">
+          <img className="profile-pic" src={user.picture}></img>
+          <p className="profile-name">{user.name}</p>
+          <LogoutButton buttonName="Sign out" />
         </div>
       </div>
       <div className="board-wrapper">

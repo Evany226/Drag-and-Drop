@@ -1,6 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
 import "../css/Dashboard.css";
-import LogoutButton from "./LogoutButton.jsx";
 import { useNavigate } from "react-router-dom";
 import { ReactComponent as Return } from "../assets/return.svg";
 
@@ -27,7 +26,6 @@ const Nav = ({ boardName }) => {
             style={{ width: "2rem", border: "solid, white, 1px" }}
           ></img>
         </div>
-        <LogoutButton buttonName="Sign out" />
       </div>
     </nav>
   );
