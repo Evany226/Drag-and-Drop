@@ -291,10 +291,8 @@ const Dashboard = () => {
 
         console.log(copiedItems);
 
-        const idString = JSON.stringify(boardId);
-
         noteService
-          .updateAll(idString, copiedItems, accessToken)
+          .updateAll(boardId, copiedItems, accessToken)
           .then((returnedNote) => {
             console.log(returnedNote);
           });

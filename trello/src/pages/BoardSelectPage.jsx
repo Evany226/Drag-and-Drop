@@ -70,8 +70,7 @@ const BoardSelectPage = () => {
       ) : null}
       <div className="side-nav">
         <div className="side-nav-header">
-          <img className="profile-pic" src={user.pic}></img>
-          <p className="side-nav-title">{user.name} Dashboard</p>
+          <p className="side-nav-title"> {user.name + "'s"} Dashboard</p>
         </div>
       </div>
       <div className="board-wrapper">

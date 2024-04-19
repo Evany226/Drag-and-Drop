@@ -59,13 +59,27 @@
 }
 
 .home-title {
-  font-size: 3.5rem;
+  font-size: 3.35rem;
   text-align: center;
 }
 
 .home-subtitle {
   font-size: 1.25rem;
-  width: 50%;
+  width: 60%;
   text-align: center;
   margin: 2rem 0rem;
+}
+
+@media only screen and (min-width: 993px) {
+  html,
+  body {
+    font-size: 100%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  html,
+  body {
+    font-size: 110%;
+  }
 }

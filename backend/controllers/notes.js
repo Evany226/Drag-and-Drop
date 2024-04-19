@@ -64,7 +64,7 @@ notesRouter.put("/:id", async (request, response) => {
   response.json(updatedNote);
 });
 
-notesRouter.put("/", validateAccessToken, async (req, res) => {
+notesRouter.put("/all/:id", validateAccessToken, async (req, res) => {
   const body = req.body;
   // const username = req.auth.payload.sub;
 
@@ -74,12 +74,12 @@ notesRouter.put("/", validateAccessToken, async (req, res) => {
 
   const array = [];
 
-  const paramId = req.query.boardId;
+  const paramId = req.params.id;
 
   console.log(paramId);
 
   const updatedNote = await Board.findOneAndUpdate(
-    { id: paramId },
+    { boardname: "Evan Board 1" },
     { notes: content },
     {
       new: true,
@@ -89,7 +89,7 @@ notesRouter.put("/", validateAccessToken, async (req, res) => {
     content: 1,
   });
 
-  res.json(updatedNote);
+  res.json(updatedNote.notes);
 });
 
 module.exports = notesRouter;
