@@ -12,6 +12,7 @@ const BoardSelectPage = () => {
   const [boards, setBoards] = useState([]);
   const [newBoard, setNewBoard] = useState("");
   const [open, setOpen] = useState(false);
+  const [newTheme, setNewTheme] = useState("");
 
   const { user } = useAuth0();
   const { getAccessTokenSilently } = useAuth0();
@@ -40,6 +41,7 @@ const BoardSelectPage = () => {
 
       const boardObject = {
         boardName: newBoard,
+        themeType: "Blue",
       };
 
       boardService.create(boardObject, accessToken).then((returnedBoard) => {

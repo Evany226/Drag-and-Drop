@@ -20,6 +20,7 @@ boardsRouter.post("/", async (req, res) => {
 
   const board = new Board({
     boardName: body.boardName,
+    theme: body.theme,
     user: user.id,
   });
 

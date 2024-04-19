@@ -15,7 +15,7 @@ export default function BoardDropdown({
       <div className="board-modal">
         <h1 className="modal-title">Create Workspace</h1>
         <form className="board-form" onSubmit={addBoard}>
-          <p className="board-input-title">Board Name</p>
+          <p className="board-subtitle">Board Name</p>
           <input
             className="board-input"
             placeholder="Enter board name..."
@@ -24,6 +24,12 @@ export default function BoardDropdown({
             autoFocus
             onFocus={(e) => e.currentTarget.select()}
           />
+          <p className="board-subtitle">Board Name</p>
+          <div className="theme-button-wrapper">
+            <div className="theme-button-1"></div>
+            <div className="theme-button-2"></div>
+            <div className="theme-button-3"></div>
+          </div>
           <div className="board-button-wrapper">
             <button className="create-board-btn" type="submit">
               Create

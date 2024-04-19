@@ -4,6 +4,9 @@
   background-color: #f7f7f8;
 }
 
+.board-wrapper {
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -90,6 +93,7 @@
   height: 100%;
   display: flex;
   justify-content: end;
+  width: 100%;
 }
 
 .board-grid {
@@ -110,14 +114,14 @@
 .board-listings {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 0.75rem;
 }
 
 .board-item {
   width: 13rem;
   height: 9rem;
   background-color: #f1f2f4;
-  margin: 2rem;
-  margin-left: 0rem;
+  margin: 1rem;
   border-radius: 0.25rem;
   display: flex;
   justify-content: center;
@@ -134,8 +138,7 @@
   width: 13rem;
   height: 9rem;
   background-color: #f1f2f4;
-  margin: 2rem;
-  margin-left: 0rem;
+  margin: 1rem;
   border-radius: 0.25rem;
   display: flex;
   justify-content: center;
@@ -152,4 +155,42 @@
 .add-board-button:hover {
   background-color: #dadadf;
   transition: 0.3s;
+}
+
+@media only screen and (max-width: 550px) {
+  .dashboard-page {
+    display: flex;
+  }
+
+  .add-board-button {
+    width: 12rem;
+    height: 8rem;
+  }
+
+  .board-item {
+    width: 12rem;
+    height: 8rem;
+  }
+
+  .board-wrapper {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .board-grid {
+    padding: 1rem;
+  }
+
+  .board-listings {
+    justify-content: center;
+  }
+
+  .grid-header {
+    margin-left: 2rem;
+  }
+
+  .side-nav {
+    display: none;
+    width: 0rem;
+  }
 }

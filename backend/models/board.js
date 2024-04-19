@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const boardSchema = new mongoose.Schema({
   boardName: String,
+  themeType: String,
   notes: [
     {
       type: mongoose.Schema.Types.ObjectId,
