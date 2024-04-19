@@ -68,28 +68,24 @@ notesRouter.put("/all/:id", validateAccessToken, async (req, res) => {
   const body = req.body;
   // const username = req.auth.payload.sub;
 
-  const content = {
-    ...body,
-  };
-
   const array = [];
 
   const paramId = req.params.id;
 
   console.log(paramId);
+  const content = {
+    ...body,
+  };
 
   const updatedNote = await Board.findOneAndUpdate(
-    { boardname: "Evan Board 1" },
-    { notes: content },
-    {
-      new: true,
-    }
+    { boardName: "Evan Board 1" },
+    { notes: content }
   ).populate("notes", {
     name: 1,
     content: 1,
   });
 
-  res.json(updatedNote.notes);
+  console.log(updatedNote);
 });
 
 module.exports = notesRouter;
