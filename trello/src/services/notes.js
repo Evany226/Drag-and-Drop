@@ -26,8 +26,8 @@ const update = (id, newObject, accessToken) => {
   const request = axios.put(`${baseUrl}/${id}`, newObject, {
     headers: {
       "content-type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
     },
-    Authorization: `Bearer ${accessToken}`,
   });
   return request.then((response) => response.data);
 };

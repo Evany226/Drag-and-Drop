@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "http://localhost:3001/api/boards";
+const baseUrl = "https://dragndrop-d7l4.onrender.com/api/boards";
 
 const getAll = async (accessToken) => {
   const request = axios.get(baseUrl, {
