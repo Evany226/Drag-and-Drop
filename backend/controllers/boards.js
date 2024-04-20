@@ -1,16 +1,17 @@
 const boardsRouter = require("express").Router();
 const Board = require("../models/board");
 const User = require("../models/user");
+const { validateAccessToken } = require("../middleware/auth0.middleware.js");
 
-boardsRouter.get("/", async (req, res) => {
+boardsRouter.get("/", validateAccessToken, async (req, res) => {
   const boards = await Board.find({}).populate("notes", {});
 
   res.json(boards);
 });
 
-boardsRouter.post("/", async (req, res) => {
+boardsRouter.post("/", validateAccessToken, async (req, res) => {
   const body = req.body;
-  const username = "google-oauth2|103964861180742015983";
+  const username = request.auth.payload.sub;
 
   const user = await User.findOne({ userName: username });
 
@@ -30,7 +31,7 @@ boardsRouter.post("/", async (req, res) => {
   res.status(201).json(savedBoard);
 });
 
-boardsRouter.delete("/:id", async (req, res) => {
+boardsRouter.delete("/:id", validateAccessToken, async (req, res) => {
   try {
     await Board.findByIdAndRemove(req.params.id);
     res.json("Removed Successfully");

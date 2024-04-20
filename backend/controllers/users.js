@@ -14,7 +14,7 @@ usersRouter.get("/", async (request, response) => {
   response.json(users);
 });
 
-usersRouter.post("/", validateAccessToken, async (request, response) => {
+usersRouter.post("/", async (request, response) => {
   const { username } = request.body;
 
   const user = new User({

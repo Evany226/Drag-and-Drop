@@ -22,11 +22,12 @@ const create = (id, newObject, accessToken) => {
   return request.then((response) => response.data);
 };
 
-const update = (id, newObject) => {
+const update = (id, newObject, accessToken) => {
   const request = axios.put(`${baseUrl}/${id}`, newObject, {
     headers: {
       "content-type": "application/json",
     },
+    Authorization: `Bearer ${accessToken}`,
   });
   return request.then((response) => response.data);
 };
@@ -41,8 +42,13 @@ const updateAll = (id, newObject, accessToken) => {
   return request.then((response) => response.data);
 };
 
-const remove = (id) => {
-  const request = axios.delete(`${baseUrl}/${id}`);
+const remove = (id, accessToken) => {
+  const request = axios.delete(`${baseUrl}/${id}`, {
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
   return request.then((response) => response.data);
 };
 

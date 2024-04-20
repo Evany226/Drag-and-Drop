@@ -23,7 +23,7 @@ notesRouter.get("/:id", validateAccessToken, async (request, response) => {
   response.json(note);
 });
 
-notesRouter.delete("/:id", async (request, response) => {
+notesRouter.delete("/:id", validateAccessToken, async (request, response) => {
   await Note.findByIdAndRemove(request.params.id);
   response.status(204).end();
 });
@@ -49,7 +49,7 @@ notesRouter.post("/:id", validateAccessToken, async (request, response) => {
   response.status(201).json(savedNote);
 });
 
-notesRouter.put("/:id", async (request, response) => {
+notesRouter.put("/:id", validateAccessToken, async (request, response) => {
   const body = request.body;
 
   const note = {
