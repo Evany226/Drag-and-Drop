@@ -65,7 +65,7 @@
 }
 
 .create-button:hover {
-  background-color: #65b0ff;
+  background-color: #ffffff9d;
   transition: 0.15s;
 }
 
@@ -83,6 +83,11 @@
   border: 1px solid rgba(27, 31, 35, 0.5);
   box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
   margin-left: 0.75rem;
+}
+
+.logout-button:hover {
+  transition: 0.3s;
+  background-color: #aab6e4;
 }
 
 .note-button {

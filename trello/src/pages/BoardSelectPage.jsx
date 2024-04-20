@@ -52,6 +52,8 @@ const BoardSelectPage = () => {
     };
     if (newBoard === "") {
       window.alert("List name must not be empty");
+    } else if (newTheme === 0) {
+      window.alert("Must select a theme");
     } else {
       addData();
     }
