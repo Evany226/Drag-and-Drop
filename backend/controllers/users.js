@@ -17,18 +17,12 @@ usersRouter.get("/", async (request, response) => {
 usersRouter.post("/", async (request, response) => {
   const { username } = request.body;
 
-  const userBool = User.findOne({ userName: username });
+  const user = new User({
+    userName: username,
+  });
 
-  if (userBool) {
-    response.status(400).json("User already exists");
-  } else {
-    const user = new User({
-      userName: username,
-    });
-
-    const savedUser = await user.save();
-    response.status(201).json(savedUser);
-  }
+  const savedUser = await user.save();
+  response.status(201).json(savedUser);
 });
 
 module.exports = usersRouter;
