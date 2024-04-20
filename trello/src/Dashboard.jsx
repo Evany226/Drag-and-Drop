@@ -98,6 +98,7 @@ const Dashboard = () => {
   //changes note name
   const editNote = (id) => {
     const editData = async () => {
+      const accessToken = await getAccessTokenSilently();
       const note = notes.find((note) => note.id === id);
 
       const changedNote = {
@@ -105,7 +106,7 @@ const Dashboard = () => {
         name: newNote,
       };
 
-      noteService.update(id, changedNote).then(() => {});
+      noteService.update(id, changedNote, accessToken).then(() => {});
       setNotes(notes.map((note) => (note.id === id ? changedNote : note)));
     };
     if (newNote === "") {
@@ -117,10 +118,14 @@ const Dashboard = () => {
 
   //deletes actual columns
   const deleteNote = (id) => {
-    noteService.remove(id).then(() => {
-      setNotes(notes.filter((note) => note.id !== id));
-      setNewNote("");
-    });
+    const deleteData = async () => {
+      const accessToken = await getAccessTokenSilently();
+      noteService.remove(id, accessToken).then(() => {
+        setNotes(notes.filter((note) => note.id !== id));
+        setNewNote("");
+      });
+    };
+    deleteData();
   };
 
   const handleContentChange = (event) => {
@@ -168,6 +173,7 @@ const Dashboard = () => {
   const editContent = (event, id, itemId) => {
     event.preventDefault();
     const editData = async () => {
+      const accessToken = await getAccessTokenSilently();
       const note = notes.find((n) => n.id === id);
       const oldContent = note.content;
 
@@ -185,7 +191,7 @@ const Dashboard = () => {
         content: updatedContent,
       };
 
-      noteService.update(id, changedNote).then(() => {});
+      noteService.update(id, changedNote, accessToken).then(() => {});
       setNotes(notes.map((note) => (note.id != id ? note : changedNote)));
     };
 
@@ -198,24 +204,28 @@ const Dashboard = () => {
 
   //delete note items
   const deleteContent = (event, id, itemId) => {
-    event.preventDefault();
-    console.log(id);
-    console.log(itemId);
-    const note = notes.find((n) => n.id === id);
-    const oldContent = note.content;
+    const deleteContentData = async () => {
+      const accessToken = await getAccessTokenSilently();
+      event.preventDefault();
+      console.log(id);
+      console.log(itemId);
+      const note = notes.find((n) => n.id === id);
+      const oldContent = note.content;
 
-    const afterDelete = oldContent.filter((item) => item.id != itemId);
+      const afterDelete = oldContent.filter((item) => item.id != itemId);
 
-    const changedNote = {
-      ...note,
-      content: afterDelete,
+      const changedNote = {
+        ...note,
+        content: afterDelete,
+      };
+
+      console.log(changedNote);
+
+      noteService.update(id, changedNote, accessToken).then((returnedNote) => {
+        setNotes(notes.map((note) => (note.id != id ? note : returnedNote)));
+      });
     };
-
-    console.log(changedNote);
-
-    noteService.update(id, changedNote).then((returnedNote) => {
-      setNotes(notes.map((note) => (note.id != id ? note : returnedNote)));
-    });
+    deleteContentData();
   };
 
   if (!user) {
@@ -230,62 +240,76 @@ const Dashboard = () => {
 
     if (type === "ITEM") {
       if (source.droppableId != destination.droppableId) {
-        const sourceNote = notes.find((item) => item.id === source.droppableId);
-        const destNote = notes.find(
-          (item) => item.id === destination.droppableId
-        );
-        const sourceItems = [...sourceNote.content];
-        const destItems = [...destNote.content];
-        const [removed] = sourceItems.splice(source.index, 1);
-        destItems.splice(destination.index, 0, removed);
+        const getToken = async () => {
+          const accessToken = await getAccessTokenSilently();
+          const sourceNote = notes.find(
+            (item) => item.id === source.droppableId
+          );
+          const destNote = notes.find(
+            (item) => item.id === destination.droppableId
+          );
+          const sourceItems = [...sourceNote.content];
+          const destItems = [...destNote.content];
+          const [removed] = sourceItems.splice(source.index, 1);
+          destItems.splice(destination.index, 0, removed);
 
-        const newSource = {
-          ...sourceNote,
-          content: sourceItems,
+          const newSource = {
+            ...sourceNote,
+            content: sourceItems,
+          };
+
+          const newDest = {
+            ...destNote,
+            content: destItems,
+          };
+
+          noteService
+            .update(newSource.id, newSource, accessToken)
+            .then((returnedNote) => {
+              console.log(returnedNote);
+            });
+
+          noteService
+            .update(newDest.id, newDest, accessToken)
+            .then((returnedNote) => {
+              console.log(returnedNote);
+            });
+
+          setNotes(
+            notes.map((n) => {
+              if (n.id === sourceNote.id) {
+                return newSource;
+              }
+              if (n.id === destNote.id) {
+                return newDest;
+              } else {
+                return n;
+              }
+            })
+          );
         };
-
-        const newDest = {
-          ...destNote,
-          content: destItems,
-        };
-
-        noteService.update(newSource.id, newSource).then((returnedNote) => {
-          console.log(returnedNote);
-        });
-
-        noteService.update(newDest.id, newDest).then((returnedNote) => {
-          console.log(returnedNote);
-        });
-
-        setNotes(
-          notes.map((n) => {
-            if (n.id === sourceNote.id) {
-              return newSource;
-            }
-            if (n.id === destNote.id) {
-              return newDest;
-            } else {
-              return n;
-            }
-          })
-        );
+        getToken();
       } else {
-        const note = notes.find((item) => item.id === source.droppableId);
-        const copiedItems = [...note.content];
-        const [removedItem] = copiedItems.splice(source.index, 1);
-        copiedItems.splice(destination.index, 0, removedItem);
+        const getToken = async () => {
+          const accessToken = await getAccessTokenSilently();
+          const note = notes.find((item) => item.id === source.droppableId);
+          const copiedItems = [...note.content];
+          const [removedItem] = copiedItems.splice(source.index, 1);
+          copiedItems.splice(destination.index, 0, removedItem);
 
-        const newNote = {
-          ...note,
-          content: copiedItems,
+          const newNote = {
+            ...note,
+            content: copiedItems,
+          };
+
+          const id = note.id;
+
+          noteService.update(id, newNote, accessToken).then((returnedNote) => {
+            console.log(returnedNote);
+            setNotes(notes.map((n) => (n.id === id ? returnedNote : n)));
+          });
         };
-
-        const id = note.id;
-
-        noteService.update(id, newNote).then((returnedNote) => {
-          console.log(returnedNote);
-          setNotes(notes.map((n) => (n.id === id ? returnedNote : n)));
-        });
+        getToken();
       }
     } else {
       const getToken = async () => {
