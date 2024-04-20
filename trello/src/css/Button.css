@@ -1,25 +1,6 @@
 .signup-button {
   cursor: pointer;
-  background-color: #5b45ff;
-  border: 1px solid rgba(27, 31, 35, 0.15);
-  border-radius: 0.25rem;
-  box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
-  color: #fff;
-  cursor: pointer;
-  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  font-size: 0.875rem;
-  font-weight: 500;
-  padding: 0.35rem 1.25rem;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  margin-right: 2rem;
-}
-
-.try-button {
-  cursor: pointer;
-  background-color: #5b45ff;
+  background-color: #3f5fe6;
   border: 1px solid rgba(27, 31, 35, 0.15);
   border-radius: 0.25rem;
   box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
@@ -33,17 +14,36 @@
   position: relative;
   text-align: center;
   text-decoration: none;
+  margin-right: 2rem;
+}
+
+.try-button {
+  cursor: pointer;
+  background-color: #3f5fe6;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 0.25rem;
+  box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.35rem 1.25rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
 }
 
 .login-button {
   cursor: pointer;
   color: #000;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   font-weight: 500;
   padding: 0.35rem 1rem;
   text-decoration: none;
   border: none;
-  background-color: #fafbfc;
+  background-color: #fff;
   border-radius: 0.8rem;
   margin-right: 0.25rem;
   font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial,
@@ -65,26 +65,29 @@
 }
 
 .create-button:hover {
-  background-color: #65b0ff;
+  background-color: #ffffff9d;
   transition: 0.15s;
 }
 
 .logout-button {
-  background-color: #f1f2f4;
+  background-color: #fff;
   border: 1px solid transparent;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   border-radius: 0.25rem;
   color: #000;
   cursor: pointer;
-  padding: 0.3rem 0.75rem;
+  padding: 0.25rem 0.5rem;
   margin-right: 0rem;
   font-family: Roboto, sans-serif;
   font-weight: 500;
+  border: 1px solid rgba(27, 31, 35, 0.5);
+  box-shadow: rgba(27, 31, 35, 0.1) 0 1px 0;
+  margin-left: 0.75rem;
 }
 
 .logout-button:hover {
-  background-color: #65b0ff;
-  transition: 0.15s;
+  transition: 0.3s;
+  background-color: #aab6e4;
 }
 
 .note-button {
@@ -113,7 +116,7 @@
   padding: 0.75rem 0.5rem;
   align-items: flex-end;
   cursor: pointer;
-  background-color: #65b0ff;
+  background-color: #ffffff4d;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
@@ -121,7 +124,7 @@
 }
 
 .menu-button:hover {
-  background-color: #4790e0;
+  background-color: #ffffff1d;
   box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }

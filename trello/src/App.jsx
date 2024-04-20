@@ -6,6 +6,7 @@ import Home from "./pages/HomePage.jsx";
 import Dashboard from "./Dashboard.jsx";
 import CallBackPage from "./pages/CallBackPage.jsx";
 import AuthenticationGuard from "./components/AuthGuard.jsx";
+import BoardSelectPage from "./pages/BoardSelectPage.jsx";
 
 function App() {
   const { isLoading } = useAuth0();
@@ -23,8 +24,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
-          path="/dashboard"
+          path="/boards/:id"
           element={<AuthenticationGuard component={Dashboard} />}
+        />
+        <Route
+          path="/dashboard"
+          element={<AuthenticationGuard component={BoardSelectPage} />}
         />
         <Route path="/callback" element={<CallBackPage />} />
       </Routes>

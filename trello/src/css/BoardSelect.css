@@ -1,0 +1,313 @@
+.dashboard-page {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f7f7f8;
+}
+
+.board-wrapper {
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9;
+}
+
+.side-nav {
+  width: 16rem;
+  background-color: #f7f7f8;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.side-nav-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 0px 0px;
+  margin-top: 0.5rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+}
+
+.side-nav-title-wrapper {
+  display: flex;
+}
+
+.side-nav-title {
+  font-size: 1.5rem;
+}
+
+.side-nav-title-2 {
+  font-size: 1.5rem;
+  color: #3f5fe6;
+  font-weight: 700;
+}
+
+.side-nav-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 1.5rem;
+}
+
+.profile-pic {
+  width: 10%;
+  border-radius: 1rem;
+}
+.profile-name {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-left: 0.5rem;
+  font-weight: 500;
+}
+
+.board-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 16rem);
+  margin-left: 16.1rem;
+  height: 100%;
+  background-color: #f7f7f8;
+}
+
+.divider {
+  height: 0.5rem;
+  background-color: #f7f7f8;
+}
+
+.whiteboard {
+  min-height: calc(100vh - 0.5rem);
+  background-color: #fff;
+  box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+    rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+  border-top-left-radius: 1rem;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  width: 100%;
+}
+
+.board-grid {
+  display: flex;
+  flex-direction: column;
+  padding: 3rem 0rem 0rem 3rem;
+  width: 100%;
+}
+
+.grid-header {
+  font-size: 1.25rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  margin-left: 1rem;
+}
+
+.board-listings {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 0.75rem;
+}
+
+.board-item-1 {
+  width: 13rem;
+  height: 9rem;
+  background: hsla(39, 97%, 76%, 1);
+
+  background: linear-gradient(
+    270deg,
+    hsla(39, 97%, 76%, 1) 23%,
+    hsla(324, 82%, 64%, 1) 94%
+  );
+
+  background: -moz-linear-gradient(
+    270deg,
+    hsla(39, 97%, 76%, 1) 23%,
+    hsla(324, 82%, 64%, 1) 94%
+  );
+
+  background: -webkit-linear-gradient(
+    270deg,
+    hsla(39, 97%, 76%, 1) 23%,
+    hsla(324, 82%, 64%, 1) 94%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FDD386", endColorstr="#EE56B2", GradientType=1 );
+  margin: 1rem;
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-item-2 {
+  width: 13rem;
+  height: 9rem;
+  background: hsla(261, 59%, 41%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(261, 59%, 41%, 1) 0%,
+    hsla(323, 63%, 56%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(261, 59%, 41%, 1) 0%,
+    hsla(323, 63%, 56%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(261, 59%, 41%, 1) 0%,
+    hsla(323, 63%, 56%, 1) 100%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#572BA7", endColorstr="#D5499F", GradientType=1 );
+  margin: 1rem;
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-item-3 {
+  width: 13rem;
+  height: 9rem;
+  background-image: linear-gradient(
+      225deg,
+      rgba(195, 195, 195, 0.04) 0%,
+      rgba(195, 195, 195, 0.04) 25%,
+      rgba(234, 234, 234, 0.04) 25%,
+      rgba(234, 234, 234, 0.04) 50%,
+      rgba(107, 107, 107, 0.04) 50%,
+      rgba(107, 107, 107, 0.04) 75%,
+      rgba(132, 132, 132, 0.04) 75%,
+      rgba(132, 132, 132, 0.04) 100%
+    ),
+    linear-gradient(
+      65deg,
+      rgba(116, 116, 116, 0.04) 0%,
+      rgba(116, 116, 116, 0.04) 25%,
+      rgba(219, 219, 219, 0.04) 25%,
+      rgba(219, 219, 219, 0.04) 50%,
+      rgba(33, 33, 33, 0.04) 50%,
+      rgba(33, 33, 33, 0.04) 75%,
+      rgba(165, 165, 165, 0.04) 75%,
+      rgba(165, 165, 165, 0.04) 100%
+    ),
+    linear-gradient(
+      251deg,
+      rgba(38, 38, 38, 0.04) 0%,
+      rgba(38, 38, 38, 0.04) 25%,
+      rgba(223, 223, 223, 0.04) 25%,
+      rgba(223, 223, 223, 0.04) 50%,
+      rgba(35, 35, 35, 0.04) 50%,
+      rgba(35, 35, 35, 0.04) 75%,
+      rgba(203, 203, 203, 0.04) 75%,
+      rgba(203, 203, 203, 0.04) 100%
+    ),
+    linear-gradient(
+      236deg,
+      rgba(206, 206, 206, 0.04) 0%,
+      rgba(206, 206, 206, 0.04) 25%,
+      rgba(13, 13, 13, 0.04) 25%,
+      rgba(13, 13, 13, 0.04) 50%,
+      rgba(151, 151, 151, 0.04) 50%,
+      rgba(151, 151, 151, 0.04) 75%,
+      rgba(255, 255, 255, 0.04) 75%,
+      rgba(255, 255, 255, 0.04) 100%
+    ),
+    linear-gradient(
+      260deg,
+      rgba(133, 133, 133, 0.04) 0%,
+      rgba(133, 133, 133, 0.04) 25%,
+      rgba(169, 169, 169, 0.04) 25%,
+      rgba(169, 169, 169, 0.04) 50%,
+      rgba(91, 91, 91, 0.04) 50%,
+      rgba(91, 91, 91, 0.04) 75%,
+      rgba(74, 74, 74, 0.04) 75%,
+      rgba(74, 74, 74, 0.04) 100%
+    ),
+    linear-gradient(90deg, rgb(8, 35, 191), rgb(45, 136, 225));
+  margin: 1rem;
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-item-text {
+  font-size: 1rem;
+  color: white;
+  font-weight: 500;
+}
+
+.add-board-button {
+  width: 13rem;
+  height: 9rem;
+  background-color: #f1f2f4;
+  margin: 1rem;
+  border-radius: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-button-text {
+  font-size: 1rem;
+  color: #172b4d;
+  font-weight: 500;
+  margin-left: 0.25rem;
+}
+
+.add-board-button:hover {
+  background-color: #dadadf;
+  transition: 0.3s;
+}
+
+@media only screen and (max-width: 550px) {
+  .dashboard-page {
+    display: flex;
+  }
+
+  .add-board-button {
+    width: 12rem;
+    height: 8rem;
+  }
+
+  .board-item {
+    width: 12rem;
+    height: 8rem;
+  }
+
+  .board-wrapper {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .board-grid {
+    padding: 1rem;
+  }
+
+  .board-listings {
+    justify-content: center;
+  }
+
+  .grid-header {
+    margin-left: 2rem;
+  }
+
+  .side-nav {
+    display: none;
+    width: 0rem;
+  }
+}

@@ -14,12 +14,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { DragDropContext } from "@hello-pangea/dnd";
 import { Droppable } from "@hello-pangea/dnd";
 import { v4 as uuidv4 } from "uuid";
+import { useParams } from "react-router-dom";
 
 const Dashboard = () => {
   const [notes, setNotes] = useState([]);
   const [newNote, setNewNote] = useState(null);
   const [newContent, setNewContent] = useState("");
   const [open, setOpen] = useState(false);
+  const [boardName, setBoardName] = useState("");
+  const [boardTheme, setBoardTheme] = useState(0);
 
   // const ref = useRef();
   // const { events } = useDraggable(ref, {
@@ -34,20 +37,30 @@ const Dashboard = () => {
   }
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
+  const boardId = useParams().id;
+
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     const getData = async () => {
       const accessToken = await getAccessTokenSilently();
-
       noteService.getAll(accessToken).then((initialNotes) => {
-        setNotes(initialNotes);
+        setNotes(initialNotes.filter((board) => board.id === boardId)[0].notes);
+        setBoardName(
+          initialNotes.filter((board) => board.id === boardId)[0].boardName
+        );
+        setBoardTheme(
+          initialNotes.filter((board) => board.id === boardId)[0].themeType
+        );
       });
+      console.log("test");
     };
     getData();
-  }, [getAccessTokenSilently]);
+  }, [getAccessTokenSilently, boardId]);
 
   const handleOpen = () => {
     setOpen(!open);
     setNewNote("");
+    console.log(boardTheme);
   };
 
   const handleNoteChange = (event) => {
@@ -61,15 +74,19 @@ const Dashboard = () => {
     const addData = async () => {
       const accessToken = await getAccessTokenSilently();
 
+      console.log(notes);
+
       const noteObject = {
         name: newNote,
         content: [],
       };
 
-      noteService.create(noteObject, accessToken).then((returnedNote) => {
-        setNotes(notes.concat(returnedNote));
-        setNewNote("");
-      });
+      noteService
+        .create(boardId, noteObject, accessToken)
+        .then((returnedNote) => {
+          setNotes(notes.concat(returnedNote));
+          setNewNote("");
+        });
     };
     if (newNote === "") {
       window.alert("List name must not be empty");
@@ -279,9 +296,13 @@ const Dashboard = () => {
         const [removedItem] = copiedItems.splice(source.index, 1);
         copiedItems.splice(destination.index, 0, removedItem);
 
-        noteService.updateAll(copiedItems, accessToken).then((returnedNote) => {
-          console.log(returnedNote);
-        });
+        console.log(copiedItems);
+
+        noteService
+          .updateAll(boardId, copiedItems, accessToken)
+          .then((returnedNote) => {
+            console.log(returnedNote);
+          });
 
         setNotes(copiedItems);
       };
@@ -314,8 +335,18 @@ const Dashboard = () => {
   };
 
   return (
-    <section id="dashboard">
-      <Nav userName={user.name} userPic={user.picture} />
+    <section
+      id={
+        boardTheme === 1
+          ? "dashboard-1"
+          : boardTheme === 2
+          ? "dashboard-2"
+          : boardTheme === 3
+          ? "dashboard-3"
+          : null
+      }
+    >
+      <Nav boardName={boardName} boardTheme={boardTheme} />
       <div className="selector">
         <div className="dropdownWrapper">
           <CreateButton buttonName="Add Checklist +" buttonFunc={scrollRight} />

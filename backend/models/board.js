@@ -1,16 +1,21 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-  userName: String,
-  boards: [
+const boardSchema = new mongoose.Schema({
+  boardName: String,
+  themeType: Number,
+  notes: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Board",
+      ref: "Note",
     },
   ],
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
-userSchema.set("toJSON", {
+boardSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
@@ -18,4 +23,4 @@ userSchema.set("toJSON", {
   },
 });
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Board", boardSchema);

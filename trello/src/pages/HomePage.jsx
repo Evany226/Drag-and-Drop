@@ -4,38 +4,31 @@ import "../css/index.css";
 import SignupButton from "../components/SignupButton.jsx";
 import LoginButton from "../components/LoginButton.jsx";
 import TryButton from "../components/TryButton.jsx";
-import { ReactComponent } from "../assets/new.svg";
 
 function Home() {
   return (
     <>
-      <section id="background">
-        <nav className="homeNav">
+      <section className="home-page">
+        <nav className="home-nav">
           <div id="titleWrapper">
             <h3 className="title"> dragn</h3>
             <h3 className="title-2">drop </h3>
           </div>
-          <div className="buttonWrapper">
+          <div className="button-wrapper">
             <LoginButton buttonName="Log In" />
-            <SignupButton buttonName="Sign Up" />
+            <SignupButton buttonName="Signup" />
           </div>
         </nav>
-
-        <div id="foreground">
-          <div className="mainTextWrapper">
-            <div className="slogan-wrapper">
-              <h2 className="main-title">
-                Your digital transformation begins here!
-              </h2>
-              <h5 className="sub-title">
-                Unlock the full potential of your business. Start your journey
-                today and experience the future of business software.
-              </h5>
-              <TryButton buttonName="Get started today!" />
-            </div>
-          </div>
-          <div className="subTextWrapper">
-            <ReactComponent class="svgcomp" />
+        <div className="home-body">
+          <div className="home-wrapper">
+            <h1 className="home-title">
+              The most comphrehensive Workplace Management Platform
+            </h1>
+            <p className="home-subtitle">
+              Empower Your Workplace, Elevate Your Success: Navigating the
+              Future of Efficient and Collaborative Management.
+            </p>
+            <TryButton buttonName="Get started" />
           </div>
         </div>
       </section>

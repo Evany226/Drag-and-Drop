@@ -3,10 +3,9 @@ const app = express();
 const cors = require("cors");
 const notesRouter = require("./controllers/notes");
 const usersRouter = require("./controllers/users");
+const boardsRouter = require("./controllers/boards");
 const mongoose = require("mongoose");
 require("dotenv").config();
-
-//this route is only used if the url starts with /api/notes
 const { errorHandler } = require("./middleware/error.middleware.js");
 //app.use(express.static("dist"));
 
@@ -40,6 +39,7 @@ app.use(requestLogger);
 
 app.use("/api/notes", notesRouter);
 app.use("/api/users", usersRouter);
+app.use("/api/boards", boardsRouter);
 
 const unknownEndpoint = (request, response) => {
   response.status(404).send({ error: "unknown endpoint" });

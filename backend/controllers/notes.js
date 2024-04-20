@@ -1,17 +1,21 @@
 const notesRouter = require("express").Router();
 const Note = require("../models/backendNote");
 const User = require("../models/user");
+const Board = require("../models/board");
 const { validateAccessToken } = require("../middleware/auth0.middleware.js");
 
 notesRouter.get("/", validateAccessToken, async (request, response) => {
-  const name = request.auth.payload.sub;
+  const username = request.auth.payload.sub;
 
-  const test = await User.findOne({ userName: name }).populate("notes", {
-    name: 1,
-    content: 1,
+  const test = await User.findOne({ userName: username }).populate({
+    path: "boards",
+    populate: {
+      path: "notes",
+      model: "Note",
+    },
   });
 
-  response.json(test.notes);
+  response.json(test);
 });
 
 notesRouter.get("/:id", validateAccessToken, async (request, response) => {
@@ -24,11 +28,10 @@ notesRouter.delete("/:id", async (request, response) => {
   response.status(204).end();
 });
 
-notesRouter.post("/", validateAccessToken, async (request, response) => {
+notesRouter.post("/:id", validateAccessToken, async (request, response) => {
   const body = request.body;
-  const username = request.auth.payload.sub;
 
-  const user = await User.findOne({ userName: username });
+  const board = await Board.findById(request.params.id);
 
   if (body.name === undefined) {
     return response.status(400).json({ error: "name missing" });
@@ -37,12 +40,12 @@ notesRouter.post("/", validateAccessToken, async (request, response) => {
   const note = new Note({
     name: body.name,
     content: body.content || [],
-    user: user.id,
+    board: board.id,
   });
 
   const savedNote = await note.save();
-  user.notes = user.notes.concat(savedNote._id);
-  await user.save();
+  board.notes = board.notes.concat(savedNote._id);
+  await board.save();
   response.status(201).json(savedNote);
 });
 
@@ -61,32 +64,30 @@ notesRouter.put("/:id", async (request, response) => {
   response.json(updatedNote);
 });
 
-notesRouter.put("/", validateAccessToken, async (request, response) => {
-  const body = request.body;
-  const username = request.auth.payload.sub;
-
-  const content = {
-    ...body,
-  };
+notesRouter.put("/all/:id", validateAccessToken, async (req, res) => {
+  const body = req.body;
+  // const username = req.auth.payload.sub;
 
   const array = [];
 
-  const testing = body.map((item) => {
+  body.map((item) => {
     array.push(item.id);
   });
 
-  const updatedNote = await User.findOneAndUpdate(
-    { userName: username },
+  const paramId = req.params.id;
+
+  console.log(paramId);
+
+  const updatedNote = await Board.findByIdAndUpdate(
+    paramId,
     { notes: array },
-    {
-      new: true,
-    }
+    { new: true }
   ).populate("notes", {
     name: 1,
     content: 1,
   });
 
-  response.json(updatedNote.notes);
+  console.log(updatedNote);
 });
 
 module.exports = notesRouter;

@@ -2,11 +2,15 @@ const usersRouter = require("express").Router();
 const User = require("../models/user");
 const { validateAccessToken } = require("../middleware/auth0.middleware.js");
 
-usersRouter.get("/", validateAccessToken, async (request, response) => {
-  const users = await User.find({}).populate("notes", {
-    name: 1,
-    content: 1,
+usersRouter.get("/", async (request, response) => {
+  const users = await User.find({}).populate({
+    path: "boards",
+    populate: {
+      path: "notes",
+      model: "Note",
+    },
   });
+
   response.json(users);
 });
 

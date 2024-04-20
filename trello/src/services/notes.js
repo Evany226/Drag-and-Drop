@@ -9,11 +9,11 @@ const getAll = async (accessToken) => {
     },
   });
 
-  return request.then((response) => response.data);
+  return request.then((response) => response.data.boards);
 };
 
-const create = (newObject, accessToken) => {
-  const request = axios.post(baseUrl, newObject, {
+const create = (id, newObject, accessToken) => {
+  const request = axios.post(`${baseUrl}/${id}`, newObject, {
     headers: {
       "content-type": "application/json",
       Authorization: `Bearer ${accessToken}`,
@@ -31,8 +31,8 @@ const update = (id, newObject) => {
   return request.then((response) => response.data);
 };
 
-const updateAll = (newObject, accessToken) => {
-  const request = axios.put(baseUrl, newObject, {
+const updateAll = (id, newObject, accessToken) => {
+  const request = axios.put(`${baseUrl}/all/${id}`, newObject, {
     headers: {
       "content-type": "application/json",
       Authorization: `Bearer ${accessToken}`,
