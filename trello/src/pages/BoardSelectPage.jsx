@@ -12,7 +12,7 @@ const BoardSelectPage = () => {
   const [boards, setBoards] = useState([]);
   const [newBoard, setNewBoard] = useState("");
   const [open, setOpen] = useState(false);
-  const [newTheme, setNewTheme] = useState("");
+  const [newTheme, setNewTheme] = useState(0);
 
   const { user } = useAuth0();
   const { getAccessTokenSilently } = useAuth0();
@@ -41,7 +41,7 @@ const BoardSelectPage = () => {
 
       const boardObject = {
         boardName: newBoard,
-        themeType: "Blue",
+        themeType: newTheme,
       };
 
       boardService.create(boardObject, accessToken).then((returnedBoard) => {
@@ -69,6 +69,8 @@ const BoardSelectPage = () => {
           setOpen={setOpen}
           handleBoardChange={handleBoardChange}
           addBoard={addBoard}
+          newTheme={newTheme}
+          setNewTheme={setNewTheme}
         />
       ) : null}
       <div className="side-nav">
@@ -101,7 +103,17 @@ const BoardSelectPage = () => {
                     to={`/boards/${board.id}`}
                     key={board.id}
                   >
-                    <div className="board-item">
+                    <div
+                      className={
+                        board.themeType === 1
+                          ? "board-item-1"
+                          : board.themeType === 2
+                          ? "board-item-2"
+                          : board.themeType === 3
+                          ? "board-item-3"
+                          : null
+                      }
+                    >
                       <p className="board-item-text">{board.boardName}</p>
                     </div>
                   </Link>
