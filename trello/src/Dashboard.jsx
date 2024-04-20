@@ -22,6 +22,7 @@ const Dashboard = () => {
   const [newContent, setNewContent] = useState("");
   const [open, setOpen] = useState(false);
   const [boardName, setBoardName] = useState("");
+  const [boardTheme, setBoardTheme] = useState(0);
 
   // const ref = useRef();
   // const { events } = useDraggable(ref, {
@@ -47,6 +48,9 @@ const Dashboard = () => {
         setBoardName(
           initialNotes.filter((board) => board.id === boardId)[0].boardName
         );
+        setBoardTheme(
+          initialNotes.filter((board) => board.id === boardId)[0].themeType
+        );
       });
       console.log("test");
     };
@@ -56,6 +60,7 @@ const Dashboard = () => {
   const handleOpen = () => {
     setOpen(!open);
     setNewNote("");
+    console.log(boardTheme);
   };
 
   const handleNoteChange = (event) => {
@@ -68,6 +73,8 @@ const Dashboard = () => {
     event.preventDefault();
     const addData = async () => {
       const accessToken = await getAccessTokenSilently();
+
+      console.log(notes);
 
       const noteObject = {
         name: newNote,
@@ -328,8 +335,18 @@ const Dashboard = () => {
   };
 
   return (
-    <section id="dashboard">
-      <Nav boardName={boardName} />
+    <section
+      id={
+        boardTheme === 1
+          ? "dashboard-1"
+          : boardTheme === 2
+          ? "dashboard-2"
+          : boardTheme === 3
+          ? "dashboard-3"
+          : null
+      }
+    >
+      <Nav boardName={boardName} boardTheme={boardTheme} />
       <div className="selector">
         <div className="dropdownWrapper">
           <CreateButton buttonName="Add Checklist +" buttonFunc={scrollRight} />

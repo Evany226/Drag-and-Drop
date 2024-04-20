@@ -120,7 +120,27 @@
 .board-item-1 {
   width: 13rem;
   height: 9rem;
-  background-color: #ed7138;
+  background: hsla(39, 97%, 76%, 1);
+
+  background: linear-gradient(
+    270deg,
+    hsla(39, 97%, 76%, 1) 23%,
+    hsla(324, 82%, 64%, 1) 94%
+  );
+
+  background: -moz-linear-gradient(
+    270deg,
+    hsla(39, 97%, 76%, 1) 23%,
+    hsla(324, 82%, 64%, 1) 94%
+  );
+
+  background: -webkit-linear-gradient(
+    270deg,
+    hsla(39, 97%, 76%, 1) 23%,
+    hsla(324, 82%, 64%, 1) 94%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#FDD386", endColorstr="#EE56B2", GradientType=1 );
   margin: 1rem;
   border-radius: 0.25rem;
   display: flex;
