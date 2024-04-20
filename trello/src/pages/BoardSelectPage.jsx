@@ -6,7 +6,7 @@ import boardService from "../services/boards";
 import { Link } from "react-router-dom";
 import { ReactComponent as Plus } from "../assets/plus.svg";
 import BoardDropdown from "../components/BoardDropdown";
-import LogoutButton from "../components/LogOutButton";
+import LogoutButton from "../components/LogoutButton";
 
 const BoardSelectPage = () => {
   const [boards, setBoards] = useState([]);
