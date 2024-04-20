@@ -10,7 +10,7 @@ boardsRouter.get("/", async (req, res) => {
 
 boardsRouter.post("/", async (req, res) => {
   const body = req.body;
-  const username = "google-oauth2|103964861180742015983";
+  const username = request.auth.payload.sub;
 
   const user = await User.findOne({ userName: username });
 
