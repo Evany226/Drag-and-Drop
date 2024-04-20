@@ -1,7 +1,7 @@
 const boardsRouter = require("express").Router();
 const Board = require("../models/board");
 const User = require("../models/user");
-const { validateAccessToken } = require("../middleware/auth0.middleware.js");
+const { validateAccessToken } = require("../middleware/auth0.middleware");
 
 boardsRouter.get("/", validateAccessToken, async (req, res) => {
   const boards = await Board.find({}).populate("notes", {});
@@ -11,7 +11,7 @@ boardsRouter.get("/", validateAccessToken, async (req, res) => {
 
 boardsRouter.post("/", validateAccessToken, async (req, res) => {
   const body = req.body;
-  const username = request.auth.payload.sub;
+  const username = req.auth.payload.sub;
 
   const user = await User.findOne({ userName: username });
 
